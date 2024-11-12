@@ -1,0 +1,1 @@
+export {Header as HeaderModule} from "@/modules/header/ui/header"
