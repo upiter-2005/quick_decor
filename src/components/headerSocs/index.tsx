@@ -8,7 +8,7 @@ interface IHeaderSocs {
 export const HeaderSocs:React.FC<IHeaderSocs> = ({className}) => { 
     return (
         <div className={cn('', className)}>
-           <Image src={} />
+           Socs
         </div>
     )
        

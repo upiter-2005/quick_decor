@@ -1,9 +1,17 @@
+import { ContactBaner } from "@/components/contactBaner";
+import { EffectChose } from "@/components/effectChose";
+import { HomeBaner } from "@/components/homePage/homeBaner";
+import { PickEffect } from "@/components/pickEffect";
 
 
 export default function Home() {
   return (
-    <div className="">
-     <div className="text-gray font-semibold ">Text testing</div>
-    </div>
+    <>
+      <HomeBaner />
+      <PickEffect />
+      <EffectChose />
+      <ContactBaner />
+    </>
+  
   );
 }

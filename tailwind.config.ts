@@ -13,6 +13,7 @@ export default {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			gray: '#373C45',
+			main: '#ff0000',
   			accent: {
   				DEFAULT: 'hsl(var(--accent))',
   				foreground: 'hsl(var(--accent-foreground))'
@@ -56,7 +57,11 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		backgroundImage: {
+			'baner': "url('../../public/bg.jpg')",
+			'contactBg': "url('../shared/assets/images/contactBaner.jpg')",
+		},
   	}
   },
   plugins: [require("tailwindcss-animate")],
