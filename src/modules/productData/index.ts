@@ -1,0 +1,1 @@
+export {ProductData as ProductDataWidget} from "@/modules/productData/ui/ProductData"
