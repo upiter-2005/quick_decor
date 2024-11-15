@@ -1,0 +1,1 @@
+export {CartWrapper as CartWrapperWrapper} from "@/modules/cart/ui/cartWrapper"

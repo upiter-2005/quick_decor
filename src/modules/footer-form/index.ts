@@ -1,0 +1,1 @@
+export {FooterForm as FooterFormWidget} from "@/modules/footer-form/ui/FooterForm"

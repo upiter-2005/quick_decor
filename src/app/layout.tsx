@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { cn } from "@/shared/helpers/cn";
 import "./globals.css";
 import { HeaderModule } from "@/modules/header";
+import { Footer } from "@/components/footer";
 
 const inter = Inter({ subsets: ["cyrillic"], weight: ['300','400','500','600','700','800'] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={cn(inter.className, 'bg-[#fff] text-[#000] overflow-x-hidden p-0 m-0')}>
         <HeaderModule />
         <main className={cn('')}>{children}</main>
+        <Footer />
       </body>
     </html>
   );

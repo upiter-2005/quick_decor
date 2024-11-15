@@ -6,6 +6,7 @@ import { HomeBaner } from "@/components/homePage/homeBaner";
 import { PickEffect } from "@/components/pickEffect";
 import { Divider } from "@/shared/ui/divider";
 import f1 from "@/shared/assets/images/f1.jpg"
+import { FooterFormWidget } from "@/modules/footer-form";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <p><strong>5.</strong> Всі майстри – декоратори команди QuickDecor пройшли навчання з роботи продукцією Ferrara Paint та Simpletone TM в головному офісі компанії - виробника «Феррара Групп» під контролем Головного Технолога.</p>
       </DataBlock>
       <Divider />
+      <FooterFormWidget />
     </>
   
   );
