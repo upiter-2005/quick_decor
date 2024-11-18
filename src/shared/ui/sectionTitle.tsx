@@ -10,9 +10,9 @@ interface ISectionTitle {
 export const SectionTitle:React.FC<ISectionTitle> = ({className, title, redText}) => {
     return(
         <>
-            <div className={cn('max-w-[1154px] w-full m-auto mt-[110px] pb-[52px]', className)}>
+            <div className={cn('max-w-[1154px] w-full m-auto mt-[50px]  pb-[52px] px-3 md:px-0', className)}>
                 <RedText text={redText} />
-                <h2 className={cn('text-[46px] leading-[64px] w-full text-left')}>{title}</h2>
+                <h2 className={cn('text-[28px] md:text-[46px] leading-9 md:leading-[64px] w-full text-left')}>{title}</h2>
             </div>
         </>
     )

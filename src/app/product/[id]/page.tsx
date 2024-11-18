@@ -12,7 +12,7 @@ import { ProductDataWidget } from '@/modules/productData'
 // type Props = {
 //   params: { id: string }
 // }
-
+type tParams = Promise<{ id: string[] }>;
 // export async function generateMetadata(
 //   { params }: Props,
 //   parent: ResolvingMetadata
@@ -42,13 +42,14 @@ import { ProductDataWidget } from '@/modules/productData'
 
 
 
-export default async function productPage({params}: {params: {id: string}}) {
-    console.log(params)
-//   const response: IProduct[] =  await fetch(`${process.env.NEXT_API_HOST}/wp-json/wc/v3/products?slug=${params.id}&consumer_key=${process.env.NEXT_WC_CUSTOMER_KEY}&consumer_secret=${process.env.NEXT_WC_SECRET}`, 
-//     // {cache: 'no-store'}
-//     { next: { revalidate: 60 } }
-//   ).then(res => res.json())
+export default async function ProductPage({ params }: { params: tParams }) {
+     console.log(params)
+  // const response =  await fetch(`${process.env.NEXT_API_HOST}/wp-json/wc/v3/products?slug=${params.id}&consumer_key=${process.env.NEXT_WC_CUSTOMER_KEY}&consumer_secret=${process.env.NEXT_WC_SECRET}`, 
+  //   // {cache: 'no-store'}
+  //   { next: { revalidate: 60 } }
+  // ).then(res => res.json())
 
+  // console.log(response)
 //   if(!response[0]){
 //     notFound()
 //   }

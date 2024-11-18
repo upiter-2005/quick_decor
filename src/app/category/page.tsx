@@ -3,11 +3,11 @@ import { PickEffect } from "@/components/pickEffect";
 import { VideoImage } from "@/components/videoImage";
 import { Divider } from "@/shared/ui/divider";
 
-import air from '@/shared/assets/images/air.png'
-import sand from '@/shared/assets/images/sand.png'
-import cement from '@/shared/assets/images/cement.png'
-import travertin from '@/shared/assets/images/travertin.png'
-import quick from '@/shared/assets/images/quick.png'
+import air from '@/shared/assets/images/air.jpg'
+import sand from '@/shared/assets/images/sand.jpg'
+import cement from '@/shared/assets/images/cement.jpg'
+import travertin from '@/shared/assets/images/travertin.jpg'
+import quick from '@/shared/assets/images/quick.jpg'
 
 import a1 from "@/shared/assets/images/a1.jpg" 
 import a2 from "@/shared/assets/images/a2.jpg" 

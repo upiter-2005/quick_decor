@@ -23,15 +23,15 @@ export const DataBlock:React.FC<IDataBlock> = ({children, title, redTitle, rever
     <div className='w-full bg-[#f6f6f9] py-[80px]'>
     {reverse &&  <SectionTitle title={title} redText={redTitle} className='w-full mt-0'/>}
         <div className={`max-w-[1144px] w-full m-auto flex items-start flex-wrap justify-between gap-[64px] ${reverse && 'flex-row-reverse'}`}>
-            <div className='flex-1'>
-                <div className='text-base font-normal leading-6'> 
+            <div className='flex-1 px-3 md:px-0'>
+                <div className='text-sm md:text-base font-normal leading-6'> 
                     {!reverse && <SectionTitle title={title} redText={redTitle} className='w-full mt-0' />}
                     {children} 
                     </div>
                 {btnText && <RedButton text={btnText} href={btnHref} linkText={btnLinkText} />}
                 
             </div>
-            <div className='max-w-[446px] w-full'>
+            <div className='max-w-[270px] m-auto md:max-w-[446px] w-full'>
                 <Image src={image} layout='responsive' alt='quickDecor' />
             </div>
         </div>

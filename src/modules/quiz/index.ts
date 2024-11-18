@@ -1,0 +1,1 @@
+export {QuizSteps as QuizStepsWidget} from "@/modules/quiz/ui/QuizSteps"

@@ -12,7 +12,7 @@ interface ITotalTable {
 
 export const TotalTable:React.FC<ITotalTable> = ({className}) => {
     return (
-       <div className={cn(' flex-1  border border-[#E4E7E9] px-5 pt-5 pb-6 rounded-sm', className)}>
+       <div className={cn(' flex-1 w-full border border-[#E4E7E9] px-5 pt-5 pb-6 rounded-sm ', className)}>
            
             <h3 className="text-[18px] text-[#191C1F] leading-6 pb-5 text-left">Сума замовлення</h3>
             <div className="w-full flex justify-between mb-3">
