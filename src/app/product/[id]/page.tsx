@@ -1,5 +1,3 @@
-
-
 import { PickEffect } from '@/components/pickEffect'
 import { EffectChose } from '@/components/effectChose'
 import { Divider } from '@/shared/ui/divider'
@@ -8,11 +6,14 @@ import f1 from "@/shared/assets/images/f1.jpg"
 import { VideoImage } from '@/components/videoImage'
 import a1 from "@/shared/assets/images/a1.jpg" 
 import { ProductDataWidget } from '@/modules/productData'
+import { notFound } from 'next/navigation'
+import { getProductImages } from '@/shared/helpers/getProductImages'
+import { getVariations } from '@/shared/helpers/getVariations'
 
 // type Props = {
 //   params: { id: string }
 // }
-type tParams = Promise<{ id: string[] }>;
+
 // export async function generateMetadata(
 //   { params }: Props,
 //   parent: ResolvingMetadata
@@ -39,23 +40,26 @@ type tParams = Promise<{ id: string[] }>;
 //     },
 //   }
 // }
+type Params = Promise<{ id: string }>;
+export const dynamic = 'force-dynamic'
 
+export default async function ProductPage(props: { params: Params }) {
+  const params = await props.params
+  const response =  await fetch(`https://api.quickdecor.com.ua/wp-json/wp/v2/posts?per_page=100&slug=${params.id}`, 
+    // {cache: 'no-store'}
+    { next: { revalidate: 60 } }
+  ).then(res => res.json())
 
+  
+   const imageArray = await getProductImages(response[0].acf.gallery_images)
+   const variations = getVariations(response[0].acf.variations)
 
-export default async function ProductPage({ params }: { params: tParams }) {
-     console.log(params)
-  // const response =  await fetch(`${process.env.NEXT_API_HOST}/wp-json/wc/v3/products?slug=${params.id}&consumer_key=${process.env.NEXT_WC_CUSTOMER_KEY}&consumer_secret=${process.env.NEXT_WC_SECRET}`, 
-  //   // {cache: 'no-store'}
-  //   { next: { revalidate: 60 } }
-  // ).then(res => res.json())
-
-  // console.log(response)
-//   if(!response[0]){
-//     notFound()
-//   }
+  if(!response[0]){
+    notFound()
+  }
 
   return <>
-      <ProductDataWidget />  
+      <ProductDataWidget product={response[0]} images={imageArray} variations={variations} />  
       <EffectChose />
       <PickEffect className='' />
       <VideoImage image={a1} />

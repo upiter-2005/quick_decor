@@ -25,28 +25,28 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
 
             <RedText text="Ефекти" />
             <div className={cn('max-w-[1030px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[65px] pb-14 mt-5 ', className)} >
-                <div  className='block w-[80px] md:w-[146px]  text-center hover:opacity-75 transition-all rounded-[50%]'>
-                    <Image src={ef1}  layout='responsive'  alt="quickdecor"   />
+                <div  className='block w-[80px] md:w-[146px] h-[80px] md:h-[146px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <Image src={ef1}  fill objectFit="cover"  alt="quickdecor"   />
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium'>AIR</p>
                     <div className="text-main md:text-2xl font-medium">0</div>
                 </div>
-                <div  className='block w-[80px] md:w-[146px]  text-center hover:opacity-75 transition-all rounded-[50%]'>
-                    <Image src={ef2}  layout='responsive'  alt="quickdecor"   />
+                <div  className='block w-[80px] md:w-[146px] h-[80px] md:h-[146px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <Image src={ef2}  fill objectFit="cover"  alt="quickdecor"   />
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium'>SAND</p>
                     <div className="text-main md:text-2xl font-medium">0</div>
                 </div>
-                <div className='block w-[80px] md:w-[146px]  text-center hover:opacity-75 transition-all rounded-[50%]'>
-                    <Image src={ef3}  layout='responsive'  alt="quickdecor"   />
+                <div className='block w-[80px] md:w-[146px] h-[80px] md:h-[146px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <Image src={ef3}  fill objectFit="cover"  alt="quickdecor"   />
                     <p className='text-main mt-1 text-xs md:text-xl font-medium'>MICROCEMENT</p>
                     <div className="text-main md:text-2xl font-medium">0</div>
                 </div>
-                <div  className='block w-[80px] md:w-[146px]  text-center hover:opacity-75 transition-all rounded-[50%]'>
-                    <Image src={ef1}  layout='responsive'  alt="quickdecor"   />
+                <div  className='block w-[80px] md:w-[146px] h-[80px] md:h-[146px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <Image src={ef1}  fill objectFit="cover"  alt="quickdecor"   />
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium'>TRAVERTINE</p>
                     <div className="text-main md:text-2xl font-medium">0</div>
                 </div>
-                <div  className='block w-[80px] md:w-[146px]  text-center hover:opacity-75 transition-all rounded-[50%]'>
-                    <Image src={ef1}  layout='responsive'  alt="quickdecor"   />
+                <div  className='block w-[80px] md:w-[146px] h-[80px] md:h-[146px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <Image src={ef1}  fill objectFit="cover"  alt="quickdecor"   />
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium'>QUICK</p>
                     <div className="text-main md:text-2xl font-medium">0</div>
                 </div>

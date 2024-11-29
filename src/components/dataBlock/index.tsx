@@ -31,8 +31,8 @@ export const DataBlock:React.FC<IDataBlock> = ({children, title, redTitle, rever
                 {btnText && <RedButton text={btnText} href={btnHref} linkText={btnLinkText} />}
                 
             </div>
-            <div className='max-w-[270px] m-auto md:max-w-[446px] w-full'>
-                <Image src={image} layout='responsive' alt='quickDecor' />
+            <div className='max-w-[270px] m-auto md:max-w-[446px] md:h-[510px] overflow-hidden w-full relative'>
+                <Image src={image} fill objectFit="contain" alt='quickDecor' style={{width: "100%", height: "100%"}} />
             </div>
         </div>
     </div>
