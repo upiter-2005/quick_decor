@@ -7,6 +7,7 @@ interface IRedButton {
     text: string
     href?: string
     linkText?: string
+    onClick?: () => void
 }
 
 export const RedButton:React.FC<IRedButton> = ({className, text, href, linkText}) => {

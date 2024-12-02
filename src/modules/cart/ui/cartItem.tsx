@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils"
 // import Link from "next/link"
 import Image from 'next/image'
 
-import badroom from "@/shared/assets/images/badroom.svg"
+
 
 import remove from "@/shared/assets/images/remove.svg"
 import up from "@/shared/assets/images/up.svg"
@@ -23,7 +23,7 @@ export const CartItem:React.FC<ICartItemBox> = ({className, item}) => {
 
     useEffect(()=>{
         setSquare(item.square)
-    }, [cartItems])
+    }, [cartItems, item.square])
     return (
        <div className={cn('w-full flex md:justify-between items-center  pb-14 pt-4 rounded-2xl input-shadow border border-[#efefef] p-[10px] mb-6 gap-2 flex-wrap relative', className)}>
             <div className="rounded-[8px] overflow-hidden w-[55px] h-[55px] md:w-[80px] md:h-[80px] relative">
