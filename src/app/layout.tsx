@@ -4,6 +4,8 @@ import { cn } from "@/shared/helpers/cn";
 import "./globals.css";
 import { HeaderModule } from "@/modules/header";
 import { Footer } from "@/components/footer";
+import { Suspense } from "react";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["cyrillic"], weight: ['300','400','500','600','700','800'] });
 
@@ -23,6 +25,27 @@ export default function RootLayout({
         <HeaderModule />
         <main className={cn('')}>{children}</main>
         <Footer />
+        
+        <Suspense>
+          <>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-Z96KMJBKD0" />
+        
+            <Script
+              id="gtm-script"
+              strategy="beforeInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+
+                <!-- Google tag (gtag.js) -->
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-Z96KMJBKD0');
+        `,
+              }}
+            />
+          </>
+        </Suspense>
       </body>
     </html>
   );

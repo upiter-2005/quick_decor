@@ -2,27 +2,7 @@
 import { cn } from "@/shared/helpers/cn"
 import Image from "next/image"
 
-
-import badroom from "@/shared/assets/images/quiz/badroom.png"
-import child from "@/shared/assets/images/quiz/child.png"
-import cabinet from "@/shared/assets/images/quiz/cabinet.png"
-import hall from "@/shared/assets/images/quiz/hall.png"
-import kitchen from "@/shared/assets/images/quiz/kitchen.png"
-import stear from "@/shared/assets/images/quiz/stear.png"
-import showroom from "@/shared/assets/images/quiz/showroom.png"
-
-import ceil from "@/shared/assets/images/quiz/ceil.png"
-import glass from "@/shared/assets/images/quiz/glass.png"
-import fireplace from "@/shared/assets/images/quiz/fireplace.png"
-import fasad from "@/shared/assets/images/quiz/fasad.png"
-
-import paint from "@/shared/assets/images/quiz/paint.png"
-import wallpaper from "@/shared/assets/images/quiz/wallpaper.png"
-
-import stable from "@/shared/assets/images/quiz/stable.png"
-import wet from "@/shared/assets/images/quiz/wet.png"
-import water from "@/shared/assets/images/quiz/water.png"
-import dust from "@/shared/assets/images/quiz/dust.png"
+import icons from "@/shared/assets/images"
 
 import { RedText } from "@/shared/ui/redText"
 
@@ -244,10 +224,10 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
 
             <RedText text="Ефекти" />
 
-            <div className={cn('max-w-[1030px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[65px] pb-14 mt-5 ', className)} >
+            <div className={cn('max-w-[1230px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[65px] pb-4 mt-5 sticky top-[92px] bg-white  z-50', className)} >
                 {step === 5 && <div className="w-full text-center text-black font-medium ">Вітаємо, початок покладено! Оберіть ефект орінтуючись на зібрані бали в кожному з них</div>}
                 <div>
-                    <div  className='block w-[80px] md:w-[146px] h-[80px] md:h-[146px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>AIR</p>
@@ -257,7 +237,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                 </div>
                 
                 <div>
-                    <div  className='block w-[80px] md:w-[146px] h-[80px] md:h-[146px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef2}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>SAND</p>
@@ -267,7 +247,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                 </div>
 
                 <div>
-                    <div  className='block w-[80px] md:w-[146px] h-[80px] md:h-[146px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef3}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>MICROCEMENT</p>
@@ -276,7 +256,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                 </div>
 
                 <div>
-                    <div  className='block w-[80px] md:w-[146px] h-[80px] md:h-[146px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>TRAVERTINE</p>
@@ -285,7 +265,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                 </div>
 
                 <div>
-                    <div  className='block w-[80px] md:w-[146px] h-[80px] md:h-[146px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>QUICK</p>
@@ -295,8 +275,8 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                 </div>
 
             </div>
-            <div className="font-semibold text-sm flex gap-6 mb-6">
-                {params.type && <div>Тип примыщення: <span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.type}</span> </div>}
+            <div className="font-semibold text-sm flex gap-6 mb-6 pt-10">
+                {params.type && <div>Тип приміщення: <span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.type}</span> </div>}
                 {params.area && <div>Тип поверхні:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.area}</span> </div>}
                 {params.create && <div>Тип стін:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.create}</span> </div>}
                 {params.props && <div>Властивості для експлуатації:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.props}</span> </div>}
@@ -306,16 +286,16 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
             {step === 1 && 
                 <div className="flex gap-5  w-full flex-wrap justify-center">
                     <div className="w-full text-xl mb-2 text-[#373C45]">Оберіть приміщення</div>
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="spalnya" text="Спальня" image={badroom}  />
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="gostinnaya" text="Вітальня" image={hall} />
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="child" text="Дитяча" image={child} />
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="stear" text="Холл, лестничный марш" image={stear} />
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="kitchen" text="Кухня" image={kitchen} />
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="hall" text="Коридор" image={hall} />
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="cabinet" text="Кабінет" image={cabinet} />
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="office" text="Oфіс" image={hall} />
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="showroom" text="Шоу-рум, виставковий зал" image={showroom} />
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="childClubs" text="Дитячі клуби/учбові класи" image={child} />
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="spalnya" text="Спальня" image={icons.badroom}  />
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="gostinnaya" text="Вітальня" image={icons.hall} />
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="child" text="Дитяча" image={icons.child} />
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="stear" text="Холл, лестничный марш" image={icons.stear} />
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="kitchen" text="Кухня" image={icons.kitchen} />
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="hall" text="Коридор" image={icons.hall} />
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="cabinet" text="Кабінет" image={icons.cabinet} />
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="office" text="Oфіс" image={icons.hall} />
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="showroom" text="Шоу-рум, виставковий зал" image={icons.showroom} />
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="childClubs" text="Дитячі клуби/учбові класи" image={icons.child} />
                 </div>
             }
             
@@ -323,29 +303,29 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
             {step === 2 &&
              <div className="flex gap-5  w-full flex-wrap justify-center">
                 <div className="w-full text-xl mb-2 text-[#373C45]">Оберіть тип поверхні на яку планується нанесення декору</div>
-                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="wall" text="Стіна інтер'єр" image={fasad} />
-                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="ceil" text="Потолок" image={ceil} />
-                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="glass" text="Кухонный фартук (под стекло)" image={glass} />
-                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="fireplace" text="Камін" image={fireplace} />
-                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="fasad" text="Фасад" image={fasad} />
+                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="wall" text="Стіна інтер'єр" image={icons.fasad} />
+                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="ceil" text="Потолок" image={icons.ceil} />
+                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="glass" text="Кухонный фартук (под стекло)" image={icons.glass} />
+                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="fireplace" text="Камін" image={icons.fireplace} />
+                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="fasad" text="Фасад" image={icons.fasad} />
             </div>
             }
 
         {step === 3 &&
              <div className="flex gap-5  w-full flex-wrap justify-center">
                 <div className="w-full text-xl mb-2 text-[#373C45]">Оберіть яка підготовка обраного типу стін наразі</div>
-                <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="wallpaper" text="Під шпалери" image={wallpaper} />
-                <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="paint" text="Під покраску" image={paint} />
+                <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="wallpaper" text="Під шпалери" image={icons.wallpaper} />
+                <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="paint" text="Під покраску" image={icons.paint} />
             </div>
         }
            
         {step === 4 &&
              <div className="flex gap-5  w-full flex-wrap justify-center">
                 <div className="w-full text-xl mb-2 text-[#373C45]">Оберіть важливі властивості для експлуатації</div>
-                <QuizTileAction current={currentStep.props} quizAction={nextStep4} slug="stable" text="Стійкість, прочність" image={stable} />
-                <QuizTileAction current={currentStep.props} quizAction={nextStep4} slug="wet" text="Вологе прибирання" image={wet} />
-                <QuizTileAction current={currentStep.props} quizAction={nextStep4} slug="water" text="Вода" image={water} />
-                <QuizTileAction current={currentStep.props} quizAction={nextStep4} slug="dust" text="Не сприймає пилу" image={dust} />
+                <QuizTileAction current={currentStep.props} quizAction={nextStep4} slug="stable" text="Стійкість, прочність" image={icons.stable} />
+                <QuizTileAction current={currentStep.props} quizAction={nextStep4} slug="wet" text="Вологе прибирання" image={icons.wet} />
+                <QuizTileAction current={currentStep.props} quizAction={nextStep4} slug="water" text="Вода" image={icons.water} />
+                <QuizTileAction current={currentStep.props} quizAction={nextStep4} slug="dust" text="Не сприймає пилу" image={icons.dust} />
             </div>
         }
 

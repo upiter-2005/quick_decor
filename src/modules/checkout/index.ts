@@ -1,0 +1,1 @@
+export {Checkout as CheckoutWidget} from "./ui/checkout"

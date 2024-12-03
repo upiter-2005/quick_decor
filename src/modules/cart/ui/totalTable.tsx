@@ -43,7 +43,7 @@ export const TotalTable:React.FC<ITotalTable> = ({className}) => {
                 <span className=" text-base text-[#191C1F] leading-6">До сплати</span>
                 <span className=" text-base text-[#191C1F] font-semibold  leading-6">{total} грн</span>
             </div>
-            <Link href="#" className="bg-[#1C293F] rounded-[54px] text-base font-bold uppercase w-full py-4  text-white flex items-center justify-center gap-3 hover:opacity-70 transition-all">оформити замовлення <Image src={arr} width={24} height={24} alt='quickdecor' /> </Link>
+            <Link href="/checkout" className="bg-[#1C293F] rounded-[54px] text-base font-bold uppercase w-full py-4  text-white flex items-center justify-center gap-3 hover:opacity-70 transition-all">оформити замовлення <Image src={arr} width={24} height={24} alt='quickdecor' /> </Link>
        </div>  
     )
 }
