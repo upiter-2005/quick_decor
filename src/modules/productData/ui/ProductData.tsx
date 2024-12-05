@@ -8,6 +8,15 @@ import { IProduct } from "../types/types"
 import { useCartStore } from "@/store/cartStore"
 import { useState } from "react"
 
+import {flatTypes} from "@/shared/consts/flatTypes"
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+  } from "@/shared/ui/dialog"
+import toast from "react-hot-toast"
+
 interface IProductData {
     className?: string
     product: IProduct
@@ -17,13 +26,49 @@ interface IProductData {
 
 export const ProductData:React.FC<IProductData> = ({className, product, images, variations}) =>{
         const [square, setSquare] = useState<string>('15');
+        const [isOpen, setIsOpen] = useState<boolean>(false);
         
-    const {addCartItem} = useCartStore()
+        
+    const {addCartItem, typeFlat} = useCartStore()
+  
+    const addToCartHandler = () => {
+        if(!typeFlat) {
+            setIsOpen(true)
+            return
+        }
+        addCartItem({
+            id: product.id,
+            name: product.acf.front_name + ' ' + product.acf.colors,
+            price: product.acf.price,
+            effect: product.acf.colors,
+            square: parseInt(square),
+            image: images[0],
+            type: typeFlat
+        })
+        toast.success("Товар додано в корзину!", {icon: '✅'})
+      
+    }
+
+    const  defineType = (val: string) => {
+        addCartItem({
+            id: product.id,
+            name: product.acf.front_name + ' ' + product.acf.colors,
+            price: product.acf.price,
+            effect: product.acf.colors,
+            square: parseInt(square),
+            image: images[0],
+            type: val
+        })
+        toast.success("Товар додано в корзину!", {icon: '✅'})
+        setIsOpen(false)
+    }
+
   
      console.log(product)
   
     return(
-        <div className={cn('max-w-[1304px] w-full m-auto pt-8 flex flex-col md:flex-row', className)}>
+        <>
+         <div className={cn('max-w-[1304px] w-full m-auto pt-8 flex flex-col md:flex-row', className)}>
             <div className="flex justify-between flex-1 gap-5 flex-col md:flex-row">
                 <div className=" w-full md:w-[568px] overflow-hidden relative">
                     {images &&  <Image src={images[0]} fill objectFit="cover" alt='quickDecor' />}
@@ -72,18 +117,35 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
                     </div>
                     <button 
                         className="w-[250px] rounded-[60px] text-white p-4 bg-[#1C293F] text-sm font-semibold hover:opacity-70"
-                        onClick={()=>addCartItem({
-                            id: product.id,
-                            name: product.acf.front_name + ' ' + product.acf.colors,
-                            price: product.acf.price,
-                            effect: product.acf.colors,
-                            square: parseInt(square),
-                            image: images[0]
-                        })}
+                        onClick={addToCartHandler}
                         >Придбати</button>
                  </div>
             </div>
         </div>
+        
+        <Dialog open={isOpen} onOpenChange={()=>{setIsOpen(false)}}  >
+            <DialogContent className="max-w-[700px] w-full" >
+                <DialogHeader>
+                <DialogTitle><div className="w-full text-xl mb-2 text-[#373C45]">Оберіть приміщення</div></DialogTitle>
+                </DialogHeader>
+
+                <div className="flex gap-5  w-full flex-wrap justify-center">
+                    {flatTypes.map((obj, i)=>
+                        <div key={i} 
+                        onClick={()=>defineType(obj.name)}
+                        className="w-[90px] flex flex-col justify-start items-center cursor-pointer"
+                        >
+                        <Image src={obj.image} width={90} height={90} alt='quickdecor'  className='rounded-[10px]'/>
+                        <span className="text-xs text-center pt-1 font-semibold">{obj.name}</span>
+                        </div>
+                    )}
+                </div>
+
+            </DialogContent>
+        </Dialog>
+
+</>
+       
     )  
     
 }

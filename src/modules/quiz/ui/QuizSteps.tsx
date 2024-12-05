@@ -15,6 +15,8 @@ import { useState } from "react"
 
 import {steps as data}  from "@/shared/consts/steps"
 import { QuizTileAction } from "./quizTileAction"
+import { useCartStore } from "@/store/cartStore"
+import Link from "next/link"
 
 
 interface IQuizSteps {
@@ -31,7 +33,7 @@ interface quizObject {
 }
 
 export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
-
+    const {setTypeFlat} = useCartStore()
 
     const [pointsStep1, setPointsStep1] = useState<quizObject>({
         air: 0,
@@ -87,6 +89,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
     
 
     const nextStep1 = (e: string, param: string) => {
+        setTypeFlat(param)
         setParams({...params, type: param})
         if (currentStep.type === e) return
        
@@ -226,7 +229,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
 
             <div className={cn('max-w-[1230px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[65px] pb-4 mt-5 sticky top-[92px] bg-white  z-50', className)} >
                 {step === 5 && <div className="w-full text-center text-black font-medium ">Вітаємо, початок покладено! Оберіть ефект орінтуючись на зібрані бали в кожному з них</div>}
-                <div>
+                <Link href="/product/air-white">
                     <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
@@ -234,9 +237,9 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.air + pointsStep2.air + pointsStep3.air + pointsStep4.air}
                         </div>
-                </div>
+                </Link>
                 
-                <div>
+                <Link href="/product/sand-cool">
                     <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef2}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
@@ -244,27 +247,27 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.sand + pointsStep2.sand + pointsStep3.sand + pointsStep4.sand}
                         </div>
-                </div>
+                </Link>
 
-                <div>
+                <Link href="/product/microcemente-ash">
                     <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef3}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>MICROCEMENT</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.microcement + pointsStep2.microcement + pointsStep3.microcement + pointsStep4.microcement}</div>
-                </div>
+                </Link>
 
-                <div>
+                <Link href="/product/travertine-naturale">
                     <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>TRAVERTINE</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.travertine + pointsStep2.travertine + pointsStep3.travertine + pointsStep4.travertine}</div>
-                </div>
+                </Link>
 
-                <div>
+                <Link href="/product/quick-concrete">
                     <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
@@ -272,9 +275,11 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.quickInterior + pointsStep2.quickInterior + pointsStep3.quickInterior + pointsStep4.quickInterior}
                     </div>
-                </div>
+                </Link>
 
             </div>
+
+
             <div className="font-semibold text-sm flex gap-6 mb-6 pt-10">
                 {params.type && <div>Тип приміщення: <span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.type}</span> </div>}
                 {params.area && <div>Тип поверхні:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.area}</span> </div>}

@@ -35,7 +35,7 @@ export const CartItem:React.FC<ICartItemBox> = ({className, item}) => {
                     {item.name} 
                     {/* <Image src={badroom} width={20} height={20} alt="quickdecor" className="ml-2 mr-2" /><span className="text-main text-[10px] capitalize">Вітальня</span>  */}
                 </div>
-                <div className=" text-[#1e1e1e] text-sm">Ефект дизайнерського бетону </div>
+                <div className=" text-[#1e1e1e] text-sm">{item.type} </div>
             </div>
          
         

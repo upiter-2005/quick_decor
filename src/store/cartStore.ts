@@ -8,19 +8,21 @@ export interface ICartItem {
   effect?: string
   square: number
   image: string
+  type: string
 }
 
 interface CartState {
   cartItems: ICartItem[]
-  total: number,
+  total: number
+  typeFlat: string
   // openCart: boolean
   // setOpen: (val: boolean) => void 
    addCartItem: (item: ICartItem) => void
    removeItem: (id: number, price: string, square: number) => void
    addSquare: (id: number) => void
    minusSquare: (id: number) => void
-  // increaseFromCart: (id: number) => void
-  // decreaseFromCart: (id: number) => void
+   setTypeFlat:(val: string) => void
+
   // clearCart: () => void
  
 }
@@ -31,22 +33,26 @@ export const useCartStore = create<CartState>()(
       {
         cartItems: [],
         total: 0,
-        //openCart: false,
-        //setOpen: (val) => {set({openCart: val})},
+        typeFlat: '',
+        setTypeFlat: (val: string) => {
+          set({typeFlat: val})
+        },
         addCartItem: (item) => {
-          const existItem = get().cartItems.find((el:ICartItem) => el.id === item.id)
-          if(existItem){
-            existItem.square += item.square
-            set({
-              cartItems: [...get().cartItems],
-              total: get().total + parseInt(item.price) * item.square
-            })
-            }else{
+          // const existItem = get().cartItems.find((el:ICartItem) => el.id === item.id)
+          // if(existItem){
+          //   existItem.square += item.square
+          //   set({
+          //     cartItems: [...get().cartItems],
+          //     total: get().total + parseInt(item.price) * item.square,
+          //     typeFlat: ''
+          //   })
+          //   }else{
                 set({
                   cartItems: [ ...get().cartItems, {...item} ],
-                  total: get().total + (parseInt(item.price) * item.square)
+                  total: get().total + (parseInt(item.price) * item.square),
+                  typeFlat: ''
             })
-          }
+          //}
 
         },
 
@@ -128,7 +134,7 @@ export const useCartStore = create<CartState>()(
       name: 'qdCart',
       version: 0.1,
       storage: createJSONStorage(()=> localStorage),
-       partialize: (state) => ({cartItems: state.cartItems, total: state.total}),
+       partialize: (state) => ({cartItems: state.cartItems, total: state.total, typeFlat: state.typeFlat}),
 
     }
   )

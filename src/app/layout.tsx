@@ -6,6 +6,7 @@ import { HeaderModule } from "@/modules/header";
 import { Footer } from "@/components/footer";
 import { Suspense } from "react";
 import Script from "next/script";
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ["cyrillic"], weight: ['300','400','500','600','700','800'] });
 
@@ -24,11 +25,30 @@ export default function RootLayout({
       <body className={cn(inter.className, 'bg-[#fff] text-[#000] overflow-x-hidden p-0 m-0')}>
         <HeaderModule />
         <main className={cn('')}>{children}</main>
+        <Toaster 
+          containerStyle={{
+            top: 70,
+          }}
+          toastOptions={{
+            success: {
+              style: {
+                background: '#1c293f',
+                color: '#fff',
+                fontWeight: 'semibold'
+              },
+            },
+            error: {
+              style: {
+                background: 'red',
+              },
+            },
+          }}
+        />
         <Footer />
         
         <Suspense>
           <>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-Z96KMJBKD0" />
+            <Script src="https://www.googletagmanager.com/gtag/js?id=G-Z96KMJBKD0" />
         
             <Script
               id="gtm-script"
@@ -41,11 +61,15 @@ export default function RootLayout({
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
                     gtag('config', 'G-Z96KMJBKD0');
+
+
+
         `,
               }}
             />
           </>
         </Suspense>
+        
       </body>
     </html>
   );

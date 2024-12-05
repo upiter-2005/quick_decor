@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import loader from "@/shared/assets/images/loader.svg"
 import  {zodResolver}  from '@hookform/resolvers/zod'
 import { Payment } from "./payment";
+import { checkoutAction } from "@/lib/actions";
 
 interface IForm{
     className?: string
@@ -32,7 +33,7 @@ export const Form:React.FC<IForm> = ({className}) => {
     
       const onSubmit = async(data: TDefauldFields) => {
         startTransition( async () => {
-           //const response = await makeOrder(data)
+          await checkoutAction(data)
           if(data) {
             console.log(data)
           }else{
@@ -43,7 +44,7 @@ export const Form:React.FC<IForm> = ({className}) => {
       }
 
     return (
-        <div className={cn('max-w-[600px] w-full', className)}>
+        <div className={cn('max-w-[600px] w-full sticky top-[100px]', className)}>
             <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className={`w-full max-w-[500px]` } >
             <h1 className="text-3xl mb-8">Оформити замовлення</h1>
@@ -70,7 +71,7 @@ export const Form:React.FC<IForm> = ({className}) => {
                 <div className="w-full"> <Payment /></div>  
             </div>
             
-            <button type="submit" disabled={isPending} className="w-full flex justify-center bg-[#ff0000] text-white text-sm font-semibold p-4 rounded-[60px]  hover:opacity-55 transition-all">{isPending ? <Image src={loader} width={55} height={55} alt="loader" /> : "Оформити замовлення"}</button>
+            <button type="submit" disabled={isPending} className="w-full flex justify-center bg-[#ff0000] text-white text-sm font-semibold  rounded-[60px]  hover:opacity-55 transition-all">{isPending ? <Image src={loader} width={52} height={45} alt="loader" /> : <span className="p-4">Оформити замовлення</span>  }</button>
 
             </form>
 

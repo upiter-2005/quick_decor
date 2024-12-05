@@ -22,19 +22,21 @@ export const Header:React.FC<IHeaderProps> = ({className}) => {
 
   
     return (
-        <header className={cn(className, "w-full max-w-[1225px] mx-auto pt-3 pb-1 flex items-center justify-between md:gap-6 px-3 md:px-0 sticky top-0 bg-white z-[999]")}>
-            
-            <Link href="/"><Image src={logo} width={182} height={32} alt='quickdecor' /></Link>
-            
-            <SearchWidget className="ml-6 mr-3" />
-            <HeaderMnu className="hidden md:block" />
-            <div className="flex gap-1 items-center">
-                <Link href="#" className="hidden md:block"><Image src={tel} width={18} height={18} alt="quickdecor"/></Link>
-                <Link href="#" className="hidden md:block"><Image src={tg} width={18} height={18} alt="quickdecor" className="mr-1"/></Link>
-                <Link href="#" className="hidden md:block"><Image src={viber} width={18} height={18} alt="quickdecor"/></Link>
-                <HeaderCart />
+        <header className={cn(className, "w-full sticky top-0 bg-white z-[99]")}>
+            <div className={cn(className, "w-full max-w-[1225px] mx-auto pt-3 pb-1 flex items-center justify-between md:gap-6 px-3 md:px-0  bg-white z-[999]")}> 
+                <Link href="/"><Image src={logo} width={182} height={32} alt='quickdecor' /></Link>
+                
+                <SearchWidget className="ml-6 mr-3" />
+                <HeaderMnu className="hidden md:block" />
+                <div className="flex gap-1 items-center">
+                    <Link href="#" className="hidden md:block"><Image src={tel} width={18} height={18} alt="quickdecor"/></Link>
+                    <Link href="#" className="hidden md:block"><Image src={tg} width={18} height={18} alt="quickdecor" className="mr-1"/></Link>
+                    <Link href="#" className="hidden md:block"><Image src={viber} width={18} height={18} alt="quickdecor"/></Link>
+                    <HeaderCart />
+                </div>
+                <MobMenu />
             </div>
-            <MobMenu />
+            
         </header>
     )
        
