@@ -78,4 +78,7 @@ body {
   .cart-shadow{
     box-shadow: 0px 6px 7px -3px #170F49;
   }
+  .inria-text{
+    font-family: "Inria Serif", serif;
+  }
 }

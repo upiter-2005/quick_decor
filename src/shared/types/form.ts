@@ -12,8 +12,8 @@ export const defaulFieldsSchema = z.object({
   tel: z.string().regex(phoneRegex, 'Перевірте коректність телефону'),
   email: z.string().email({ message: 'Введіть коректну пошту' }),
   payment: z.string(),
-  city: z.string().min(3, {message: "Занадто коротка назва"}),
-  adress: z.string().min(3, {message: "Занадто коротка назва"}),
+  city: z.string().min(2, {message: "Занадто коротка назва"}),
+  department: z.string().min(2, {message: "Занадто коротка назва"}),
 })
 
 export type TDefauldFields = z.infer<typeof defaulFieldsSchema>

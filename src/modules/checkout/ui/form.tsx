@@ -10,6 +10,7 @@ import loader from "@/shared/assets/images/loader.svg"
 import  {zodResolver}  from '@hookform/resolvers/zod'
 import { Payment } from "./payment";
 import { checkoutAction } from "@/lib/actions";
+import NovaPoshta from "@/components/delivery";
 
 interface IForm{
     className?: string
@@ -27,7 +28,7 @@ export const Form:React.FC<IForm> = ({className}) => {
           email: '',
           payment: '',
           city: '',
-          adress: ''
+          department: ''
         }
       })
     
@@ -62,12 +63,14 @@ export const Form:React.FC<IForm> = ({className}) => {
                 <div className="w-[48%]">
                     <Input type='text' placeholder="Телефон" name="tel" />
                 </div>
-                <div className="w-[48%]">
+
+                <NovaPoshta />
+                {/* <div className="w-[48%]">
                     <Input type='text' placeholder="Місто" name="city" />
                 </div>
                 <div className="w-[48%]">
                     <Input type='text' placeholder="Адреса" name="adress" />
-                </div>
+                </div> */}
                 <div className="w-full"> <Payment /></div>  
             </div>
             

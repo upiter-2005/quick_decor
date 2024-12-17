@@ -1,5 +1,4 @@
 import { PickEffect } from '@/components/pickEffect'
-import { EffectChose } from '@/components/effectChose'
 import { Divider } from '@/shared/ui/divider'
 import { DataBlock } from '@/components/dataBlock'
 import f1 from "@/shared/assets/images/f1.jpg"
@@ -60,7 +59,7 @@ export default async function ProductPage(props: { params: Params }) {
 
   return <>
       <ProductDataWidget product={response[0]} images={imageArray} variations={variations} />  
-      <EffectChose />
+      
       <PickEffect className='' />
       <VideoImage image={a1} />
       

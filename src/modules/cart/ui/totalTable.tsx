@@ -27,23 +27,12 @@ export const TotalTable:React.FC<ITotalTable> = ({className}) => {
                 <span className=" text-sm leading-5 text-[#5F6C72]">Доставка</span>
                 <span className=" text-sm leading-5 text-[#191C1F] font-medium">800 грн</span>
             </div>
-            {/* <div className="w-full flex justify-between mb-3">
-                <span className=" text-sm leading-5 text-[#5F6C72]">Знижка</span>
-                <span className=" text-sm leading-5 text-[#191C1F] font-medium">89 грн</span>
-            </div>
-            <div className="w-full flex justify-between mb-3">
-                <span className=" text-sm leading-5 text-[#5F6C72]">Знижка</span>
-                <span className=" text-sm leading-5 text-[#191C1F] font-medium">4 980 грн</span>
-            </div>
-            <div className="w-full flex justify-between mb-3">
-                <span className=" text-sm leading-5 text-[#5F6C72]">Tax</span>
-                <span className=" text-sm leading-5 text-[#191C1F] font-medium">217 грн</span>
-            </div> */}
+            
             <div className="w-full flex justify-between mb-6 border-t border-t-[#5F6C72] pt-4 mt-4">
                 <span className=" text-base text-[#191C1F] leading-6">До сплати</span>
                 <span className=" text-base text-[#191C1F] font-semibold  leading-6">{total} грн</span>
             </div>
-            <Link href="/checkout" className="bg-[#1C293F] rounded-[54px] text-base font-bold uppercase w-full py-4  text-white flex items-center justify-center gap-3 hover:opacity-70 transition-all">оформити замовлення <Image src={arr} width={24} height={24} alt='quickdecor' /> </Link>
+            <Link href="/checkout" className="bg-[#ff0000] rounded-[54px] text-base font-bold uppercase w-full py-4  text-white flex items-center justify-center gap-3 hover:opacity-70 transition-all">оформити замовлення <Image src={arr} width={24} height={24} alt='quickdecor' /> </Link>
        </div>  
     )
 }

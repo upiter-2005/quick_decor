@@ -7,12 +7,12 @@ import {
   SheetTrigger
 } from "@/shared/ui/sheet"
 
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-  } from "@/shared/ui/accordion"
+// import {
+//     Accordion,
+//     AccordionContent,
+//     AccordionItem,
+//     AccordionTrigger,
+//   } from "@/shared/ui/accordion"
 
 import Image from "next/image"
 import mob_mnu_btn from '@/shared/assets/images/mobBtn.svg'
@@ -20,7 +20,6 @@ import mob_mnu_btn from '@/shared/assets/images/mobBtn.svg'
 import Link from "next/link"
 import { useState } from "react"
 import { cn } from "@/shared/helpers/cn"
-import logo from "@/shared/assets/images/logo.svg"
 
 
 export const MobMenu:React.FC = () => {
@@ -33,11 +32,11 @@ export const MobMenu:React.FC = () => {
             <Image width={24} height={24} src={mob_mnu_btn} alt='quickDecor'></Image>
           </button>
         </SheetTrigger>
-        <SheetContent side="left" className='w-[281px] overflow-auto px-6 py-16 bg-[#fff]'>
-        <SheetTitle><Image src={logo} width={142} height={32} alt='quickdecor' className="mb-7" /></SheetTitle>
-          <div className="py-2 font-medium text-sm"><Link  href={`#`} className="" onClick={()=>setIsOpen(false)}>Каталог</Link></div>
+        <SheetContent side="left" className='w-[281px] overflow-auto px-6 py-16 pt-[100px] bg-[#fff]'>
+        <SheetTitle></SheetTitle>
+          <div className="py-2 font-medium text-sm"><Link  href={`/catalog`} className="" onClick={()=>setIsOpen(false)}>Каталог</Link></div>
          {/* {categoriesObj.map((el, i) => <NavMenuItem key={`${el.slug}${i}`} cat={el} closeMnu={()=>setIsOpen(false)} /> )} */}
-
+{/* 
             <Accordion  type="single" collapsible >
               <AccordionItem value='mnuAcc' className="border-b-0 ">
                 <AccordionTrigger className="py-3"><Link  href="#" onClick={()=>setIsOpen(false)}>Обрати за своїми параметрами</Link></AccordionTrigger>
@@ -56,13 +55,15 @@ export const MobMenu:React.FC = () => {
                 </div>
                 </AccordionContent>
               </AccordionItem>
-            </Accordion>
+            </Accordion> */}
 
-         <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Цiна</Link></div>
+         <div className="py-2 font-medium text-[#ff0000]"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Цiна</Link></div>
          <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Блог</Link></div>
          <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Про нас</Link></div>
          <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Контакти</Link></div>
-         <div className="py-2 font-medium"><a href="#">+38 044 <span className="font-bold">242 41 42</span> </a></div>
+         <div className="py-2 font-medium text-[#ff0000]">
+         <a href="tel:+380631471218" >+38 063 <span className="font-bold">147 12 18</span> </a>
+          </div>
 
         </SheetContent>
 
