@@ -1,13 +1,10 @@
-import { PickEffect } from '@/components/pickEffect'
 import { Divider } from '@/shared/ui/divider'
-import { DataBlock } from '@/components/dataBlock'
-import f1 from "@/shared/assets/images/f1.jpg"
-import { VideoImage } from '@/components/videoImage'
-import a1 from "@/shared/assets/images/a1.jpg" 
+
 import { ProductDataWidget } from '@/modules/productData'
 import { notFound } from 'next/navigation'
 import { getProductImages } from '@/shared/helpers/getProductImages'
 import { getVariations } from '@/shared/helpers/getVariations'
+import { getPropsImages } from '@/shared/helpers/getPropsImages'
 
 // type Props = {
 //   params: { id: string }
@@ -39,8 +36,16 @@ import { getVariations } from '@/shared/helpers/getVariations'
 //     },
 //   }
 // }
+interface IImageObj {
+  image: string,
+  name: string
+}
+
+
 type Params = Promise<{ id: string }>;
 export const dynamic = 'force-dynamic'
+
+
 
 export default async function ProductPage(props: { params: Params }) {
   const params = await props.params
@@ -49,28 +54,28 @@ export default async function ProductPage(props: { params: Params }) {
     { next: { revalidate: 60 } }
   ).then(res => res.json())
 
+
+
+   
+     
+  const imageArray = await getProductImages(response[0].acf.gallery_images)
+  const type_flats: IImageObj[] = await getPropsImages(response[0].acf.hall_types)
+  const serf_area: IImageObj[] = await getPropsImages(response[0].acf.serf_area)
+  const prepare: IImageObj[] = await getPropsImages(response[0].acf.prepare)
+  const usefull: IImageObj[] = await getPropsImages(response[0].acf.usefull)
+
   
-   const imageArray = await getProductImages(response[0].acf.gallery_images)
-   const variations = getVariations(response[0].acf.variations)
+  const variations = getVariations(response[0].acf.variations)
 
   if(!response[0]){
     notFound()
   }
 
   return <>
-      <ProductDataWidget product={response[0]} images={imageArray} variations={variations} />  
-      
-      <PickEffect className='' />
-      <VideoImage image={a1} />
+
+      <ProductDataWidget product={response[0]} images={imageArray} variations={variations} type_flats={type_flats} serf_area={serf_area} prepare={prepare} usefull={usefull} />  
       
       <Divider />
-      <DataBlock title="Ще треба трохи інформації для вибору?" redTitle="Ferrara Paint TM" reverse={false} image={f1}>
-        <p>Зовнішній вигляд: покриття має дуже делікатну текстуру, приглушений, заспокійливий перловий ефект. Підходить майже до всіх дизайнерських стилів в інтер’єрі. Особливо вдало виглядає у поєднанні із деревиною, металом, склом. Якщо Ви обрали саме це покриття – Ви 100% зробили кращий вибір. Будьте впевнені, воно Вам сподобається та доречно поєднається з іншими предметами інтер’єру.</p>
-        <p><strong>1. </strong>Працюємо із цією продукцією більше 10 років, та ніколи не мали проблем з якістю. (Більше 10 років на ринку)</p>
-        <p><strong>2. </strong>Засновники та розробники продукції Ferrara Paint та Simpletone TM багато уваги приділяють екологічності та безпечності своєї продукції. Відмітимо, що покриття не виділяють в повітря шкідливі речовини та є  безпечними для людей та тварин протягом всього терміну використання покриття.(Не виділяють в повітря шкідливі речовини протягом всього терміну використання покриття.)</p>
-        <p><strong>3.</strong> Ferrara Paint та Simpletone TM - єдина українська продукція, що має якість, підтверджену Європейським Національним Інстітутом Гігієни, та вже 2-й рік має дочірнє підприємство на території країни Європейського союзу. Поменять местами с 3(Якість підтверджено сертифікацію Європейським Національним Інститутом Гігієни)</p>
-        <p><strong>4. </strong>Всі покриття допомагають досягти трендових візуальних ефектів без компромісів, щодо практичності та довговічності.(Трендові візуальні ефекти без компромісів, щодо практичності та довговічності. )</p>
-        <p><strong>5.</strong> Всі майстри – декоратори команди QuickDecor пройшли навчання з роботи продукцією Ferrara Paint та Simpletone TM в головному офісі компанії - виробника «Феррара Групп» під контролем Головного Технолога.</p>
-      </DataBlock>
+    
     </>
 }

@@ -149,8 +149,8 @@ export const steps = {
             quickExterior: 3
         },
         fireplace: {
-            air: 3,
-            sand: 3,
+            air: 2,
+            sand: 2,
             microcement: 3,
             travertine: 3,
             quickInterior: 3,

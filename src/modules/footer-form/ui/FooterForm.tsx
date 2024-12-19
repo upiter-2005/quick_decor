@@ -32,7 +32,7 @@ export const FooterForm:React.FC<IFooterForm> = ({className}) => {
                     <input type="text" placeholder="Comment" className="w-full text-[#9A9FA8] outline-none py-2 border-b-[1px] border-b-[#D9DADD] placeholder:text-[#9A9FA8] text-base"  />
                 </div> */}
                 <div className="w-full text-center">
-                    <RedButton  text="Зв'язатись з нами" className="w-[212px]"/>
+                    <RedButton  text="Надіслати" className="w-[212px]"/>
                 </div>
             </form>
         </div>

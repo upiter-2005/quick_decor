@@ -81,4 +81,29 @@ body {
   .inria-text{
     font-family: "Inria Serif", serif;
   }
+
+}
+.image-gallery-icon:hover{
+  color: #ff0000!important;
+}
+.image-gallery-thumbnail.active, .image-gallery-thumbnail:focus{
+  border-color: #ff0000!important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.scaled{
+  transform: scale(.6);
+}
+@media(max-width: 992px){
+  .scaled{
+    transform: scale(.75);
+  }
 }

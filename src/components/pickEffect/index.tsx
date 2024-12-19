@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import air from "@/shared/assets/images/p1.jpg"
-import sand from "@/shared/assets/images/p2.jpg"
-import cement from "@/shared/assets/images/p3.jpg"
-import travertin from "@/shared/assets/images/p4.jpg"
+import air from "@/shared/assets/images/Air.png"
+import sand from "@/shared/assets/images/Sand.png"
+import cement from "@/shared/assets/images/Microcement.png"
+import travertin from "@/shared/assets/images/Travertine.png"
+import quick from "@/shared/assets/images/Quick.png"
 import {cn} from '@/shared/helpers/cn'
 import { SectionTitle } from '@/shared/ui/sectionTitle'
 import { RedButton } from '@/shared/ui/redButton'
@@ -35,7 +36,7 @@ export const PickEffect:React.FC<IPickEffect> = ({className}) => {
             <p className='text-main mt-1 md:mt-4   md:text-2xl font-medium'>TRAVERTINE</p>
           </Link>
           <Link href="/product/quick-concrete" className='block w-[110px] h-[160px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
-            <Image src={air}  objectFit="cover"  alt="quickdecor"   />
+            <Image src={quick}  objectFit="cover"  alt="quickdecor"   />
             <p className='text-main mt-1 md:mt-4  md:text-2xl font-medium'>QUICK</p>
           </Link>
           <div className='w-full text-center'><RedButton linkText='Перейти в каталог' text='Перейти в каталог' href='/catalog' className='px-8' /></div>

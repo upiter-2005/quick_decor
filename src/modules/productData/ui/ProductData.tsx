@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss"
 
+
 import {flatTypes} from "@/shared/consts/flatTypes"
 import {
     Dialog,
@@ -18,25 +19,40 @@ import {
     DialogTitle,
   } from "@/shared/ui/dialog"
 import toast from "react-hot-toast"
+import { RedButton } from "@/shared/ui/redButton"
+import { ContactBaner } from "@/components/contactBaner"
+import { FooterFormWidget } from "@/modules/footer-form"
 
+interface IImageObj {
+  image: string,
+  name: string
+}
 interface IProductData {
     className?: string
     product: IProduct
     images: string[]
     variations: string[]
+    type_flats: IImageObj[]
+    serf_area: IImageObj[]
+    prepare: IImageObj[]
+    usefull: IImageObj[]
 }
 type Images = {
     original: string,
     thumbnail: string
 }
-export const ProductData:React.FC<IProductData> = ({className, product, images, variations}) =>{
+
+export const ProductData:React.FC<IProductData> = ({className, product, images, variations, type_flats, serf_area, prepare, usefull}) =>{
         const [square, setSquare] = useState<string>('');
         const [isOpen, setIsOpen] = useState<boolean>(false);
         const [imgs, setImgs] = useState<Images[]>([])
         const [isError, setIsError] = useState<boolean>(false);
         
-        
-        
+        console.log(product)
+        console.log(type_flats)
+        console.log(serf_area)
+        console.log(prepare)
+        console.log(usefull)
     const {addCartItem, typeFlat} = useCartStore()
   
     const addToCartHandler = () => {
@@ -45,6 +61,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
             return
         }
         addCartItem({
+            uid: new Date().getTime().toString(),
             id: product.id,
             name: product.acf.front_name + ' ' + product.acf.colors,
             price: product.acf.price,
@@ -59,6 +76,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
 
     const  defineType = (val: string) => {
         addCartItem({
+            uid: new Date().getTime().toString(),
             id: product.id,
             name: product.acf.front_name + ' ' + product.acf.colors,
             price: product.acf.price,
@@ -88,8 +106,10 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
   
     return(
         <>
-         <div className={cn('max-w-[1304px] w-full m-auto pt-8 flex flex-col md:flex-row', className)}>
-            <div className="flex justify-between flex-1 gap-5 flex-col md:flex-row">
+        <SectionTitle redText={`Каталог > ${product.acf.front_name}`} className=" mt-0 max-w-[1304px] w-full m-auto pt-6 pb-0 md:pb-0"/>
+         <div className={cn('max-w-[1304px] w-full m-auto pt-8 flex flex-col md:flex-row gap-5 ', className)}>
+            <div className="flex justify-between flex-1 gap-5 flex-col md:flex-row pl-[6px]">
+              
             <ImageGallery 
                 additionalClass="productGallery"
                 showBullets={false}
@@ -113,15 +133,11 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
                     </div>) )}
                 </div> */}
             </div>
-            <div className="max-w-[536px] w-full px-3 md:px-0 pt-7 md:pt-0">
-                <div className="flex justify-between">
-                    <SectionTitle title={product.acf.front_name} redText={`Каталог > ${product.acf.front_name}`} className="pb-0 mt-0"/>
-                    <SectionTitle title='-10%' redText='Знижка дня' className="pb-0 w-[100px] mt-0"/>
-                </div>
-                <div className="text-sm mb-8 capitalize">Color - {product.acf.colors}</div>
-                <div className="text-base text-gray leading-6 mb-3" dangerouslySetInnerHTML={{__html: product.acf.description}} ></div>
-                <div className="text-main leading-6 text-base">Є екологічно чистим покриттям. Має європейський сертифікат стандарту якості. </div>
-                <div className="flex gap-7 mb-5 mt-7">
+            <div className="max-w-[536px] w-full px-3 md:px-0 pt-7 md:pt-0 ">
+                <div className="flex justify-between flex-col">
+                    <SectionTitle title={product.acf.front_name} redText={'Ефект'} className="pb-0 mt-0 md:pb-1"/>
+                    {/* <SectionTitle title='-10%' redText='Знижка дня' className="pb-0 w-[100px] mt-0"/> */}
+                    <div className="flex gap-7 mb-5 mt-7">
                     {variations.map((el: string, i: number) => 
                         <Link href={`/product/${product.acf.front_name.toLocaleLowerCase()}-${el}`} key={i} className="flex flex-col items-center ">
                             <Image src={color} width={36} height={36} alt='quickdecor' />
@@ -131,6 +147,11 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
                    
              
                 </div>
+                </div>
+                <div className="text-sm mb-8 capitalize pl-4 md:pl-0">Колір - {product.acf.colors}</div>
+                <div className="text-base text-gray leading-6 mb-3" dangerouslySetInnerHTML={{__html: product.acf.description}} ></div>
+                <div className="text-main leading-6 text-base">Є екологічно чистим покриттям. Має європейський сертифікат стандарту якості. </div>
+               
 
                 <div className="flex items-center md:items-end py-2 justify-center md:justify-start flex-col md:flex-row">
                     <p className="text-main text-[48px] relative">{product.acf.price} <span className='relative text-[34px] -top-3 -left-1'> грн</span></p>
@@ -155,11 +176,77 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
                     <button 
                         className="w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
                         onClick={addToCartHandler}
-                        >Придбати</button>
+                        >До кошика</button>
                  </div>
             </div>
       </div>
+
+
+      <SectionTitle redText='Ідеально підходить для наступних приміщень'/>
+      
+      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12 ' >
+        {type_flats.map((el:IImageObj, i: number) => 
+         ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
+          <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
+          <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
+          </div>)
+        )}
+      </div>
+
+      
+      <SectionTitle redText='Підходить для таких поверхонь'/>
+      
+      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12' >
+      
+        {serf_area.map((el:IImageObj, i: number) => 
+         ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
+          <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
+          <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
+          </div>)
+        )}
         
+      </div>
+
+
+      <SectionTitle redText='Необхідна підготовка поверхонь'/>
+      
+      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12' >
+  
+
+
+      {prepare.map((el:IImageObj, i: number) => 
+         ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
+          <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
+          <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
+          </div>)
+        )}
+         
+          
+      </div>
+
+
+      <SectionTitle redText='Має такі властивості'/>
+      
+      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12' >
+          
+      {usefull.map((el:IImageObj, i: number) => 
+         ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
+          <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
+          <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
+          </div>)
+        )}
+          
+      </div>
+
+      <h2 className={cn('text-[28px] md:text-[46px] leading-9 md:leading-[64px] w-full  text-center')}>Не впевненні у виборі?</h2> 
+      <p className={cn('text-[14px] md:text-[18px] leading-5 md:leading-[26px] w-full  text-center px-2 pt-3')}>Скористайтеся нашим фільтром помічником. <br /> В залежності від обраних вами параметрів, ми порекомендуємо найкращий ефект за допомогою системи балів.</p>
+      <div className='w-full text-center mb-16 mt-14'><RedButton linkText='Скористатися фільтром' text='Скористатися фільтром' href='/quiz' className='px-8' /></div>
+        
+
+      <ContactBaner />
+      <FooterFormWidget />
+
+      
         <Dialog open={isOpen} onOpenChange={()=>{setIsOpen(false)}}  >
             <DialogContent className="max-w-[700px] w-full" >
                 <DialogHeader>

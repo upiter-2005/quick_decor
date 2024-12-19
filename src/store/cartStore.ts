@@ -2,6 +2,7 @@ import {create} from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
 export interface ICartItem {
+  uid: string
   id: number
   name: string
   price: string
@@ -14,14 +15,20 @@ export interface ICartItem {
 interface CartState {
   cartItems: ICartItem[]
   total: number
+  resultTotal: number
   typeFlat: string
+  selfDelivery: boolean
+  fotoPermition: boolean
   // openCart: boolean
   // setOpen: (val: boolean) => void 
    addCartItem: (item: ICartItem) => void
-   removeItem: (id: number, price: string, square: number) => void
-   addSquare: (id: number) => void
-   minusSquare: (id: number) => void
+   removeItem: (id: number, price: string, square: number, uid: string) => void
+   addSquare: (id: number,type: string) => void
+   minusSquare: (id: number, type: string) => void
+   setupSquare: (id: number, val: number, type: string) => void
    setTypeFlat:(val: string) => void
+   discountTotal: ( selfDelivery: boolean,) => void
+
 
   // clearCart: () => void
  
@@ -33,7 +40,10 @@ export const useCartStore = create<CartState>()(
       {
         cartItems: [],
         total: 0,
+        selfDelivery: false,
+        fotoPermition: false,
         typeFlat: '',
+        resultTotal: 0,
         setTypeFlat: (val: string) => {
           set({typeFlat: val})
         },
@@ -56,17 +66,19 @@ export const useCartStore = create<CartState>()(
 
         },
 
-        removeItem: (id, price, square) => {
-          const newItems = get().cartItems.filter((el:ICartItem) => el.id !== id)
+        removeItem: (id, price, square, uid) => {
+          const newItems = get().cartItems.filter((el:ICartItem) => el.uid !== uid)
           set({
             cartItems: newItems,
             total: get().total - (parseInt(price) * square)
           })
         },
-        addSquare: (id) => {
+        addSquare: (id ,type) => {
           const exsistItem = get().cartItems.find(obj => obj.id === id)
           if(exsistItem){
-            exsistItem.square++
+            const filtered = get().cartItems.find(obj => obj.type === type)
+            if(filtered) filtered.square++
+            
 
           }
           const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
@@ -76,10 +88,12 @@ export const useCartStore = create<CartState>()(
 
           })
         },
-        minusSquare: (id) => {
+        setupSquare: (id, val, type) => {
           const exsistItem = get().cartItems.find(obj => obj.id === id)
+
           if(exsistItem){
-            exsistItem.square--
+            const filtered = get().cartItems.find(obj => obj.type === type)
+            if(filtered) filtered.square = val
 
           }
           const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
@@ -89,43 +103,41 @@ export const useCartStore = create<CartState>()(
 
           })
         },
-        // removeItem: (id) => {
-        //   const existItem = get().cartItems.filter((el:ICartItem) => el.id === id)
-        //   if(existItem){
-        //     const updateItems = get().cartItems.filter(el => el.id !== id)
-        //     const updateTotal = updateItems.reduce((acc, current) => acc + (current.quantity * current.price), 0)
-        //     set({cartItems: updateItems, total: updateTotal})
-        //   }
-        // },
+        minusSquare: (id, type) => {
+          const exsistItem = get().cartItems.find(obj => obj.id === id)
+          if(exsistItem){
+            const filtered = get().cartItems.find(obj => obj.type === type)
+            if(filtered) filtered.square--
 
-        // increaseFromCart: (id) => {
-        //   const existItem = get().cartItems.find((el:ICartItem) => el.id === id)
-        //   if(existItem) {
-        //     existItem.quantity++
-        //   }
-        //   const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.quantity * current.price), 0)
-        //   set({cartItems: [...get().cartItems], total: updateTotal})
-        // },
+          }
+          const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
+          set({
+            cartItems: [...get().cartItems],
+            total: updateTotal
 
-        // decreaseFromCart: (id) => {
-        //   const existItem = get().cartItems.find((el:ICartItem) => el.id === id)
-        //   if(existItem) {
-        //     if(existItem.quantity === 1){
-        //       const updatedItems = get().cartItems.filter((el:ICartItem) => el.id !== id)
-        //       const updateTotal = updatedItems.reduce((acc, current) => acc + (current.quantity * current.price), 0)
-        //       set({
-        //         cartItems: updatedItems,
-        //         total: updateTotal
-        //       })
-        //     }else{
-        //       existItem.quantity--
-        //       const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.quantity * current.price), 0)
-        //       set({cartItems: [...get().cartItems], total: updateTotal})
-        //     }
-        //   }
-        // },
-        // clearCart: () => {
-        //   set({cartItems: [], total: 0})
+          })
+        },
+        discountTotal: ( selfDelivery) => {
+         
+          const discountSum = get().total - Math.ceil(get().total* 0.97)
+          console.log(discountSum)
+          if(selfDelivery){
+            const priceResult = get().total - discountSum
+            set({total: priceResult})
+          }else{
+            const priceResult = get().total + discountSum
+            set({total: priceResult})
+          }
+          
+
+          console.log(selfDelivery)
+        },
+        // discountFotoTotal: ( fotoPermition) => {
+        //   const coef = (100 - 3) / 100
+        //   const priceResult = get().total -  (get().total * coef)
+        //   set({resultTotal: priceResult})
+
+        //   console.log(selfDelivery)
         // },
      
       }
@@ -134,7 +146,7 @@ export const useCartStore = create<CartState>()(
       name: 'qdCart',
       version: 0.1,
       storage: createJSONStorage(()=> localStorage),
-       partialize: (state) => ({cartItems: state.cartItems, total: state.total, typeFlat: state.typeFlat}),
+       partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat}),
 
     }
   )

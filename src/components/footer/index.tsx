@@ -46,7 +46,7 @@ export const Footer:React.FC = () => {
                 <div className="w-[49%] md:w-auto mb-4 md:mb-0">
                     <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Каталог </Link>
                     <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Ціни</Link>
-                    <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Фільтр</Link>
+                    <Link href="/cart" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Прорахунок</Link>
                 </div>
 
                 <div className="w-[49%] md:w-auto mb-4 md:mb-0">
@@ -54,12 +54,10 @@ export const Footer:React.FC = () => {
                     <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Про нас</Link>
                     <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Контакти</Link>
                 </div>
-                {/* <div className="w-[49%] md:w-auto mb-4 md:mb-0">
-                    <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Прорахунок</Link>
-                </div> */}
+               
                 <div className="w-[49%] md:w-auto mb-4 md:mb-0">
-                    <Link href="#mailto:info@quickdecor.ua" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">info@quickdecor.ua</Link>
-                    <Link href="#tel:+380442424142" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">+38 044 242 41 42</Link>
+                    <Link href="mailto:info@quickdecor.ua" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">info@quickdecor.ua</Link>
+                    <Link href="tel:+380631471218" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">+38 063 147 12 18</Link>
                 </div>
             </div>
 
