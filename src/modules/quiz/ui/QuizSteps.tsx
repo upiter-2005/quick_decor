@@ -1,24 +1,23 @@
 'use client'
 import { cn } from "@/shared/helpers/cn"
 import Image from "next/image"
-
 import icons from "@/shared/assets/images"
-
 import { RedText } from "@/shared/ui/redText"
 
 import ef1 from "@/shared/assets/images/ef1.jpg"
 import ef2 from "@/shared/assets/images/ef2.jpg"
 import ef3 from "@/shared/assets/images/ef3.jpg"
+import ef4 from "@/shared/assets/images/ef4.jpg"
+import ef5 from "@/shared/assets/images/ef5.jpg"
 import prev from "@/shared/assets/images/prev.svg"
 
 import { useEffect, useState } from "react"
 import {useSet} from 'react-use'
-
 import {steps as data}  from "@/shared/consts/steps"
 import { QuizTileAction } from "./quizTileAction"
 import { useCartStore } from "@/store/cartStore"
-import Link from "next/link"
 import { QuizTileLastStep } from "./QuizTileLastStep"
+import { useAddLine } from "@/modules/cart/hooks/useAddLine"
 
 
 interface IQuizSteps {
@@ -38,6 +37,8 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
     const [set, {has, toggle: toggleProps }] = useSet(new Set<string>([]));
     const [ scrolled, setScrolled ] = useState<boolean>(false)
     const {setTypeFlat} = useCartStore()
+
+    const {addAir, addSand, addMicrocement, addTravertin, addQuick} = useAddLine()
 
   
     const [pointsStep1, setPointsStep1] = useState<quizObject>({
@@ -95,7 +96,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
 
     const nextStep1 = (e: string, param: string) => {
         
-
+        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" }); 
         setTypeFlat(param)
         setParams({...params, type: param})
         if (currentStep.type === e) return
@@ -130,6 +131,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
     }
 
     const nextStep2 = (e: string, param: string) => {
+        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         setParams({...params, area: param})
         if (currentStep.area === e) return
        
@@ -162,6 +164,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
     }
 
     const nextStep3 = (e: string, param: string) => {
+        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         setParams({...params, create: param})
         if (currentStep.area === e) return
        
@@ -194,6 +197,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
     }
 
     const nextStep4 = (e: string, param: string) => {
+        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         setParams({...params, props: param})
         if (currentStep.area === e) return
         toggleProps(e)
@@ -251,70 +255,79 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
     return(
         <div className={cn('max-w-[1144px] w-full m-auto py-12 px-3 md:px-0', className)}  >
 
-            <p className="w-full text-center text-xs px-4 text-[#373C45] mb-5">Тепер Вам не треба витрачати зайвий час на годинні консультації щодо потрібного покриття під ваші умови. Нижче скористайтеся помічником, який швидко, на основі Ваших параметрів прорахує оптимальне покриття та надасть рекомендації за допомогою системи балів.</p>
-
-
+            {step === 1 &&  <p className="w-full text-center text-xs px-4 text-[#373C45] mb-5">Тепер Вам не треба витрачати зайвий час на годинні консультації щодо потрібного покриття під ваші умови. Нижче скористайтеся помічником, який швидко, на основі Ваших параметрів прорахує оптимальне покриття та надасть рекомендації за допомогою системи балів.</p>}
+           
             <RedText text="Ефекти" />
 
-            <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[52px] bg-white transition-all  z-[1111] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
+            <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center gap-2 md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[52px] bg-white transition-all  z-[1111] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
                 {step === 5 && <div className="w-full text-center text-black font-medium ">Вітаємо, початок покладено! Оберіть ефект орінтуючись на зібрані бали в кожному з них</div>}
-                <Link href="/product/air-white">
-                    <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+
+            <div className="w-full px-2 font-semibold text-xs md:text-sm flex gap-2 md:gap-5 mb-6 pt-10 flex-col md:flex-row">
+                {params.type && <div>Тип приміщення: <span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.type}</span> </div>}
+                {params.area && <div>Тип поверхні:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.area}</span> </div>}
+                {params.create && <div>Тип стін:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.create}</span> </div>}
+                {params.props && <div>Властивості для експлуатації:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.props}</span> </div>}
+            </div>
+
+                <div className="flex flex-col justify-center items-center">
+                    <div  className='block w-[55px] md:w-[116px] h-[55px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>AIR</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.air + pointsStep2.air + pointsStep3.air + pointsStep4.air}
                         </div>
-                </Link>
+                    {step === 5 && <button onClick={addAir} className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>}    
+                </div>
                 
-                <Link href="/product/sand-cool">
-                    <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                <div className="flex flex-col justify-center items-center">
+                    <div  className='block w-[55px] md:w-[116px] h-[55px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef2}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>SAND</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.sand + pointsStep2.sand + pointsStep3.sand + pointsStep4.sand}
                         </div>
-                </Link>
+                    {step === 5 && <button onClick={addSand} className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>}  
+                        
+                </div>
 
-                <Link href="/product/microcemente-ash">
-                    <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                <div className="flex flex-col justify-center items-center">
+                    <div  className=' w-[55px] md:w-[116px] h-[55px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef3}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>MICROCEMENT</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.microcement + pointsStep2.microcement + pointsStep3.microcement + pointsStep4.microcement}</div>
-                </Link>
+                    {step === 5 && <button onClick={addMicrocement} className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>}
+                    
+                </div>
 
-                <Link href="/product/travertine-naturale">
-                    <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
-                        <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
+                <div className="flex flex-col justify-center items-center">
+                    <div  className='block w-[55px] md:w-[116px] h-[55px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                        <Image src={ef4}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>TRAVERTINE</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.travertine + pointsStep2.travertine + pointsStep3.travertine + pointsStep4.travertine}</div>
-                </Link>
+                    {step === 5 && <button onClick={addTravertin} className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>}
+                </div>
 
-                <Link href="/product/quick-concrete">
-                    <div  className='block w-[80px] md:w-[116px] h-[80px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
-                        <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
+                <div className="flex flex-col justify-center items-center">
+                    <div  className='block w-[55px] md:w-[116px] h-[55px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                        <Image src={ef5}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>QUICK</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.quickInterior + pointsStep2.quickInterior + pointsStep3.quickInterior + pointsStep4.quickInterior}
                     </div>
-                </Link>
-
+                    {step === 5 && <button onClick={addQuick} className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>}
+                </div>
+                
             </div>
 
 
-            <div className="font-semibold text-sm flex gap-6 mb-6 pt-10">
-                {params.type && <div>Тип приміщення: <span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.type}</span> </div>}
-                {params.area && <div>Тип поверхні:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.area}</span> </div>}
-                {params.create && <div>Тип стін:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.create}</span> </div>}
-                {params.props && <div>Властивості для експлуатації:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.props}</span> </div>}
-            </div>
+            
 
        
             {step === 1 && 
@@ -377,6 +390,9 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                 disabled={step === 5}
                 >{step === 4 ? 'Отримати розрахунок' : 'Наступний крок'}</button>}
              
+
+             {step === 5 &&    <button className={cn( 'w-[250px] bg-[#ff0000] text-white text-sm font-semibold p-4 rounded-[60px] inline-block hover:opacity-55 transition-all', className)}
+                onClick={()=> setStep(1)} >Розрахувати ще раз</button>}
             </div>
         
     </div>

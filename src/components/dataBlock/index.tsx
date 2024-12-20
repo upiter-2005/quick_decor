@@ -20,7 +20,7 @@ interface IDataBlock {
 export const DataBlock:React.FC<IDataBlock> = ({children, title, redTitle, reverse, btnText, btnHref, btnLinkText, image}) => {
   return (
     <>
-    <div className='w-full bg-[#f6f6f9] py-1  md:py-[80px] pt-5 '>
+    <div className='w-full bg-white py-1  md:py-[80px] pt-5 '>
     {reverse &&  <SectionTitle title={title} redText={redTitle} className='w-full mt-0'/>}
         <div className={`max-w-[1144px] w-full m-auto flex items-start flex-wrap justify-between gap-[64px] ${reverse && 'flex-row-reverse'}`}>
             <div className='flex-1 px-3 md:px-0'>

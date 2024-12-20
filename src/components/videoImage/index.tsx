@@ -6,9 +6,12 @@ interface IVideoImage{
 
 export const VideoImage:React.FC<IVideoImage> = ({image}) => {
   return (
-    <div className='w-full max-w-[1144px] md:h-[540px] md:my-[55px] block m-auto overflow-hidden'>
-      <Image src={image} layout='responsive' alt='quickDecor'/>
+    <div className="bg-[#f6f6f9] w-full md:py-[55px] md:h-[680px]" >
+      <div className=' w-full max-w-[1144px]   block m-auto overflow-hidden'>
+        <Image src={image} layout='responsive' alt='quickDecor'/>
+      </div>
     </div>
+    
   )
 }
 

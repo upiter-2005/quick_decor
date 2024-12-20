@@ -43,16 +43,14 @@ type Images = {
 }
 
 export const ProductData:React.FC<IProductData> = ({className, product, images, variations, type_flats, serf_area, prepare, usefull}) =>{
-        const [square, setSquare] = useState<string>('');
+        const [square, setSquare] = useState<string>('5');
         const [isOpen, setIsOpen] = useState<boolean>(false);
         const [imgs, setImgs] = useState<Images[]>([])
         const [isError, setIsError] = useState<boolean>(false);
         
-        console.log(product)
-        console.log(type_flats)
-        console.log(serf_area)
-        console.log(prepare)
-        console.log(usefull)
+
+        console.log(product);
+      
     const {addCartItem, typeFlat} = useCartStore()
   
     const addToCartHandler = () => {
@@ -170,7 +168,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
                             placeholder="15m" 
                             className="w-full text-[#9A9FA8] outline-none py-3 pl-2 border border-[#D9DADD] placeholder:text-[#9A9FA8] text-base rounded-xl " 
                             value={square} 
-                            onChange={(e)=>{setSquare(e.target.value); if(Number(e.target.value) < 15){setIsError(true)}else{setIsError(false)} }}
+                            onChange={(e)=>{setSquare(e.target.value); if(Number(e.target.value) < 5){setIsError(true)}else{setIsError(false)} }}
                             />
                     </div>
                     <button 

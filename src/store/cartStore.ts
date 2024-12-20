@@ -23,9 +23,9 @@ interface CartState {
   // setOpen: (val: boolean) => void 
    addCartItem: (item: ICartItem) => void
    removeItem: (id: number, price: string, square: number, uid: string) => void
-   addSquare: (id: number,type: string) => void
-   minusSquare: (id: number, type: string) => void
-   setupSquare: (id: number, val: number, type: string) => void
+   addSquare: (uid: string) => void
+   minusSquare: (uid: string) => void
+   setupSquare: (id: string, val: number) => void
    setTypeFlat:(val: string) => void
    discountTotal: ( selfDelivery: boolean,) => void
 
@@ -68,17 +68,42 @@ export const useCartStore = create<CartState>()(
 
         removeItem: (id, price, square, uid) => {
           const newItems = get().cartItems.filter((el:ICartItem) => el.uid !== uid)
+          const updateTotal = newItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
           set({
             cartItems: newItems,
-            total: get().total - (parseInt(price) * square)
+            total: updateTotal
           })
         },
-        addSquare: (id ,type) => {
-          const exsistItem = get().cartItems.find(obj => obj.id === id)
+        addSquare: (uid ) => {
+          const exsistItem = get().cartItems.find(obj => obj.uid === uid)
           if(exsistItem){
-            const filtered = get().cartItems.find(obj => obj.type === type)
-            if(filtered) filtered.square++
-            
+           exsistItem.square++
+          }
+          const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
+          set({
+            cartItems: [...get().cartItems],
+            total: updateTotal
+
+          })
+        },
+        setupSquare: (uid, val) => {
+          const exsistItem = get().cartItems.find(obj => obj.uid === uid)
+
+          if(exsistItem){
+            exsistItem.square = val
+          }
+          const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
+          set({
+            cartItems: [...get().cartItems],
+            total: updateTotal
+
+          })
+        },
+        
+        minusSquare: (uid, ) => {
+          const exsistItem = get().cartItems.find(obj => obj.uid === uid)
+          if(exsistItem){
+            exsistItem.square--
 
           }
           const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
@@ -88,35 +113,7 @@ export const useCartStore = create<CartState>()(
 
           })
         },
-        setupSquare: (id, val, type) => {
-          const exsistItem = get().cartItems.find(obj => obj.id === id)
 
-          if(exsistItem){
-            const filtered = get().cartItems.find(obj => obj.type === type)
-            if(filtered) filtered.square = val
-
-          }
-          const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
-          set({
-            cartItems: [...get().cartItems],
-            total: updateTotal
-
-          })
-        },
-        minusSquare: (id, type) => {
-          const exsistItem = get().cartItems.find(obj => obj.id === id)
-          if(exsistItem){
-            const filtered = get().cartItems.find(obj => obj.type === type)
-            if(filtered) filtered.square--
-
-          }
-          const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
-          set({
-            cartItems: [...get().cartItems],
-            total: updateTotal
-
-          })
-        },
         discountTotal: ( selfDelivery) => {
          
           const discountSum = get().total - Math.ceil(get().total* 0.97)

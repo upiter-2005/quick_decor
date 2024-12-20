@@ -27,9 +27,9 @@ export const CartItem:React.FC<ICartItemBox> = ({className, item, active = true}
         
     }, [cartItems, item.square])
 
-    const changeSquareInput = (id: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    const changeSquareInput = ( e: React.ChangeEvent<HTMLInputElement>) => {
         setSquare(Number(e.target.value))
-        setupSquare(item.id, Number(e.target.value), item.type)
+        setupSquare(item.uid, Number(e.target.value))
     }
     return (
        <div className={cn('w-full flex md:justify-between items-center  pb-14 pt-4 rounded-2xl input-shadow border border-[#efefef] p-[10px] mb-6 gap-2 flex-wrap relative', className)}>
@@ -48,12 +48,12 @@ export const CartItem:React.FC<ICartItemBox> = ({className, item, active = true}
         
             <div className="text-[#393939] font-semibold text-xl flex items-center gap-2 w-full md:w-auto justify-end">
                 {active ? <>
-                    <span> <input type="number" min="1" value={square} onChange={e => changeSquareInput(item.id, e)} className="text-right max-w-[50px] w-auto" /> м</span>
+                    <span> <input type="number" min="1" value={square} onChange={e => changeSquareInput(e)} className="text-right max-w-[50px] w-auto" /> м</span>
                 <div className="flex flex-col items-center justify-center gap-[2px]">
-                    <button onClick={()=> addSquare(item.id, item.type)}><Image src={up} width={20} height={8} alt="quickdecor" /></button>
+                    <button onClick={()=> addSquare(item.uid)}><Image src={up} width={20} height={8} alt="quickdecor" /></button>
                     <button onClick={()=> {
                         if(item.square === 1) return;
-                        minusSquare(item.id, item.type)
+                        minusSquare(item.uid, )
                     }}><Image src={down} width={20} height={8} alt="quickdecor" /></button>
                 </div>
                 </> : 

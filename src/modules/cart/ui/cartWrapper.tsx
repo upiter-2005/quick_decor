@@ -31,7 +31,7 @@ export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
                     <Link href="/quiz" className="w-full uppercase flex justify-center items-center  p-9 rounded-2xl input-shadow mb-6 border border-[#efefef] hover:opacity-60 transition-all">+ додати ще примiщення</Link>
 
                 </div>
-                <TotalTable />
+                <TotalTable className="md:sticky md:top-[104px]" />
             </div> 
 
             <SeenProducts />
