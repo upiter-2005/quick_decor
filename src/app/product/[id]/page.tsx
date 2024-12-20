@@ -2,9 +2,9 @@ import { Divider } from '@/shared/ui/divider'
 
 import { ProductDataWidget } from '@/modules/productData'
 import { notFound } from 'next/navigation'
-import { getProductImages } from '@/shared/helpers/getProductImages'
+// import { getProductImages } from '@/shared/helpers/getProductImages'
 import { getVariations } from '@/shared/helpers/getVariations'
-import { getPropsImages } from '@/shared/helpers/getPropsImages'
+// import { getPropsImages } from '@/shared/helpers/getPropsImages'
 
 // type Props = {
 //   params: { id: string }
@@ -36,10 +36,10 @@ import { getPropsImages } from '@/shared/helpers/getPropsImages'
 //     },
 //   }
 // }
-interface IImageObj {
-  image: string,
-  name: string
-}
+// interface IImageObj {
+//   image: string,
+//   name: string
+// }
 
 
 type Params = Promise<{ id: string }>;
@@ -49,20 +49,10 @@ export const dynamic = 'force-dynamic'
 
 export default async function ProductPage(props: { params: Params }) {
   const params = await props.params
-  const response =  await fetch(`https://api.quickdecor.com.ua/wp-json/wp/v2/posts?per_page=100&slug=${params.id}`, 
+  const response =  await fetch(`https://api.quickdecor.com.ua/wp-json/wp/v2/posts?per_page=50&slug=${params.id}&_fields=acf&acf_format=standard`, 
     // {cache: 'no-store'}
     { next: { revalidate: 60 } }
   ).then(res => res.json())
-
-
-
-   
-     
-  const imageArray = await getProductImages(response[0].acf.gallery_images)
-  // const type_flats: IImageObj[] = await getPropsImages(response[0].acf.hall_types)
-  // const serf_area: IImageObj[] = await getPropsImages(response[0].acf.serf_area)
-  // const prepare: IImageObj[] = await getPropsImages(response[0].acf.prepare)
-  // const usefull: IImageObj[] = await getPropsImages(response[0].acf.usefull)
 
   
   const variations = getVariations(response[0].acf.variations)
@@ -73,7 +63,7 @@ export default async function ProductPage(props: { params: Params }) {
 
   return <>
 
-      <ProductDataWidget product={response[0]} images={imageArray} variations={variations}  />  
+      <ProductDataWidget product={response[0]} variations={variations}  />  
       
       <Divider />
     

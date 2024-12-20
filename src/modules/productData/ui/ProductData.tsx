@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import { cn } from "@/shared/helpers/cn"
 import Image from "next/image"
@@ -18,11 +19,11 @@ import {
     DialogHeader,
     DialogTitle,
   } from "@/shared/ui/dialog"
+
 import toast from "react-hot-toast"
 import { RedButton } from "@/shared/ui/redButton"
 import { ContactBaner } from "@/components/contactBaner"
 import { FooterFormWidget } from "@/modules/footer-form"
-import { getPropsImages } from "@/shared/helpers/getPropsImages"
 
 interface IImageObj {
   image: string,
@@ -31,19 +32,14 @@ interface IImageObj {
 interface IProductData {
     className?: string
     product: IProduct
-    images: string[]
     variations: string[]
-    // type_flats: IImageObj[]
-    // serf_area: IImageObj[]
-    // prepare: IImageObj[]
-    // usefull: IImageObj[]
 }
 type Images = {
     original: string,
     thumbnail: string
 }
 
-export const ProductData:React.FC<IProductData> = ({className, product, images, variations}) =>{
+export const ProductData:React.FC<IProductData> = ({className, product, variations}) =>{
         const [square, setSquare] = useState<string>('5');
         const [isOpen, setIsOpen] = useState<boolean>(false);
         const [imgs, setImgs] = useState<Images[]>([])
@@ -70,7 +66,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
             price: product.acf.price,
             effect: product.acf.colors,
             square: parseInt(square),
-            image: images[0],
+            image: imgs[0].original,
             type: typeFlat
         })
         toast.success("Товар додано в корзину!", {icon: '✅'})
@@ -85,7 +81,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
             price: product.acf.price,
             effect: product.acf.colors,
             square: parseInt(square),
-            image: images[0],
+            image: imgs[0].original,
             type: val
         })
         toast.success("Товар додано в корзину!", {icon: '✅'})
@@ -95,29 +91,26 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
   
      
     useEffect(()=> {
-            const imgObj: Images[]  = images.map((obj)=>{
+            const imgObj: Images[]  = product.acf.gallery_images.map((obj: any)=>{
                 return {
-                  original: obj,
-                  thumbnail: obj 
+                  original: obj.url,
+                  thumbnail: obj.url 
                 } 
             })
             setImgs(imgObj)
-   }, [images])
+   }, [product])
 
    useEffect(()=>{
     const getData = async() => {
-        const type_flats_res: IImageObj[] = await getPropsImages(product.acf.hall_types)
-        setType_flats(type_flats_res)
-        const setSerf_area_res: IImageObj[] = await getPropsImages(product.acf.serf_area)
-        setSerf_area(setSerf_area_res)
-        const prepare_res: IImageObj[] = await getPropsImages(product.acf.prepare)
-        setPrepare(prepare_res)
-        const usefull_res: IImageObj[] = await getPropsImages(product.acf.usefull)
-        setUsefull(usefull_res)
+        setType_flats(product.acf.hall_types)
+        setSerf_area(product.acf.serf_area)
+        setPrepare(product.acf.prepare)
+        setUsefull(product.acf.usefull)
     }
     getData()
-   }, [])
+   }, [product])
   
+   console.log(imgs)
     return(
         <>
         <SectionTitle redText={`Каталог > ${product.acf.front_name}`} className=" mt-0 max-w-[1304px] w-full m-auto pt-6 pb-0 md:pb-0"/>

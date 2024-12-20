@@ -52,7 +52,7 @@ export interface IProduct {
   export interface Acf {
     front_name: string
     variations: string
-    gallery_images: number[]
+    gallery_images: []
     price: string
     old_price: string
     color_image: string
