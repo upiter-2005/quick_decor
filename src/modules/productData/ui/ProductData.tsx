@@ -22,6 +22,7 @@ import toast from "react-hot-toast"
 import { RedButton } from "@/shared/ui/redButton"
 import { ContactBaner } from "@/components/contactBaner"
 import { FooterFormWidget } from "@/modules/footer-form"
+import { getPropsImages } from "@/shared/helpers/getPropsImages"
 
 interface IImageObj {
   image: string,
@@ -32,22 +33,26 @@ interface IProductData {
     product: IProduct
     images: string[]
     variations: string[]
-    type_flats: IImageObj[]
-    serf_area: IImageObj[]
-    prepare: IImageObj[]
-    usefull: IImageObj[]
+    // type_flats: IImageObj[]
+    // serf_area: IImageObj[]
+    // prepare: IImageObj[]
+    // usefull: IImageObj[]
 }
 type Images = {
     original: string,
     thumbnail: string
 }
 
-export const ProductData:React.FC<IProductData> = ({className, product, images, variations, type_flats, serf_area, prepare, usefull}) =>{
+export const ProductData:React.FC<IProductData> = ({className, product, images, variations}) =>{
         const [square, setSquare] = useState<string>('5');
         const [isOpen, setIsOpen] = useState<boolean>(false);
         const [imgs, setImgs] = useState<Images[]>([])
         const [isError, setIsError] = useState<boolean>(false);
-        
+        const [type_flats, setType_flats] = useState<IImageObj[]>();
+        const [serf_area, setSerf_area] = useState<IImageObj[]>();
+        const [prepare, setPrepare] = useState<IImageObj[]>();
+        const [usefull, setUsefull] = useState<IImageObj[]>();
+       
 
         console.log(product);
       
@@ -90,7 +95,6 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
   
      
     useEffect(()=> {
-     
             const imgObj: Images[]  = images.map((obj)=>{
                 return {
                   original: obj,
@@ -98,9 +102,21 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
                 } 
             })
             setImgs(imgObj)
-        
-      
    }, [images])
+
+   useEffect(()=>{
+    const getData = async() => {
+        const type_flats_res: IImageObj[] = await getPropsImages(product.acf.hall_types)
+        setType_flats(type_flats_res)
+        const setSerf_area_res: IImageObj[] = await getPropsImages(product.acf.serf_area)
+        setSerf_area(setSerf_area_res)
+        const prepare_res: IImageObj[] = await getPropsImages(product.acf.prepare)
+        setPrepare(prepare_res)
+        const usefull_res: IImageObj[] = await getPropsImages(product.acf.usefull)
+        setUsefull(usefull_res)
+    }
+    getData()
+   }, [])
   
     return(
         <>
@@ -183,7 +199,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
       <SectionTitle redText='Ідеально підходить для наступних приміщень'/>
       
       <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12 ' >
-        {type_flats.map((el:IImageObj, i: number) => 
+        {type_flats?.map((el:IImageObj, i: number) => 
          ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
           <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
@@ -196,7 +212,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
       
       <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12' >
       
-        {serf_area.map((el:IImageObj, i: number) => 
+        {serf_area?.map((el:IImageObj, i: number) => 
          ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
           <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
@@ -212,7 +228,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
   
 
 
-      {prepare.map((el:IImageObj, i: number) => 
+      {prepare?.map((el:IImageObj, i: number) => 
          ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
           <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
@@ -227,7 +243,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, images, 
       
       <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12' >
           
-      {usefull.map((el:IImageObj, i: number) => 
+      {usefull?.map((el:IImageObj, i: number) => 
          ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
           <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>

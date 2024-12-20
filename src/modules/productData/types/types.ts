@@ -61,6 +61,10 @@ export interface IProduct {
     hall_type: string[]
     title_seo: string
     descript_seo: string
+    hall_types: []
+    serf_area: []
+    prepare: []
+    usefull: []
   }
   
   export interface Links {

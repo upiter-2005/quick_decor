@@ -59,10 +59,10 @@ export default async function ProductPage(props: { params: Params }) {
    
      
   const imageArray = await getProductImages(response[0].acf.gallery_images)
-  const type_flats: IImageObj[] = await getPropsImages(response[0].acf.hall_types)
-  const serf_area: IImageObj[] = await getPropsImages(response[0].acf.serf_area)
-  const prepare: IImageObj[] = await getPropsImages(response[0].acf.prepare)
-  const usefull: IImageObj[] = await getPropsImages(response[0].acf.usefull)
+  // const type_flats: IImageObj[] = await getPropsImages(response[0].acf.hall_types)
+  // const serf_area: IImageObj[] = await getPropsImages(response[0].acf.serf_area)
+  // const prepare: IImageObj[] = await getPropsImages(response[0].acf.prepare)
+  // const usefull: IImageObj[] = await getPropsImages(response[0].acf.usefull)
 
   
   const variations = getVariations(response[0].acf.variations)
@@ -73,7 +73,7 @@ export default async function ProductPage(props: { params: Params }) {
 
   return <>
 
-      <ProductDataWidget product={response[0]} images={imageArray} variations={variations} type_flats={type_flats} serf_area={serf_area} prepare={prepare} usefull={usefull} />  
+      <ProductDataWidget product={response[0]} images={imageArray} variations={variations}  />  
       
       <Divider />
     
