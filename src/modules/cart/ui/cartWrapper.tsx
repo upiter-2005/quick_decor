@@ -6,6 +6,7 @@ import { CartItem } from "./cartItem"
 import { SeenProducts } from "@/components/seenProducts"
 import { Divider } from "@/shared/ui/divider"
 import { useCartStore } from "@/store/cartStore"
+import { BoxItem } from "./boxItem"
 
 
 interface ICartWrapper {
@@ -26,7 +27,7 @@ export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
                     <div className="text-sm text-[#1e1e1e] mb-7">Кількість позицій у Вашому кошику:  {cartItems.length}</div>
 
                     {cartItems.map((obj, i) => <CartItem key={i} item={obj}  />) }
-            
+                    <BoxItem />
 
                     <Link href="/quiz" className="w-full uppercase flex justify-center items-center  p-9 rounded-2xl input-shadow mb-6 border border-[#efefef] hover:opacity-60 transition-all">+ додати ще примiщення</Link>
 

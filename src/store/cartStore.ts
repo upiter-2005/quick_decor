@@ -27,7 +27,9 @@ interface CartState {
    minusSquare: (uid: string) => void
    setupSquare: (id: string, val: number) => void
    setTypeFlat:(val: string) => void
+   setResultTotal: () => void
    discountTotal: ( selfDelivery: boolean,) => void
+   discountFotoTotal: ( fotoPermit: boolean,) => void
 
 
   // clearCart: () => void
@@ -71,7 +73,8 @@ export const useCartStore = create<CartState>()(
           const updateTotal = newItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
           set({
             cartItems: newItems,
-            total: updateTotal
+            total: updateTotal,
+            resultTotal: updateTotal
           })
         },
         addSquare: (uid ) => {
@@ -82,7 +85,8 @@ export const useCartStore = create<CartState>()(
           const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
           set({
             cartItems: [...get().cartItems],
-            total: updateTotal
+            total: updateTotal,
+            resultTotal: updateTotal
 
           })
         },
@@ -95,7 +99,8 @@ export const useCartStore = create<CartState>()(
           const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
           set({
             cartItems: [...get().cartItems],
-            total: updateTotal
+            total: updateTotal,
+            resultTotal: updateTotal
 
           })
         },
@@ -109,33 +114,61 @@ export const useCartStore = create<CartState>()(
           const updateTotal = get().cartItems.reduce((acc, current) => acc + (current.square * parseInt(current.price)), 0)
           set({
             cartItems: [...get().cartItems],
-            total: updateTotal
+            total: updateTotal,
+            resultTotal: updateTotal
 
           })
         },
 
         discountTotal: ( selfDelivery) => {
-         
-          const discountSum = get().total - Math.ceil(get().total* 0.97)
-          console.log(discountSum)
-          if(selfDelivery){
-            const priceResult = get().total - discountSum
-            set({total: priceResult})
+          if(selfDelivery === true) {
+            set({selfDelivery: true})
+            if(get().selfDelivery === true && get().fotoPermition === true){
+              const priceResult = Math.floor(get().total* 0.82)
+              set({resultTotal: priceResult})
+            }else{
+              const priceResult = Math.floor(get().total* 0.85)
+              set({resultTotal: priceResult})
+            }
           }else{
-            const priceResult = get().total + discountSum
-            set({total: priceResult})
+            set({selfDelivery: false})
+            if(get().fotoPermition === true){
+              const priceResult = Math.floor(get().total* 0.85)
+              set({resultTotal: priceResult})
+            }else{
+              set({resultTotal: Math.floor(get().total* 0.88)})
+            }
           }
-          
-
           console.log(selfDelivery)
         },
-        // discountFotoTotal: ( fotoPermition) => {
-        //   const coef = (100 - 3) / 100
-        //   const priceResult = get().total -  (get().total * coef)
-        //   set({resultTotal: priceResult})
 
-        //   console.log(selfDelivery)
-        // },
+
+        discountFotoTotal: ( fotoPermit) => {
+          if(fotoPermit === true) {
+            set({fotoPermition: true})
+            if(get().fotoPermition === true && get().selfDelivery === true){
+              const priceResult = Math.floor(get().total* 0.82)
+              set({resultTotal: priceResult})
+            }else{
+              const priceResult = Math.floor(get().total* 0.85)
+              set({resultTotal: priceResult})
+            }
+          }else{
+            set({fotoPermition: false})
+            if(get().selfDelivery === true){
+              const priceResult = Math.floor(get().total* 0.85)
+              set({resultTotal: priceResult})
+            }else{
+              set({resultTotal: Math.floor(get().total* 0.88)})
+            }
+          }
+
+          console.log(fotoPermit)
+        },
+        setResultTotal: () => {
+          const priceResult = Math.floor(get().total* 0.88)
+          set({resultTotal: priceResult})
+        }
      
       }
     ),
@@ -143,7 +176,7 @@ export const useCartStore = create<CartState>()(
       name: 'qdCart',
       version: 0.1,
       storage: createJSONStorage(()=> localStorage),
-       partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat}),
+       partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat, selfDelivery: state.selfDelivery, fotoPermition: state.fotoPermition}),
 
     }
   )
