@@ -144,52 +144,72 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                 <div className="flex justify-between flex-col">
                     <SectionTitle title={product.acf.front_name} redText={'Ефект'} className="pb-0 mt-0 md:pb-1"/>
                     {/* <SectionTitle title='-10%' redText='Знижка дня' className="pb-0 w-[100px] mt-0"/> */}
-                    <div className="flex gap-7 mb-5 mt-7">
-                    {variations.map((el: string, i: number) => 
-                        <Link href={`/product/${product.acf.front_name.toLocaleLowerCase()}-${el}`} key={i} className="flex flex-col items-center ">
-                            <Image src={color} width={36} height={36} alt='quickdecor' />
-                            <span className="capitalize text-xs md:text-[16px] mt-1">{el}</span>
-                        </Link>
-                    )}
+
+                    {product.acf.front_name !== "Коробка помічниця" && 
+                        (<>
+                         <div className="flex gap-7 mb-5 mt-7">
+                            {variations.map((el: string, i: number) => 
+                                <Link href={`/product/${product.acf.front_name.toLocaleLowerCase()}-${el}`} key={i} className="flex flex-col items-center ">
+                                    <Image src={color} width={36} height={36} alt='quickdecor' />
+                                    <span className="capitalize text-xs md:text-[16px] mt-1">{el}</span>
+                                </Link>
+                            )}
+                        
+                    
+                        </div>
+                        </>)
+                    }
                    
-             
                 </div>
-                </div>
-                <div className="text-sm mb-8 capitalize pl-4 md:pl-0">Колір - {product.acf.colors}</div>
+                {product.acf.front_name !== "Коробка помічниця" && <div className="text-sm mb-8 capitalize pl-4 md:pl-0">Колір - {product.acf.colors}</div> }
                 <div className="text-base text-gray leading-6 mb-3" dangerouslySetInnerHTML={{__html: product.acf.description}} ></div>
-                <div className="text-main leading-6 text-base">Є екологічно чистим покриттям. Має європейський сертифікат стандарту якості. </div>
+
+
+                {product.acf.front_name !== "Коробка помічниця" && 
+                    (<>
+                    <div className="text-main leading-6 text-base">Є екологічно чистим покриттям. Має європейський сертифікат стандарту якості. </div>
                
 
-                <div className="flex items-center md:items-end py-2 justify-center md:justify-start flex-col md:flex-row">
-                    <p className="text-main text-[48px] relative">{product.acf.price} <span className='relative text-[34px] -top-3 -left-1'> грн</span></p>
-                    {product.acf.old_price && <p className="text-[#858585] text-2xl line-through font-medium relative -top-2 ml-3">{product.acf.old_price} грн </p>}
-                    
-                 </div>
-                 <div className="flex items-center md:items-end gap-6 flex-col md:flex-row">
-                    <div className="flex-1 relative w-full">
-                        {isError && <p className="text-xs text-[#ff0000]">УВАГА! Ваш запит меньший за стандарт, і потребує індивідуального прорахунку. Радимо зателефонувати або написати або ми самі зв’яжемося з Вами
-                            </p>}
-                        
-                        <p className="mn-0 text-[#373C45] text-sm font-medium">Кількість м2</p>
-                        <input 
-                            type="number" 
-                            min={1}
-                            placeholder="15m" 
-                            className="w-full text-[#9A9FA8] outline-none py-3 pl-2 border border-[#D9DADD] placeholder:text-[#9A9FA8] text-base rounded-xl " 
-                            value={square} 
-                            onChange={(e)=>{setSquare(e.target.value); if(Number(e.target.value) < 5){setIsError(true)}else{setIsError(false)} }}
-                            />
-                    </div>
-                    <button 
-                        className="w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
-                        onClick={addToCartHandler}
-                        >До кошика</button>
-                 </div>
+                        <div className="flex items-center md:items-end py-2 justify-center md:justify-start flex-col md:flex-row">
+                            <p className="text-main text-[48px] relative">{product.acf.price} <span className='relative text-[34px] -top-3 -left-1'> грн</span></p>
+                            {product.acf.old_price && <p className="text-[#858585] text-2xl line-through font-medium relative -top-2 ml-3">{product.acf.old_price} грн </p>}
+                            
+                            </div>
+                            <div className="flex items-center md:items-end gap-6 flex-col md:flex-row">
+                            <div className="flex-1 relative w-full">
+                                {isError && <p className="text-xs text-[#ff0000]">УВАГА! Ваш запит меньший за стандарт, і потребує індивідуального прорахунку. Радимо зателефонувати або написати або ми самі зв’яжемося з Вами
+                                    </p>}
+                                
+                                <p className="mn-0 text-[#373C45] text-sm font-medium">Кількість м2</p>
+                                <input 
+                                    type="number" 
+                                    min={1}
+                                    placeholder="15m" 
+                                    className="w-full text-[#9A9FA8] outline-none py-3 pl-2 border border-[#D9DADD] placeholder:text-[#9A9FA8] text-base rounded-xl " 
+                                    value={square} 
+                                    onChange={(e)=>{setSquare(e.target.value); if(Number(e.target.value) < 5){setIsError(true)}else{setIsError(false)} }}
+                                    />
+                            </div>
+                            <button 
+                                className="w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
+                                onClick={addToCartHandler}
+                                >До кошика</button>
+                        </div>
+                    </>)
+                }
+                
+
+
+
+
             </div>
       </div>
+      {product.acf.front_name === "Коробка помічниця" && <div className="h-16"></div> }
 
 
-      <SectionTitle redText='Ідеально підходить для наступних приміщень'/>
+{product.acf.front_name !== "Коробка помічниця" &&
+    (<>
+        <SectionTitle redText='Ідеально підходить для наступних приміщень'/>
       
       <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12 ' >
         {type_flats?.map((el:IImageObj, i: number) => 
@@ -248,6 +268,10 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
       <h2 className={cn('text-[28px] md:text-[46px] leading-9 md:leading-[64px] w-full  text-center')}>Не впевненні у виборі?</h2> 
       <p className={cn('text-[14px] md:text-[18px] leading-5 md:leading-[26px] w-full  text-center px-2 pt-3')}>Скористайтеся нашим фільтром помічником. <br /> В залежності від обраних вами параметрів, ми порекомендуємо найкращий ефект за допомогою системи балів.</p>
       <div className='w-full text-center mb-16 mt-14'><RedButton linkText='Скористатися фільтром' text='Скористатися фільтром' href='/quiz' className='px-8' /></div>
+      </>)
+}
+
+  
         
 
       <ContactBaner />

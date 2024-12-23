@@ -7,6 +7,8 @@ import step2 from "@/shared/assets/images/step2.svg"
 import step3 from "@/shared/assets/images/step3.svg"
 import step4 from "@/shared/assets/images/step4.svg"
 import { Tile } from '@/shared/ui/tile'
+import { TileBox } from '@/shared/ui/tileBox'
+
 
 export const HomeBaner = () => {
   return (
@@ -27,14 +29,15 @@ export const HomeBaner = () => {
             <Tile text="Ознайомтесь з можливими ефектами та кольорами" image={step1} isFirst={true} />
             <Tile text="Оберіть покриття що відповідають вашим запитам" image={step2} />
             <Tile text="Зробіть замовлення будь яким зручним засобом" image={step3} />
-            <Tile text="Отримайте коробку помічницю" image={step4} isLast={true} />
+            <TileBox text="Отримайте коробку помічницю" image={step4} isLast={true} />
         </div>
     </div>
     <div className='flex md:hidden flex-wrap justify-center gap-2 md:gap-3 max-w-[1116px] w-full pt-8 '>
             <Tile text="Ознайомтесь з можливими ефектами та кольорами" image={step1} isFirst={true} />
             <Tile text="Оберіть покриття що відповідають вашим запитам" image={step2} />
             <Tile text="Зробіть замовлення будь яким зручним засобом" image={step3} />
-            <Tile text="Отримайте коробку помічницю" image={step4} isLast={true} />
+             <TileBox text="Отримайте коробку помічницю" image={step4} isLast={true} />
+          
         </div>
         
         </>

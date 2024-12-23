@@ -17,8 +17,11 @@ import {steps as data}  from "@/shared/consts/steps"
 import { QuizTileAction } from "./quizTileAction"
 import { useCartStore } from "@/store/cartStore"
 import { QuizTileLastStep } from "./QuizTileLastStep"
-import { useAddLine } from "@/modules/cart/hooks/useAddLine"
-
+import {
+    Dialog,
+    DialogTrigger
+  } from "@/shared/ui/dialog"
+import { AddResultProduct } from "./addResultProduct"
 
 interface IQuizSteps {
     className?: string
@@ -36,9 +39,9 @@ interface quizObject {
 export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
     const [set, {has, toggle: toggleProps }] = useSet(new Set<string>([]));
     const [ scrolled, setScrolled ] = useState<boolean>(false)
-    const {setTypeFlat} = useCartStore()
+    const {setTypeFlat, typeFlat} = useCartStore()
 
-    const {addAir, addSand, addMicrocement, addTravertin, addQuick} = useAddLine()
+
 
   
     const [pointsStep1, setPointsStep1] = useState<quizObject>({
@@ -251,15 +254,16 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
         }
       }, [])
 
-      console.log(scrolled)
     return(
+
+        <>
         <div className={cn('max-w-[1144px] w-full m-auto py-12 px-3 md:px-0', className)}  >
 
             {step === 1 &&  <p className="w-full text-center text-xs px-4 text-[#373C45] mb-5">Тепер Вам не треба витрачати зайвий час на годинні консультації щодо потрібного покриття під ваші умови. Нижче скористайтеся помічником, який швидко, на основі Ваших параметрів прорахує оптимальне покриття та надасть рекомендації за допомогою системи балів.</p>}
            
             <RedText text="Ефекти" />
 
-            <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center gap-2 md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[52px] bg-white transition-all  z-[1111] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
+            <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center gap-2 md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[52px] bg-white transition-all  z-[50] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
                 {step === 5 && <div className="w-full text-center text-black font-medium ">Вітаємо, початок покладено! Оберіть ефект орінтуючись на зібрані бали в кожному з них</div>}
 
             <div className="w-full px-2 font-semibold text-xs md:text-sm flex gap-2 md:gap-5 mb-6 md:pt-10 pt-2 flex-col md:flex-row">
@@ -277,7 +281,13 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.air + pointsStep2.air + pointsStep3.air + pointsStep4.air}
                         </div>
-                    {step === 5 && <button onClick={addAir} className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>}    
+                       
+                    {step === 5 &&  <Dialog>
+                            <DialogTrigger asChild>
+                                <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                            </DialogTrigger>
+                            <AddResultProduct typeProduct='air' typeFlat={typeFlat}  />
+                        </Dialog>}    
                 </div>
                 
                 <div className="flex flex-col justify-center items-center">
@@ -288,7 +298,12 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.sand + pointsStep2.sand + pointsStep3.sand + pointsStep4.sand}
                         </div>
-                    {step === 5 && <button onClick={addSand} className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>}  
+                    {step === 5 &&  <Dialog>
+                            <DialogTrigger asChild>
+                                <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                            </DialogTrigger>
+                            <AddResultProduct typeProduct='sand' typeFlat={typeFlat}  />
+                        </Dialog>}  
                         
                 </div>
 
@@ -299,7 +314,12 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>MICROCEMENT</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.microcement + pointsStep2.microcement + pointsStep3.microcement + pointsStep4.microcement}</div>
-                    {step === 5 && <button onClick={addMicrocement} className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>}
+                    {step === 5 &&  <Dialog>
+                            <DialogTrigger asChild>
+                                <button className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                            </DialogTrigger>
+                            <AddResultProduct typeProduct='microcement' typeFlat={typeFlat}  />
+                        </Dialog>}
                     
                 </div>
 
@@ -310,7 +330,14 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>TRAVERTINE</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.travertine + pointsStep2.travertine + pointsStep3.travertine + pointsStep4.travertine}</div>
-                    {step === 5 && <button onClick={addTravertin} className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>}
+                    {step === 5 &&
+                    <Dialog>
+                            <DialogTrigger asChild>
+                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                            </DialogTrigger>
+                            <AddResultProduct typeProduct='travertine' typeFlat={typeFlat}  />
+                        </Dialog>
+                    }
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
@@ -321,7 +348,14 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.quickInterior + pointsStep2.quickInterior + pointsStep3.quickInterior + pointsStep4.quickInterior}
                     </div>
-                    {step === 5 && <button onClick={addQuick} className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>}
+                    {step === 5 && 
+                        <Dialog>
+                            <DialogTrigger asChild>
+                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                            </DialogTrigger>
+                            <AddResultProduct typeProduct='quick' typeFlat={typeFlat}  />
+                        </Dialog>
+                    }
                 </div>
                 
             </div>
@@ -396,6 +430,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
             </div>
         
     </div>
+    </>
     )  
     
 }
