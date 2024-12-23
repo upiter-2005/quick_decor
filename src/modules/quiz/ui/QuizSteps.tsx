@@ -262,7 +262,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
             <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center gap-2 md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[52px] bg-white transition-all  z-[1111] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
                 {step === 5 && <div className="w-full text-center text-black font-medium ">Вітаємо, початок покладено! Оберіть ефект орінтуючись на зібрані бали в кожному з них</div>}
 
-            <div className="w-full px-2 font-semibold text-xs md:text-sm flex gap-2 md:gap-5 mb-6 pt-10 flex-col md:flex-row">
+            <div className="w-full px-2 font-semibold text-xs md:text-sm flex gap-2 md:gap-5 mb-6 md:pt-10 pt-2 flex-col md:flex-row">
                 {params.type && <div>Тип приміщення: <span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.type}</span> </div>}
                 {params.area && <div>Тип поверхні:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.area}</span> </div>}
                 {params.create && <div>Тип стін:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.create}</span> </div>}
@@ -270,7 +270,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
             </div>
 
                 <div className="flex flex-col justify-center items-center">
-                    <div  className='block w-[55px] md:w-[116px] h-[55px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>AIR</p>
@@ -281,7 +281,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                 </div>
                 
                 <div className="flex flex-col justify-center items-center">
-                    <div  className='block w-[55px] md:w-[116px] h-[55px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef2}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>SAND</p>
@@ -293,7 +293,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
-                    <div  className=' w-[55px] md:w-[116px] h-[55px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <div  className=' w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef3}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>MICROCEMENT</p>
@@ -304,7 +304,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
-                    <div  className='block w-[55px] md:w-[116px] h-[55px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef4}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>TRAVERTINE</p>
@@ -314,7 +314,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
-                    <div  className='block w-[55px] md:w-[116px] h-[55px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef5}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
                     <p className='text-main mt-1 text-xs  md:text-xl font-medium text-center'>QUICK</p>

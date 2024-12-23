@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { TotalTable } from "./totalTable"
 import { CartItem } from "./cartItem"
-import { SeenProducts } from "@/components/seenProducts"
+// import { SeenProducts } from "@/components/seenProducts"
 import { Divider } from "@/shared/ui/divider"
 import { useCartStore } from "@/store/cartStore"
 import { BoxItem } from "./boxItem"
@@ -29,13 +29,16 @@ export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
                     {cartItems.map((obj, i) => <CartItem key={i} item={obj}  />) }
                     <BoxItem />
 
-                    <Link href="/quiz" className="w-full uppercase flex justify-center items-center  p-9 rounded-2xl input-shadow mb-6 border border-[#efefef] hover:opacity-60 transition-all">+ додати ще примiщення</Link>
-
+                    <p className="font-600 pb-4">+ додати ще примiщення</p>
+                    <div className="flex justify-between gap-2 flex-wrap">
+                        <Link href="/quiz" className="w-full md:w-6/12 uppercase flex-1 flex justify-center items-center text-center  p-9 rounded-2xl input-shadow mb-6 border border-[#efefef] hover:opacity-60 transition-all">Через фільтр</Link>
+                        <Link href="/#front-catalog" className="w-full md:w-6/12 uppercase flex-1 flex justify-center items-center text-center  p-9 rounded-2xl input-shadow mb-6 border border-[#efefef] hover:opacity-60 transition-all">Через каталог</Link>
+                    </div>
                 </div>
                 <TotalTable className="md:sticky md:top-[104px]" />
             </div> 
 
-            <SeenProducts />
+            {/* <SeenProducts /> */}
             <Divider />
             
         </>

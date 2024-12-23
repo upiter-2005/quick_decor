@@ -33,10 +33,7 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                <span className=" text-sm leading-5 text-[#5F6C72]">Загальная сума</span>
                <span className=" text-sm leading-5 text-[#191C1F] font-medium">{total} грн</span>
            </div>
-           <div className="w-full flex justify-between mb-3">
-               <span className=" text-sm leading-5 text-[#5F6C72]">Доставка</span>
-               <span className=" text-sm leading-5 text-[#191C1F] font-medium">800 грн</span>
-           </div>
+         
            
            <div className="border-t border-t-[#5F6C72] pt-4 mt-4"></div>
            <div className="flex items-center space-x-2 cursor-pointer my-2 ">

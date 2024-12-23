@@ -10,7 +10,7 @@ export const Sale:React.FC<IPickEffect> = ({className}) => {
     <>
 
       <div className={cn('bg-[#ff0000] text-xs p-3 rounded-br-3xl rounded-tr-3xl fixed top-16 left-0 z-[1000] text-white font-semibold' , className)} >
-        ЗНИЖКА ДНЯ 12%
+        - 12%
       </div>
     </>
   

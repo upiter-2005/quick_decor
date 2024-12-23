@@ -24,8 +24,8 @@ export const TotalTable:React.FC<ITotalTable> = ({className}) => {
                 <span className=" text-sm leading-5 text-[#191C1F] font-medium">{total} грн</span>
             </div>
             <div className="w-full flex justify-between mb-3">
-                <span className=" text-sm leading-5 text-[#5F6C72]">Доставка</span>
-                <span className=" text-sm leading-5 text-[#191C1F] font-medium">800 грн</span>
+                <span className=" text-sm leading-5 text-[#5F6C72]">Знижка дня</span>
+                <span className=" text-sm leading-5 text-[#191C1F] font-medium">12%</span>
             </div>
             
             <div className="border-t border-t-[#5F6C72] pt-4 mt-4"></div>
