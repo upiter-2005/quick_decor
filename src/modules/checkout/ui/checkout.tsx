@@ -20,11 +20,11 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
     },[])
 
     return (
-        <div className={cn('max-w-[1230px] w-full m-auto flex flex-wrap justify-between items-start gap-10 py-14', className)}>
+        <div className={cn('max-w-[1230px] w-full m-auto flex flex-wrap flex-col-reverse md:flex-row justify-between items-start gap-10 py-14', className)}>
             <Form />
-            <div className="flex-1">
+            <div className="flex-1 px-3 w-full">
                 {cartItems.map((obj, i) => <CartItem key={i} item={obj} active={false}  />) }
-                <BoxItem key="dq_box"   />
+                <BoxItem key="dq_box" />
 
                 <div className={cn(' flex-1 w-full border border-[#E4E7E9] px-5 pt-5 pb-6 rounded-sm ', className)}>
            

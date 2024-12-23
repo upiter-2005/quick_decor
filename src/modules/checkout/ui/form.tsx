@@ -45,22 +45,22 @@ export const Form:React.FC<IForm> = ({className}) => {
       }
 
     return (
-        <div className={cn('max-w-[600px] w-full sticky top-[100px]', className)}>
+        <div className={cn('max-w-[600px] w-full md:sticky top-[100px]', className)}>
             <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className={`w-full max-w-[500px]` } >
-            <h1 className="text-3xl mb-8">Оформити замовлення</h1>
+            <h1 className="text-3xl mb-8 px-3">Оформити замовлення</h1>
 
-            <div className="flex flex-wrap gap-5">
-                <div className="w-[48%]"> 
+            <div className="flex flex-wrap gap-5 px-3 md:px-0">
+                <div className="w-full md:w-[48%]"> 
                     <Input type='text' placeholder="Ім'я" name="first_name"/>
-                    </div>
-                <div className="w-[48%]">
+                </div>
+                <div className="w-full md:w-[48%]">
                     <Input type='text' placeholder="Прізвище" name="last_name"/>
                 </div>
-                <div className="w-[48%]">
+                <div className="w-full md:w-[48%]">
                     <Input type='text' placeholder="Email" name="email" />
                 </div>
-                <div className="w-[48%]">
+                <div className="w-full md:w-[48%]">
                     <Input type='text' placeholder="Телефон" name="tel" />
                 </div>
 
