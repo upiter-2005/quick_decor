@@ -19,6 +19,8 @@ interface CartState {
   typeFlat: string
   selfDelivery: boolean
   fotoPermition: boolean
+  box: boolean
+  setBox: (val: boolean) => void
   // openCart: boolean
   // setOpen: (val: boolean) => void 
    addCartItem: (item: ICartItem) => void
@@ -47,8 +49,12 @@ export const useCartStore = create<CartState>()(
         fotoPermition: false,
         typeFlat: '',
         resultTotal: 0,
+        box: false,
         setTypeFlat: (val: string) => {
           set({typeFlat: val})
+        },
+        setBox: (val) => {
+          set({box: val})
         },
         addCartItem: (item) => {
           // const existItem = get().cartItems.find((el:ICartItem) => el.id === item.id)
@@ -186,7 +192,7 @@ export const useCartStore = create<CartState>()(
       name: 'qdCart',
       version: 0.1,
       storage: createJSONStorage(()=> localStorage),
-       partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat, selfDelivery: state.selfDelivery, fotoPermition: state.fotoPermition}),
+       partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat, selfDelivery: state.selfDelivery, fotoPermition: state.fotoPermition, box: state.box}),
 
     }
   )

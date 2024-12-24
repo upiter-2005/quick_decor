@@ -16,7 +16,7 @@ interface IHeaderCart {
     className?: ''
 }
 export const HeaderCart:React.FC<IHeaderCart> = ({className}) => {
-    const {cartItems, total} = useCartStore()
+    const {cartItems, total, box} = useCartStore()
 
     return (
         <HoverCard openDelay={100} >
@@ -25,7 +25,7 @@ export const HeaderCart:React.FC<IHeaderCart> = ({className}) => {
                     <a href="/cart" className="flex items-center gap-3 text-[#9B9DA2] font-bold text-sm relative">
                         <Image src={cart} width={18} height={18} alt="quickdecor"/>
                         <span className="hidden md:block">{total} грн</span>
-                        <span className="absolute text-white text-xs top-2 left-[5px]" >{cartItems.length}</span>
+                        <span className="absolute text-white text-xs top-2 left-[5px]" >{box ? cartItems.length + 1 : cartItems.length} </span>
                     </a>
                 </div>
             </HoverCardTrigger>

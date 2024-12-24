@@ -47,7 +47,7 @@ export const CartItem:React.FC<ICartItemBox> = ({className, item, active = true}
          
         
             <div className="text-[#393939] font-semibold text-xl flex items-center gap-2 w-full md:w-auto justify-end">
-                {active ? <>
+                {(active && item.uid !== '1') ? <>
                     <span> <input type="number" min="1" value={square} onChange={e => changeSquareInput(e)} className="text-right max-w-[50px] w-auto" /> m&#178;</span>
                 <div className="flex flex-col items-center justify-center gap-[2px]">
                     <button onClick={()=> addSquare(item.uid)}><Image src={up} width={20} height={8} alt="quickdecor" /></button>

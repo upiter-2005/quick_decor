@@ -28,7 +28,10 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
 
                 <div className={cn(' flex-1 w-full border border-[#E4E7E9] px-5 pt-5 pb-6 rounded-sm ', className)}>
            
-           <h3 className="text-[18px] text-[#191C1F] leading-6 pb-5 text-left">Сума замовлення</h3>
+          
+           {cartItems.length > 0 && (
+            <>
+             <h3 className="text-[18px] text-[#191C1F] leading-6 pb-5 text-left">Сума замовлення</h3>
            <div className="w-full flex justify-between mb-3">
                <span className=" text-sm leading-5 text-[#5F6C72]">Загальная сума</span>
                <span className=" text-sm leading-5 text-[#191C1F] font-medium">{total} грн</span>
@@ -36,7 +39,7 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
          
            
            <div className="border-t border-t-[#5F6C72] pt-4 mt-4"></div>
-           <div className="flex items-center space-x-2 cursor-pointer my-2 ">
+            <div className="flex items-center space-x-2 cursor-pointer my-2 ">
                <Checkbox id="selfDelivery"  onCheckedChange={(checked) => {
                    return checked ? discountTotal(true) : discountTotal(false)
                }}
@@ -72,9 +75,12 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                    Скидка дня -12%
                </label>
            </div>
+            </>
+           )}
+           
            <div className="w-full flex justify-between mb-6  ">
                <span className=" text-base text-[#191C1F] leading-6">До сплати</span>
-               <span className=" text-base text-[#191C1F] font-semibold  leading-6">{resultTotal} грн</span>
+               <span className=" text-base text-[#191C1F] font-semibold  leading-6">{cartItems.length > 0 ? resultTotal : '3000'} грн</span>
            </div>
            
       </div>  

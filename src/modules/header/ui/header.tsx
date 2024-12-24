@@ -1,14 +1,11 @@
 import {cn} from "@/shared/helpers/cn"
 import Image from "next/image"
 import logo from "@/shared/assets/images/logo.svg"
-import { SearchWidget } from "@/modules/search"
 import { HeaderMnu } from "@/components/headerMnu"
 import Link from "next/link"
 
 
 import tel from "@/shared/assets/images/tel.svg"
-import tg from "@/shared/assets/images/Telegram.svg"
-import viber from "@/shared/assets/images/viber.svg"
 
 
 import { MobMenu } from "./mobMnu"
@@ -29,11 +26,11 @@ export const Header:React.FC<IHeaderProps> = ({className}) => {
              
                 <HeaderMnu className="hidden md:block" />
                 <div className="flex gap-1 items-center last-of-type:">
-                    <SearchWidget className="ml-6 mr-6 hidden md:block" />
+                    {/* <SearchWidget className="ml-6 mr-6 hidden md:block" /> */}
                     <div className=" mr-0 hidden md:block"><a href="tel:+380631471218" >+38 063 <span className="font-bold">147 12 18</span> </a></div>
                     <Link href="tel:+380631471218" className=" md:block px-1 md:px-0 md:mr-8"><Image src={tel} width={18} height={18} alt="quickdecor"/></Link>
-                    <Link href="#" className=" md:block px-1 md:px-1"><Image src={tg} width={18} height={18} alt="quickdecor" className="mr-1"/></Link>
-                    <Link href="#" className=" md:block px-1 md:px-1"><Image src={viber} width={18} height={18} alt="quickdecor"/></Link>
+                    {/* <Link href="#" className=" md:block px-1 md:px-1"><Image src={tg} width={18} height={18} alt="quickdecor" className="mr-1"/></Link>
+                    <Link href="#" className=" md:block px-1 md:px-1"><Image src={viber} width={18} height={18} alt="quickdecor"/></Link> */}
                     <HeaderCart />
                 </div>
                 <MobMenu />

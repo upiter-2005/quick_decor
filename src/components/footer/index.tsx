@@ -44,8 +44,8 @@ export const Footer:React.FC = () => {
 
                 <div className="w-[49%] md:w-auto mb-4 md:mb-0">
                     <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Каталог </Link>
-                    <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Ціни</Link>
-                    <Link href="/cart" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Прорахунок</Link>
+                   
+                    <Link href="/cart" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Розрахувати</Link>
                 </div>
 
                 {/* <div className="w-[49%] md:w-auto mb-4 md:mb-0">

@@ -20,7 +20,7 @@ interface IForm{
 export const Form:React.FC<IForm> = ({className}) => {
     const [isPending, startTransition] = useTransition()
 
-    const {selfDelivery, fotoPermition, cartItems, clear} = useCartStore()
+    const {selfDelivery, fotoPermition, cartItems, clear, setBox} = useCartStore()
 
     const form = useForm<TDefauldFields>({
         resolver: zodResolver(defaulFieldsSchema),
@@ -43,6 +43,7 @@ export const Form:React.FC<IForm> = ({className}) => {
           if(data) {
             toast.success('Заявка відправлена успішно!', {icon: '✅'})
             clear()
+            setBox(false)
           }else{
            
           }

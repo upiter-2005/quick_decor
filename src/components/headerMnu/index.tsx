@@ -1,4 +1,5 @@
 import {cn} from "@/shared/helpers/cn"
+import Link from "next/link"
 // import caret from "@/shared/assets/images/caret.svg"
 // import Image from 'next/image'
 
@@ -20,10 +21,10 @@ export const HeaderMnu:React.FC<IHeaderMnu> = ({className}) => {
                         <li className="py-4 px-4 leading-5 hover:bg-gray hover:text-white"><a href="#">Оберіть за якістю підготовки стін</a></li>
                     </ul>
                 </li> */}
-                <li className="py-7"><a href="#" >Цiна</a></li>
-                <li className="py-7"><a href="#" >Блог</a></li>
-                <li className="py-7"><a href="#" >Про нас</a></li>
-                <li className="py-7"><a href="#" >Контакти</a></li>
+                <li className="py-7"><Link href="/cart" >Розрахувати</Link></li>
+                <li className="py-7"><Link href="#" >Блог</Link></li>
+                <li className="py-7"><Link href="#" >Про нас</Link></li>
+                <li className="py-7"><Link href="#" >Контакти</Link></li>
                 {/* <li className="py-7"><a href="#" >+38 044 <span className="font-bold">242 41 42</span> </a></li> */}
             </ul>
         </nav>

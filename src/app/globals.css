@@ -100,7 +100,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 .scaled{
-  transform: scale(.6);
+  transform: scale(.7);
 }
 @media(max-width: 992px){
   .scaled{
@@ -130,3 +130,6 @@ input[type=number] {
 .smoke{ background-color: #a0aab9}
 .beige{ background-color: #daddd5}
 .sandStone{ background-color: #d7dbd2}
+
+.concrete{ background-color: #9a9ea4}
+.stone{ background-color: #9c9d9e}

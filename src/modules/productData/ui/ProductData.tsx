@@ -52,7 +52,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
 
         console.log(product);
       
-    const {addCartItem, typeFlat} = useCartStore()
+    const {addCartItem, typeFlat, setBox} = useCartStore()
   
     const addToCartHandler = () => {
         if(!typeFlat) {
@@ -144,8 +144,11 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                 <div className="flex justify-between flex-col">
                     <SectionTitle title={product.acf.front_name} redText={'Ефект'} className="pb-0 mt-0 md:pb-1"/>
                     {/* <SectionTitle title='-10%' redText='Знижка дня' className="pb-0 w-[100px] mt-0"/> */}
+                   
                     
-                    {product.acf.front_name !== "Коробка помічниця" && 
+
+                    {product.acf.front_name !== "Коробка помічниця" &&
+                    
                         (<>
                          <div className="flex gap-7 mb-5 mt-7">
                             {variations.map((el: string, i: number) => 
@@ -164,7 +167,13 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                 {product.acf.front_name !== "Коробка помічниця" && <div className="text-sm mb-8 capitalize pl-4 md:pl-0 font-semibold">Колір - {product.acf.colors}</div> }
                 <div className="text-base text-gray leading-6 mb-3" dangerouslySetInnerHTML={{__html: product.acf.description}} ></div>
 
-
+               
+            
+                    {product.acf.front_name === "Коробка помічниця" && 
+                       ( <button className="w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
+                        onClick={()=>{setBox(true);  toast.success("Товар додано в корзину!", {icon: '✅'}) }}
+                        >До кошика</button>)
+                    }
                 {product.acf.front_name !== "Коробка помічниця" && 
                     (<>
                     <div className="text-main leading-6 text-base">Є екологічно чистим покриттям. Має європейський сертифікат стандарту якості. </div>

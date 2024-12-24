@@ -57,7 +57,7 @@ export const MobMenu:React.FC = () => {
               </AccordionItem>
             </Accordion> */}
 
-         <div className="py-2 font-medium text-[#ff0000]"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Цiна</Link></div>
+         <div className="py-2 font-medium text-[#ff0000]"><Link  href={`/cart`} className="text-sm" onClick={()=>setIsOpen(false)}>Розрахувати</Link></div>
          <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Блог</Link></div>
          <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Про нас</Link></div>
          <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Контакти</Link></div>

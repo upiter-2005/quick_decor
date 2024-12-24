@@ -7,6 +7,7 @@ import { CartItem } from "./cartItem"
 import { Divider } from "@/shared/ui/divider"
 import { useCartStore } from "@/store/cartStore"
 import { BoxItem } from "./boxItem"
+import { useEffect } from "react"
 
 
 interface ICartWrapper {
@@ -14,7 +15,13 @@ interface ICartWrapper {
 }
 
 export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
-    const {cartItems} = useCartStore()
+    const {cartItems, setBox, box} = useCartStore()
+
+    useEffect(()=> {
+        if(!box){setBox(true)}
+        
+    }, [box])
+
     return (
         <>
             <div className={cn('max-w-[1144px] w-full m-auto flex flex-col md:flex-row justify-center items-start gap-[65px] pb-14 pt-4 px-3 md:px-0', className)}>

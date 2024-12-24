@@ -262,7 +262,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
            
             <RedText text="Ефекти" />
 
-            <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center gap-2 md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[52px] bg-white transition-all  z-[50] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
+            <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center gap-2 md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[22px] bg-white transition-all  z-[50] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
                 {step === 5 && <div className="w-full text-center text-black font-medium ">Вітаємо, початок покладено! Оберіть ефект орінтуючись на зібрані бали в кожному з них</div>}
 
             <div className="w-full px-2 font-semibold text-xs md:text-sm flex gap-2 md:gap-5 mb-6 md:pt-10 pt-2 flex-col md:flex-row">
@@ -282,8 +282,8 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
                         </div>
                        
                     {step === 5 &&  <Dialog>
-                            <DialogTrigger asChild>
-                                <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                        <DialogTrigger asChild>
+                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='air' typeFlat={typeFlat}  />
                         </Dialog>}    
