@@ -15,6 +15,7 @@ export const defaulFieldsSchema = z.object({
   city: z.string().min(2, {message: "Занадто коротка назва"}),
   department: z.string().min(2, {message: "Занадто коротка назва"}),
   aditionals: z.string(),
+  productArr: z.string()
 })
 
 export type TDefauldFields = z.infer<typeof defaulFieldsSchema>

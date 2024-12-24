@@ -31,7 +31,7 @@ export async function checkoutAction(body: any){
       to: 'pavel470245@gmail.com',
       subject: 'Оформлення замовлення!',
       html: `Ім'я: ${body.first_name} <br> Прізвище: ${body.last_name} <br> Телефон: ${body.tel} <br> Пошта: ${body.email} <br> Місто: ${body.city} <br> Адреса: ${body.department}
-      <br> Самовивіз : ${body.aditionals} `
+      <br> Додаткова інформація : ${body.aditionals} <br> ${body.productArr}`
     })
     console.log(info)
     

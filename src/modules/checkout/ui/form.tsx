@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { defaulFieldsSchema, TDefauldFields } from "@/shared/types/form";
 import { Input } from "@/shared/ui/input";
-import { useEffect, useTransition } from "react"
+import { useEffect,  useTransition } from "react"
 import {useForm, FormProvider} from "react-hook-form"
 import toast from 'react-hot-toast';
 import loader from "@/shared/assets/images/loader.svg"
@@ -19,8 +19,9 @@ interface IForm{
 
 export const Form:React.FC<IForm> = ({className}) => {
     const [isPending, startTransition] = useTransition()
+    
 
-    const {selfDelivery, fotoPermition} = useCartStore()
+    const {selfDelivery, fotoPermition, cartItems} = useCartStore()
 
     const form = useForm<TDefauldFields>({
         resolver: zodResolver(defaulFieldsSchema),
@@ -32,7 +33,8 @@ export const Form:React.FC<IForm> = ({className}) => {
           payment: '',
           city: '',
           department: '',
-          aditionals: ''
+          aditionals: '',
+          productArr: ''
         }
       })
     
@@ -57,16 +59,33 @@ export const Form:React.FC<IForm> = ({className}) => {
           form.setValue("aditionals", 'Дозвіл на фото')
         }else{
           form.setValue("aditionals", '')
-        }
-          
+        }  
       },[selfDelivery, fotoPermition])
 
+
+
+      useEffect(()=>{
+        let prodStr = ''
+        if(cartItems.length > 0) {
+          cartItems.forEach(el => {
+            prodStr += `<b>${el.name}<b> - ${el.price} uah - (${el.square} m) - ${el.type} <br/> `
+          })
+          prodStr += '<b>Коробка помічниця<b> - 0 uah'
+          form.setValue("productArr", prodStr)
+        }else{
+            prodStr = ` <b>Коробка помічниця<b> - 0 uah - 3000 uah`
+           form.setValue("productArr", prodStr)
+        }
+        
+        
+      },[cartItems])
     return (
         <div className={cn('max-w-[600px] w-full md:sticky top-[100px]', className)}>
             <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className={`w-full max-w-[500px]` } >
             <h1 className="text-3xl mb-8 px-3">Оформити замовлення</h1>
             <input type="hidden" name="aditionals" />
+            <input type="hidden" name="productArr" />
             <div className="flex flex-wrap gap-5 px-3 md:px-0">
                 <div className="w-full md:w-[48%]"> 
                     <Input type='text' placeholder="Ім'я" name="first_name"/>
