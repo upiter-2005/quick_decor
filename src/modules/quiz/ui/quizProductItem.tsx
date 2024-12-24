@@ -1,6 +1,7 @@
 import { useCartStore } from "@/store/cartStore"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 
 type IQuizProduct = {
     uid: string,
@@ -31,6 +32,7 @@ export const QuizProductItem:React.FC<IquizProductItem> = ({product, typeFlat}) 
             image: product.image,
             type: type
         })
+        toast.success("Товар додано в корзину!", {icon: '✅'})
     }
 
     useEffect(()=> {

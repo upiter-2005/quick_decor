@@ -9,7 +9,7 @@ export const Sale:React.FC<IPickEffect> = ({className}) => {
   return (
     <>
 
-      <div className={cn('bg-[#ff0000] text-xs p-3 rounded-br-3xl rounded-tr-3xl fixed top-16 left-0 z-[49] text-white font-semibold' , className)} >
+      <div className={cn('bg-[#ff0000] text-xs p-3 rounded-br-3xl rounded-tr-3xl fixed top-16 left-0 z-[199] text-white font-semibold' , className)} >
         - 12%
       </div>
     </>

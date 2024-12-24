@@ -107,3 +107,26 @@ input[type=number] {
     transform: scale(1);
   }
 }
+
+
+.cream { background-color: #c3b7ac}
+.platinum { background-color: #cdcccb}
+.silver { background-color: #b2b4b1}
+.white { background-color: #fff}
+.powdery { background-color: #beb7b3}
+.graphite { background-color: #2a2a2a}
+
+.classic{ background-color: #e8e8e8}
+.dark-grey{ background-color: #4b4b54}
+.dune{ background-color: #e9e9e7}
+.cool{ background-color: #e8e8e8}
+
+.grey{ background-color: #d9e3e3}
+.naturale{ background-color: #8a8985}
+.cashmere{ background-color: #a49f9c}
+.ash{ background-color: #e0e3e0}
+
+.fog{ background-color: #b4c1cb}
+.smoke{ background-color: #a0aab9}
+.beige{ background-color: #daddd5}
+.sandStone{ background-color: #d7dbd2}

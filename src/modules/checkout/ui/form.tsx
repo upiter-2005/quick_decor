@@ -19,9 +19,8 @@ interface IForm{
 
 export const Form:React.FC<IForm> = ({className}) => {
     const [isPending, startTransition] = useTransition()
-    
 
-    const {selfDelivery, fotoPermition, cartItems} = useCartStore()
+    const {selfDelivery, fotoPermition, cartItems, clear} = useCartStore()
 
     const form = useForm<TDefauldFields>({
         resolver: zodResolver(defaulFieldsSchema),
@@ -42,13 +41,13 @@ export const Form:React.FC<IForm> = ({className}) => {
         startTransition( async () => {
           await checkoutAction(data)
           if(data) {
-            console.log(data)
-          }else{
             toast.success('Заявка відправлена успішно!', {icon: '✅'})
+            clear()
+          }else{
+           
           }
         })
       }
-
 
       useEffect(()=>{
         if(selfDelivery && fotoPermition){
@@ -62,8 +61,6 @@ export const Form:React.FC<IForm> = ({className}) => {
         }  
       },[selfDelivery, fotoPermition])
 
-
-
       useEffect(()=>{
         let prodStr = ''
         if(cartItems.length > 0) {
@@ -73,12 +70,12 @@ export const Form:React.FC<IForm> = ({className}) => {
           prodStr += '<b>Коробка помічниця<b> - 0 uah'
           form.setValue("productArr", prodStr)
         }else{
-            prodStr = ` <b>Коробка помічниця<b> - 0 uah - 3000 uah`
+            prodStr = ` <b>Коробка помічниця<b> - 3000 uah`
            form.setValue("productArr", prodStr)
         }
         
-        
       },[cartItems])
+      
     return (
         <div className={cn('max-w-[600px] w-full md:sticky top-[100px]', className)}>
             <FormProvider {...form}>

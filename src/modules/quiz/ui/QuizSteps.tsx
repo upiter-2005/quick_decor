@@ -3,7 +3,6 @@ import { cn } from "@/shared/helpers/cn"
 import Image from "next/image"
 import icons from "@/shared/assets/images"
 import { RedText } from "@/shared/ui/redText"
-
 import ef1 from "@/shared/assets/images/ef1.jpg"
 import ef2 from "@/shared/assets/images/ef2.jpg"
 import ef3 from "@/shared/assets/images/ef3.jpg"
@@ -40,7 +39,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
     const [set, {has, toggle: toggleProps }] = useSet(new Set<string>([]));
     const [ scrolled, setScrolled ] = useState<boolean>(false)
     const {setTypeFlat, typeFlat} = useCartStore()
-
+   
 
 
   
@@ -426,7 +425,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
              
 
              {step === 5 &&    <button className={cn( 'w-[250px] bg-[#ff0000] text-white text-sm font-semibold p-4 rounded-[60px] inline-block hover:opacity-55 transition-all', className)}
-                onClick={()=> setStep(1)} >Розрахувати ще раз</button>}
+                onClick={()=> window.location.reload()} >Розрахувати ще раз</button>}
             </div>
         
     </div>

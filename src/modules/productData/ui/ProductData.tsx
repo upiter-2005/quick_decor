@@ -3,7 +3,7 @@
 import { cn } from "@/shared/helpers/cn"
 import Image from "next/image"
 import { SectionTitle } from "@/shared/ui/sectionTitle"
-import color from "@/shared/assets/images/color.jpg"
+
 import Link from "next/link"
 import { IProduct } from "../types/types"
 import { useCartStore } from "@/store/cartStore"
@@ -110,7 +110,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
     getData()
    }, [product])
   
-   console.log(imgs)
+
     return(
         <>
         <SectionTitle redText={`Каталог > ${product.acf.front_name}`} className=" mt-0 max-w-[1304px] w-full m-auto pt-6 pb-0 md:pb-0"/>
@@ -144,14 +144,14 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                 <div className="flex justify-between flex-col">
                     <SectionTitle title={product.acf.front_name} redText={'Ефект'} className="pb-0 mt-0 md:pb-1"/>
                     {/* <SectionTitle title='-10%' redText='Знижка дня' className="pb-0 w-[100px] mt-0"/> */}
-
+                    
                     {product.acf.front_name !== "Коробка помічниця" && 
                         (<>
                          <div className="flex gap-7 mb-5 mt-7">
                             {variations.map((el: string, i: number) => 
                                 <Link href={`/product/${product.acf.front_name.toLocaleLowerCase()}-${el}`} key={i} className="flex flex-col items-center ">
-                                    <Image src={color} width={36} height={36} alt='quickdecor' />
-                                    <span className="capitalize text-xs md:text-[16px] mt-1">{el}</span>
+                                    <div className={`w-9 h-9 rounded-[50%] block border border-[#ccc] ${el}`}></div>
+                                    <span className="capitalize text-xs md:text-[14px] mt-1">{el}</span>
                                 </Link>
                             )}
                         
@@ -161,7 +161,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                     }
                    
                 </div>
-                {product.acf.front_name !== "Коробка помічниця" && <div className="text-sm mb-8 capitalize pl-4 md:pl-0">Колір - {product.acf.colors}</div> }
+                {product.acf.front_name !== "Коробка помічниця" && <div className="text-sm mb-8 capitalize pl-4 md:pl-0 font-semibold">Колір - {product.acf.colors}</div> }
                 <div className="text-base text-gray leading-6 mb-3" dangerouslySetInnerHTML={{__html: product.acf.description}} ></div>
 
 
@@ -214,7 +214,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
       <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12 ' >
         {type_flats?.map((el:IImageObj, i: number) => 
          ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
-          <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
+          <Image src={el.image}  fill alt="quickdecor" className='rounded-[10px] object-cover' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
           </div>)
         )}
@@ -227,7 +227,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
       
         {serf_area?.map((el:IImageObj, i: number) => 
          ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
-          <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
+          <Image src={el.image} fill alt="quickdecor" className='rounded-[10px] object-cover' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
           </div>)
         )}
@@ -243,7 +243,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
 
       {prepare?.map((el:IImageObj, i: number) => 
          ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
-          <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
+          <Image src={el.image} fill alt="quickdecor" className='rounded-[10px] object-cover' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
           </div>)
         )}
@@ -258,7 +258,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
           
       {usefull?.map((el:IImageObj, i: number) => 
          ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
-          <Image src={el.image}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]' />
+          <Image src={el.image}  fill   alt="quickdecor" className='rounded-[10px] object-cover' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
           </div>)
         )}

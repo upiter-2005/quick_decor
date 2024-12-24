@@ -22,6 +22,7 @@ interface CartState {
   // openCart: boolean
   // setOpen: (val: boolean) => void 
    addCartItem: (item: ICartItem) => void
+   clear: () => void
    removeItem: (id: number, price: string, square: number, uid: string) => void
    addSquare: (uid: string) => void
    minusSquare: (uid: string) => void
@@ -75,6 +76,15 @@ export const useCartStore = create<CartState>()(
             cartItems: newItems,
             total: updateTotal,
             resultTotal: updateTotal
+          })
+        },
+        clear: () => {
+          set({
+            cartItems: [],
+            total: 0,
+            resultTotal: 0,
+            selfDelivery: false,
+            fotoPermition: false
           })
         },
         addSquare: (uid ) => {

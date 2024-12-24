@@ -23,7 +23,7 @@ export const Header:React.FC<IHeaderProps> = ({className}) => {
   
     return (
         <header className={cn(className, "w-full sticky top-0 bg-white z-[99]")}>
-            <div className={cn(className, "w-full max-w-[1225px] mx-auto pt-3 pb-1 flex items-center justify-between md:gap-6 px-3 md:px-0  bg-white z-[999]")}> 
+            <div className={cn(className, "w-full max-w-[1225px] mx-auto pt-3 pb-1 flex items-center justify-between md:gap-6 px-3 md:px-0  bg-white z-[99]")}> 
                 <Link href="/"><Image src={logo} width={182} height={32} alt='quickdecor' /></Link>
                 
              
