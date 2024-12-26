@@ -40,7 +40,7 @@ export const PickEffect:React.FC<IPickEffect> = ({className}) => {
             <Image src={quick}  objectFit="cover"  alt="quickdecor"   />
             <p className='text-main mt-1 md:mt-4  md:text-2xl font-medium'>QUICK</p>
           </Link>
-          <div className='w-full text-center'><RedButton linkText='Перейти в каталог' text='Перейти в каталог' href='/catalog' className='px-8' /></div>
+          <div className='w-full text-center'><RedButton linkText='Розрахувати вартiсть' text='Перейти в каталог' href='/cart' className='px-8' /></div>
       </div>
     </>
   

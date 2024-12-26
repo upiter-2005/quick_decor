@@ -110,7 +110,7 @@ export const EffectChose:React.FC = ({}) => {
           
       </div>
 
-      <div className='w-full text-center mb-16 mt-14'><RedButton linkText='Скористатися фільтром' text='Скористатися фільтром' href='/quiz' className='px-8' /></div>
+      <div className='w-full text-center mb-16 mt-14'><RedButton linkText='Обрати ефект через фiльтр' text='Обрати ефект через фiльтр' href='/quiz' className='px-8' /></div>
 
     </>
   

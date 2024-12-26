@@ -39,6 +39,8 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
          
            
            <div className="border-t border-t-[#5F6C72] pt-4 mt-4"></div>
+           <p className="font-semibold pb-2 ">Додаткові вигоди</p>
+           <p className="text-sm">Вартість доставки матеріалів на об&apos;єкт розраховується окремо</p>
             <div className="flex items-center space-x-2 cursor-pointer my-2 ">
                <Checkbox id="selfDelivery"  onCheckedChange={(checked) => {
                    return checked ? discountTotal(true) : discountTotal(false)
@@ -48,7 +50,7 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                <label
                    htmlFor="selfDelivery"
                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"  >
-                   Самовивіз -3%
+                   Самовивіз зі складу або відділення НП -3%
                </label>
            </div>
            <div className="flex items-center space-x-2 cursor-pointer my-2 ">
@@ -60,10 +62,8 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                  />
                <label
                    htmlFor="fotoCh"
-                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 after:cursor-pointer"
-                   
-                  >
-                   Дозвіл на фото -3%
+                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer">
+                   Дозвіл на використання фото та відео контенту з об&apos;єкта -3%
                </label>
            </div>
 
@@ -71,8 +71,8 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                <Checkbox id="discount" disabled checked/>
                <label
                    htmlFor="discount"
-                   className="text-sm text-[#ff0000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 after:cursor-pointer"  >
-                   Скидка дня -12%
+                   className="text-sm text-[#ff0000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"  >
+                   Знижка дня -12%
                </label>
            </div>
             </>

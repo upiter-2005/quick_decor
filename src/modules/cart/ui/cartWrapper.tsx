@@ -36,7 +36,7 @@ export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
                     {cartItems.map((obj, i) => <CartItem key={i} item={obj}  />) }
                     <BoxItem />
 
-                    <p className="font-600 pb-4">+ додати ще примiщення</p>
+                    <p className="font-600 pb-4">+ додати примiщення</p>
                     <div className="flex justify-between gap-2 flex-wrap">
                         <Link href="/quiz" className="w-full md:w-6/12 uppercase flex-1 flex justify-center items-center text-center  p-9 rounded-2xl input-shadow mb-6 border border-[#efefef] hover:opacity-60 transition-all">Через фільтр</Link>
                         <Link href="/#front-catalog" className="w-full md:w-6/12 uppercase flex-1 flex justify-center items-center text-center  p-9 rounded-2xl input-shadow mb-6 border border-[#efefef] hover:opacity-60 transition-all">Через каталог</Link>

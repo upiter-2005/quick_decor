@@ -140,9 +140,10 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                     </div>) )}
                 </div> */}
             </div>
-            <div className="max-w-[536px] w-full px-3 md:px-0 pt-7 md:pt-0 ">
+            <div className="max-w-[536px] w-full px-3 md:px-0 pt-2 md:pt-0 ">
                 <div className="flex justify-between flex-col">
                     <SectionTitle title={product.acf.front_name} redText={'Ефект'} className="pb-0 mt-0 md:pb-1"/>
+                    {product.acf.front_name !== "Коробка помічниця" && <div className="text-sm mb-8 capitalize pl-4 md:pl-0 font-semibold md:hidden">Колір - {product.acf.colors}</div> }
                     {/* <SectionTitle title='-10%' redText='Знижка дня' className="pb-0 w-[100px] mt-0"/> */}
                    
                     
@@ -152,9 +153,9 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                         (<>
                          <div className="flex gap-7 mb-5 mt-7">
                             {variations.map((el: string, i: number) => 
-                                <Link href={`/product/${product.acf.front_name.toLocaleLowerCase()}-${el}`} key={i} className="flex flex-col items-center ">
-                                    <div className={`w-9 h-9 rounded-[50%] block border border-[#ccc] ${el}`}></div>
-                                    <span className="capitalize text-xs md:text-[14px] mt-1">{el}</span>
+                                <Link href={`/product/${product.acf.front_name.toLocaleLowerCase()}-${el}`} key={i} className={`flex flex-col items-center  `}>
+                                    <div className={`w-9 h-9 rounded-[50%] block border border-[#ccc] ${el} ${el === product.acf.colors && 'border-4  border-[#ff0000]'}`}></div>
+                                    <span className={`capitalize text-xs md:text-[14px] mt-1 `}>{el}</span>
                                 </Link>
                             )}
                         
@@ -164,8 +165,8 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                     }
                    
                 </div>
-                {product.acf.front_name !== "Коробка помічниця" && <div className="text-sm mb-8 capitalize pl-4 md:pl-0 font-semibold">Колір - {product.acf.colors}</div> }
-                <div className="text-base text-gray leading-6 mb-3" dangerouslySetInnerHTML={{__html: product.acf.description}} ></div>
+                {product.acf.front_name !== "Коробка помічниця" && <div className="text-sm mb-8 capitalize pl-4 md:pl-0 font-semibold hidden md:block">Колір - {product.acf.colors}</div> }
+                <div className="text-sm leading-5 md:text-base text-gray md:leading-6 mb-3" dangerouslySetInnerHTML={{__html: product.acf.description}} ></div>
 
                
             
@@ -179,38 +180,50 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                     <div className="text-main leading-6 text-base">Є екологічно чистим покриттям. Має європейський сертифікат стандарту якості. </div>
                
 
-                        <div className="flex items-center md:items-end py-2 justify-center md:justify-start flex-col md:flex-row">
-                            <p className="text-main text-[48px] relative">{product.acf.price} <span className='relative text-[34px] -top-3 -left-1'> грн</span></p>
-                            {product.acf.old_price && <p className="text-[#858585] text-2xl line-through font-medium relative -top-2 ml-3">{product.acf.old_price} грн </p>}
-                            
+                        <div className="flex items-start md:items-start py-2 justify-center md:justify-start flex-c md:flex-row gap-4">
+                            <div className="flex-col ">
+                            <p className="text-main text-[38px] relative whitespace-nowrap">{product.acf.price} <span className='relative text-[34px] -top-3 -left-1'> грн</span></p>
+                            {product.acf.old_price && <p className="text-[#858585] text-xl line-through font-medium relative -top-2 ml-3">{product.acf.old_price} грн </p>}
                             </div>
+                           
+                            <div>
+                                <SectionTitle  redText={'Головне ви нічим не ризикуєте'} className="pb-0 mt-0 md:pb-1 text-xs"/>
+                                <SectionTitle  redText={'Ваші гроші заброньовані на 7 днів. '} className="pb-0 mt-0 md:pb-1 text-xs"/>
+                                <SectionTitle  redText={'без зміни ціни за м2'} className="pb-0 mt-0 md:pb-1 text-xs"/>
+                                <SectionTitle  redText={'без додаткових нарахувань'} className="pb-0 mt-0 md:pb-1 text-xs"/>
+                                <SectionTitle  redText={'з можливістю повернення 100% сумми у разі відмови від замовлення'} className="pb-0 mt-0 md:pb-1 text-xs"/>
+                            </div>
+                        </div>
                             <div className="flex items-center md:items-end gap-6 flex-col md:flex-row">
-                            <div className="flex-1 relative w-full">
-                                {isError && <p className="text-xs text-[#ff0000]">УВАГА! Ваш запит меньший за стандарт, і потребує індивідуального прорахунку. Радимо зателефонувати або написати або ми самі зв’яжемося з Вами
+                            <div className="relative w-full flex-wrap">
+                                {isError && <p className="text-xs text-[#ff0000] w-full">УВАГА! Ваш запит меньший за стандарт, і потребує індивідуального прорахунку. Радимо зателефонувати або написати або ми самі зв’яжемося з Вами
                                     </p>}
-                                
-                                <p className="mn-0 text-[#373C45] text-sm font-medium">Кількість м2</p>
-                                <input 
-                                    type="number" 
-                                    min={1}
-                                    placeholder="15m" 
-                                    className="w-full text-[#9A9FA8] outline-none py-3 pl-2 border border-[#D9DADD] placeholder:text-[#9A9FA8] text-base rounded-xl " 
-                                    value={square} 
-                                    onChange={(e)=>{setSquare(e.target.value); if(Number(e.target.value) < 5){setIsError(true)}else{setIsError(false)} }}
+                                    <p className="mn-0 text-[#373C45] text-sm font-medium">Кількість м2</p>
+                                <div className="flex gap-2 w-full">
+                               
+                                    <input 
+                                        type="number" 
+                                        min={1}
+                                        placeholder="5m" 
+                                        className="flex-1 text-[#9A9FA8] outline-none py-3 pl-2 border border-[#D9DADD] placeholder:text-[#9A9FA8] text-base rounded-xl w-[90px] md:w-auto" 
+                                        value={square} 
+                                        onChange={(e)=>{setSquare(e.target.value); if(Number(e.target.value) < 5){setIsError(true)}else{setIsError(false)} }}
                                     />
+
+                                    <button 
+                                        className="w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
+                                        onClick={addToCartHandler}
+                                        >До кошика
+                                    </button>
+                                </div>
+                               
+                                    
                             </div>
-                            <button 
-                                className="w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
-                                onClick={addToCartHandler}
-                                >До кошика</button>
+                            
                         </div>
                     </>)
                 }
                 
-
-
-
-
             </div>
       </div>
       {product.acf.front_name === "Коробка помічниця" && <div className="h-16"></div> }

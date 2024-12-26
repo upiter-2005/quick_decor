@@ -28,10 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk" className="scroll-smooth">
-    
+    <head><link rel="icon" href="/favicon.ico" sizes="any" /></head>
       <body className={cn(inter.className, 'bg-[#fff] text-[#000] overflow-x-hidden p-0 m-0')}>
+        <Suspense>
+          <CrmChat/>
+        </Suspense>
         
-        <CrmChat/>
         <HeaderModule />
         <main className={cn('')}>{children}</main>
         <Toaster 
