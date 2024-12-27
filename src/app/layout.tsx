@@ -28,7 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk" className="scroll-smooth">
-    <head><link rel="icon" href="/favicon.ico" sizes="any" /></head>
+    <head>
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+    
+   
+      </head>
+    
       <body className={cn(inter.className, 'bg-[#fff] text-[#000] overflow-x-hidden p-0 m-0')}>
         <Suspense>
           <CrmChat/>
@@ -69,15 +74,13 @@ export default function RootLayout({
           style={{ display: "none", visibility: "hidden" }}
         />
       </noscript>
-      <Script
+      {/* <Script
         id="gtm-script"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
           __html: `
 
           <!-- Google tag (gtag.js) -->
-            
-           
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -85,8 +88,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-WV8977PZ');
   `,
         }}
-      />
-    </></Suspense>
+      /> */}
+     
+    </>
+    </Suspense>
+
+    {/* <Script
+        id="ringostat"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          <script type="text/javascript">
+              (function (d,s,u,e,p) {
+                p=d.getElementsByTagName(s)[0],e=d.createElement(s),e.async=1,e.src=u,p.parentNode.insertBefore(e, p);
+              })(document, 'script', 'https://script.ringostat.com/v4/42/42502cb7d42f08b91fcd3c22e97f79ec210f0644.js');
+              var pw = function() {if (typeof(ringostatAnalytics) === "undefined") {setTimeout(pw,100);} else {ringostatAnalytics.sendHit('pageview');}};
+              pw();
+          </script>
+          `,
+        }}
+      /> */}
+
       </body>
     </html>
   );

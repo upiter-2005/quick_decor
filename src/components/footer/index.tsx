@@ -17,13 +17,13 @@ export const Footer:React.FC = () => {
                 <Link href="#" target="blank">
                     <Image src={tiktok} width={16} height={16} alt='quickdecor' />   
                 </Link>
-                <Link href="#" target="blank">
+                <Link href="https://www.instagram.com/quickdecorua" target="blank">
                     <Image src={insta} width={16} height={16} alt='quickdecor' />   
                 </Link>
-                <Link href="#" target="blank">
+                <Link href="https://www.facebook.com/quickdecorua" target="blank">
                     <Image src={fb} width={16} height={16} alt='quickdecor' />   
                 </Link>
-                <Link href="#" target="blank">
+                <Link href="https://www.youtube.com/quickdecorua" target="blank">
                     <Image src={youtube} width={16} height={16} alt='quickdecor' />   
                 </Link>
                 <div className="w-[49%] md:w-auto mb-4 md:mb-0  md:hidden">

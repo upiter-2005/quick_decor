@@ -24,6 +24,7 @@ import toast from "react-hot-toast"
 import { RedButton } from "@/shared/ui/redButton"
 import { ContactBaner } from "@/components/contactBaner"
 import { FooterFormWidget } from "@/modules/footer-form"
+import { ReadMore } from "@/components/readMore"
 
 interface IImageObj {
   image: string,
@@ -142,12 +143,17 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
             </div>
             <div className="max-w-[536px] w-full px-3 md:px-0 pt-2 md:pt-0 ">
                 <div className="flex justify-between flex-col">
-                    <SectionTitle title={product.acf.front_name} redText={'Ефект'} className="pb-0 mt-0 md:pb-1"/>
-                    {product.acf.front_name !== "Коробка помічниця" && <div className="text-sm mb-8 capitalize pl-4 md:pl-0 font-semibold md:hidden">Колір - {product.acf.colors}</div> }
-                    {/* <SectionTitle title='-10%' redText='Знижка дня' className="pb-0 w-[100px] mt-0"/> */}
-                   
+         
+                    {product.acf.front_name !== "Коробка помічниця" &&
+                    <><SectionTitle title={product.acf.front_name} redText={'Ефект'} className="pb-0 mt-0 md:pb-1 pl-0"/>
+                    <div className="text-sm md:mb-8 capitalize md:pl-0 font-semibold md:hidden pl-0">Колір - {product.acf.colors}</div>
+                    </>  }
+                    {product.acf.front_name === "Коробка помічниця" &&
+                    <><SectionTitle title={product.acf.front_name} className="pb-0 mt-0 md:pb-1 pl-0"/>
                     
-
+                    </>  }
+                   
+                
                     {product.acf.front_name !== "Коробка помічниця" &&
                     
                         (<>
@@ -166,32 +172,31 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                    
                 </div>
                 {product.acf.front_name !== "Коробка помічниця" && <div className="text-sm mb-8 capitalize pl-4 md:pl-0 font-semibold hidden md:block">Колір - {product.acf.colors}</div> }
-                <div className="text-sm leading-5 md:text-base text-gray md:leading-6 mb-3" dangerouslySetInnerHTML={{__html: product.acf.description}} ></div>
-
-               
-            
+                <div className="text-main leading-6 text-base mb-3">Є екологічно чистим покриттям. Має європейський сертифікат стандарту якості. </div>
+                <ReadMore>{product.acf.description}</ReadMore>
+                
                     {product.acf.front_name === "Коробка помічниця" && 
-                       ( <button className="w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
+                       ( <button className="w-[250px] rounded-[60px] block m-auto md:ml-0 mt-6 text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
                         onClick={()=>{setBox(true);  toast.success("Товар додано в корзину!", {icon: '✅'}) }}
                         >До кошика</button>)
                     }
                 {product.acf.front_name !== "Коробка помічниця" && 
                     (<>
-                    <div className="text-main leading-6 text-base">Є екологічно чистим покриттям. Має європейський сертифікат стандарту якості. </div>
+                    
                
 
                         <div className="flex items-start md:items-start py-2 justify-center md:justify-start flex-c md:flex-row gap-4">
                             <div className="flex-col ">
-                            <p className="text-main text-[38px] relative whitespace-nowrap">{product.acf.price} <span className='relative text-[34px] -top-3 -left-1'> грн</span></p>
+                            <p className="text-main text-[38px] relative whitespace-nowrap">{product.acf.price} <span className='relative text-[34px] top-0 -left-1'> грн</span></p>
                             {product.acf.old_price && <p className="text-[#858585] text-xl line-through font-medium relative -top-2 ml-3">{product.acf.old_price} грн </p>}
                             </div>
                            
                             <div>
-                                <SectionTitle  redText={'Головне ви нічим не ризикуєте'} className="pb-0 mt-0 md:pb-1 text-xs"/>
-                                <SectionTitle  redText={'Ваші гроші заброньовані на 7 днів. '} className="pb-0 mt-0 md:pb-1 text-xs"/>
+                                <p className="font-bold pb-3">Головне ви нічим не ризикуєте</p>
+                                <SectionTitle  redText={'гроші заброньовані на 7 днів. '} className="pb-0 mt-0 md:pb-1 text-xs"/>
                                 <SectionTitle  redText={'без зміни ціни за м2'} className="pb-0 mt-0 md:pb-1 text-xs"/>
                                 <SectionTitle  redText={'без додаткових нарахувань'} className="pb-0 mt-0 md:pb-1 text-xs"/>
-                                <SectionTitle  redText={'з можливістю повернення 100% сумми у разі відмови від замовлення'} className="pb-0 mt-0 md:pb-1 text-xs"/>
+                                <SectionTitle  redText={'з можливістю повернення 100% сумми'} className="pb-0 mt-0 md:pb-1 text-xs"/>
                             </div>
                         </div>
                             <div className="flex items-center md:items-end gap-6 flex-col md:flex-row">
@@ -261,16 +266,12 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
       
       <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12' >
   
-
-
       {prepare?.map((el:IImageObj, i: number) => 
          ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
           <Image src={el.image} fill alt="quickdecor" className='rounded-[10px] object-cover' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
           </div>)
-        )}
-         
-          
+        )}  
       </div>
 
 
@@ -289,12 +290,9 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
 
       <h2 className={cn('text-[28px] md:text-[46px] leading-9 md:leading-[64px] w-full  text-center')}>Не впевненні у виборі?</h2> 
       <p className={cn('text-[14px] md:text-[18px] leading-5 md:leading-[26px] w-full  text-center px-2 pt-3')}>Скористайтеся нашим фільтром помічником. <br /> В залежності від обраних вами параметрів, ми порекомендуємо найкращий ефект за допомогою системи балів.</p>
-      <div className='w-full text-center mb-16 mt-14'><RedButton linkText='Скористатися фільтром' text='Скористатися фільтром' href='/quiz' className='px-8' /></div>
+      <div className='w-full text-center mb-16 mt-14'><RedButton linkText='Обрати ефект через фільтр' text='Обрати ефект через фільтр' href='/quiz' className='px-8' /></div>
       </>)
 }
-
-  
-        
 
       <ContactBaner />
       <FooterFormWidget />

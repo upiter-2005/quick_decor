@@ -18,8 +18,10 @@ export const PickEffect:React.FC<IPickEffect> = ({className}) => {
     <>
   
     
-      <div className={cn('max-w-[1200px] w-full m-auto flex flex-wrap justify-center gap-[65px] pb-14 pt-[85px] md:pt-[76px]', className)} id="front-catalog">
-        <div className='w-full'>  <SectionTitle  redText='Обирайте за ефектами'/ ></div>
+      <div className={cn('max-w-[1200px] w-full m-auto flex flex-wrap justify-center gap-9 md:gap-[65px] pb-14 pt-[5px] md:pt-[76px]', className)} id="front-catalog">
+        <div className='w-full'> 
+           <SectionTitle  redText='5 трендових та практичних ефектів' className='!pb-2'  / >
+           </div>
           <Link href="/product/air-white" className='block w-[110px] h-[160px] md:w-[186px] relative md:h-[270px] text-center hover:opacity-75 transition-all'>
             <Image src={air}  objectFit="cover"  alt="quickdecor" />
             <p className='text-main mt-1 md:mt-4  md:text-2xl font-medium '>AIR</p>

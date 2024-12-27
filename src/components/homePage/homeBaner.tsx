@@ -32,7 +32,7 @@ export const HomeBaner = () => {
             <TileBox text="Отримайте коробку помічницю" image={step4} isLast={true} />
         </div>
     </div>
-    <p className='md:hidden text-center font-semibold'>Як обрати декоративну штукатурку</p>
+    <p className='md:hidden text-center font-semibold'>Як обрати декоративну штукатурку?</p>
     <div className='flex md:hidden flex-wrap justify-center gap-2 md:gap-3 max-w-[1116px] w-full pt-8 '>
             <Tile text="Ознайомтесь з можливими ефектами та кольорами" image={step1} isFirst={true} />
             <Tile text="Оберіть покриття що відповідають вашим запитам" image={step2} />

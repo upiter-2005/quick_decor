@@ -98,7 +98,7 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
 console.log(params)
     const nextStep1 = (e: string, param: string) => {
         
-        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" }); 
+        // window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" }); 
         setTypeFlat(param)
         setParams({...params, type: param, area: '', create: '', props: '',})
         setPointsStep2({...pointsStep2, 
@@ -157,7 +157,7 @@ console.log(params)
     }
 
     const nextStep2 = (e: string, param: string) => {
-        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+        // window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         setParams({...params, area: param})
         if (currentStep.area === e) return
        
@@ -190,7 +190,7 @@ console.log(params)
     }
 
     const nextStep3 = (e: string, param: string) => {
-        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+        // window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         setParams({...params, create: param})
         if (currentStep.area === e) return
        
@@ -223,7 +223,7 @@ console.log(params)
     }
 
     const nextStep4 = (e: string, param: string) => {
-        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+        // window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         setParams({...params, props: param})
         if (currentStep.area === e) return
         toggleProps(e)
@@ -286,7 +286,7 @@ console.log(params)
            
             <RedText text="Бали" />
             {step === 5 && <div className="w-full text-center text-black font-medium pt-5">Оберіть ефект орінтуючись на зібрані бали в кодному з них. Ми рекомендуємо обирати ефект з найвищим балом. </div>}
-            <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center gap-2 md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[22px] bg-white transition-all  z-[50] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
+            <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[22px] bg-white transition-all  z-[50] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
                 
 
             <div className="w-full px-2 font-semibold text-xs md:text-sm flex gap-2 md:gap-5 mb-6 md:pt-10 pt-2 flex-col md:flex-row">
@@ -296,91 +296,112 @@ console.log(params)
                 {params.props && <div>Властивості для експлуатації:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.props}</span> </div>}
             </div>
 
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
                     <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
-                    <p className='text-black mt-1 text-xs  md:text-xl font-medium text-center'>AIR</p>
+                    <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>AIR</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.air + pointsStep2.air + pointsStep3.air + pointsStep4.air}
                         </div>
                        
                     {step === 5 &&  <Dialog>
                         <DialogTrigger asChild>
-                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='air' typeFlat={typeFlat}  />
                         </Dialog>}    
                 </div>
                 
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
                     <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef2}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
-                    <p className='text-black mt-1 text-xs  md:text-xl font-medium text-center'>SAND</p>
+                    <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>SAND</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.sand + pointsStep2.sand + pointsStep3.sand + pointsStep4.sand}
                         </div>
                     {step === 5 &&  <Dialog>
                             <DialogTrigger asChild>
-                                <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                                <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='sand' typeFlat={typeFlat}  />
                         </Dialog>}  
                         
                 </div>
 
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
                     <div  className=' w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef3}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
-                    <p className='text-black mt-1 text-xs  md:text-xl font-medium text-center'>MICROCEMENT</p>
+                    <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>MICROCEMENT</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.microcement + pointsStep2.microcement + pointsStep3.microcement + pointsStep4.microcement}</div>
                     {step === 5 &&  <Dialog>
                             <DialogTrigger asChild>
-                                <button className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                                <button className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='microcement' typeFlat={typeFlat}  />
                         </Dialog>}
                     
                 </div>
 
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
                     <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef4}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
-                    <p className='text-black mt-1 text-xs  md:text-xl font-medium text-center'>TRAVERTINE</p>
+                    <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>TRAVERTINE</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.travertine + pointsStep2.travertine + pointsStep3.travertine + pointsStep4.travertine}</div>
                     {step === 5 &&
                     <Dialog>
                             <DialogTrigger asChild>
-                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='travertine' typeFlat={typeFlat}  />
                         </Dialog>
                     }
                 </div>
 
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
                     <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef5}  fill objectFit="cover"  alt="quickdecor" className="block"  />
                     </div>
-                    <p className='text-black mt-1 text-xs  md:text-xl font-medium text-center'>QUICK</p>
+                    <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>QUICK</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.quickInterior + pointsStep2.quickInterior + pointsStep3.quickInterior + pointsStep4.quickInterior}
                     </div>
                     {step === 5 && 
                         <Dialog>
                             <DialogTrigger asChild>
-                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">В кошик</button>
+                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='quick' typeFlat={typeFlat}  />
                         </Dialog>
                     }
                 </div>
                 
+                <div className="md:hidden px-4 min-w-full">
+                    <div className="flex justify-center mb-0 mt-9 md:mt-2 gap-4">
+                    {step !== 1 && <button onClick={()=>setStep(prevStep => prevStep - 1)} 
+                        className={cn( `w-[69px] bg-[#858585] text-white text-xs font-semibold !p-3 rounded-[60px] flex justify-center hover:opacity-55 transition-all
+                             
+                             `, className)}
+                    ><Image src={prev} width={14} height={16} alt="quickdecor" /> </button>
+                    }
+                
+                {step !== 5 &&    <button className={cn( 'w-[250px] bg-[#ff0000] text-white text-xs font-semibold p-3 rounded-[60px] inline-block hover:opacity-55 transition-all', className)}
+                    onClick={()=> setStep(prevStep => prevStep + 1)}
+                    disabled={step === 5}
+                    >{step === 4 ? 'Отримати результати' : 'Наступний крок'}</button>}
+                
+
+                    {step === 5 &&    <button className={cn( 'w-[250px] bg-[#222] text-white text-sm font-semibold p-3 rounded-[60px] inline-block hover:opacity-55 transition-all', className)}
+                        onClick={()=> window.location.reload()} >Почати спочатку</button>}
+                    </div>
+                </div>   
+               
+
             </div>
 
 
@@ -388,7 +409,7 @@ console.log(params)
 
        
             {step === 1 && 
-                <div className="flex gap-5  w-full flex-wrap justify-center">
+                <div className="flex gap-5  w-full flex-wrap justify-center mt-6">
                     <div className="w-full text-xl mb-2 text-[#373C45]">Оберіть приміщення (вибрати можно тільки одне)</div>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="spalnya" text="Спальня" image={icons.badroom}  className="h-auto md:px-[20px]"/>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="gostinnaya" text="Вітальня" image={icons.gost} className="h-auto md:px-[20px]"/>
@@ -406,7 +427,7 @@ console.log(params)
 
             {step === 2 &&
              <div className="flex gap-5  w-full flex-wrap justify-center">
-                <div className="w-full text-xl mb-2 text-[#373C45]">Оберіть тип поверхні на яку планується нанесення декору (вибрати можно тільки одне)</div>
+                <div className="w-full text-xl mb-2 text-[#373C45] mt-6">Оберіть тип поверхні на яку планується нанесення декору (вибрати можно тільки одне)</div>
                 <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="wall" text="Стіна інтер'єр" image={icons.wall} />
                 <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="ceil" text="Стеля" image={icons.ceil} />
                 {params.type === 'Кухня' && <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="glass" text="Кухоний фартук (під скло)" image={icons.glass} />}
@@ -418,7 +439,7 @@ console.log(params)
 
         {step === 3 &&
              <div className="flex gap-5  w-full flex-wrap justify-center">
-                <div className="w-full text-xl mb-2 text-[#373C45]">Оберіть яка підготовка обраного типу стін наразі (вибрати можно тільки одне)</div>
+                <div className="w-full text-xl mb-2 text-[#373C45] mt-6">Оберіть яка підготовка обраного типу стін наразі (вибрати можно тільки одне)</div>
                 <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="wallpaper" text="Під шпалери" image={icons.wallpaper} />
                 <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="paint" text="Під фарбування" image={icons.paint} />
             </div>
@@ -426,7 +447,7 @@ console.log(params)
            
         {step === 4 &&
              <div className="flex gap-5  w-full flex-wrap justify-center">
-                <div className="w-full text-xl mb-2 text-[#373C45]">Оберіть важливі властивості для експлуатації (можна обрати декілька)</div>
+                <div className="w-full text-xl mb-2 text-[#373C45] mt-6">Оберіть важливі властивості для експлуатації (можна обрати декілька)</div>
                 <QuizTileLastStep active={has('stable')} quizAction={nextStep4} slug="stable" text="Стійкість, прочність" image={icons.stable} />
                 <QuizTileLastStep active={has('wet')} quizAction={nextStep4} slug="wet" text="Вологе прибирання" image={icons.wet} />
                 <QuizTileLastStep active={has('water')} quizAction={nextStep4} slug="water" text="Прямий контакт з водою" image={icons.water} />
@@ -437,7 +458,7 @@ console.log(params)
 
 
 
-            <div className="flex justify-center mb-3 mt-5 gap-4">
+            <div className="hidden md:flex justify-center mb-3 mt-5 gap-4">
                 {step !== 1 &&   <button onClick={()=>setStep(prevStep => prevStep - 1)} 
                     className={cn( `w-[139px] bg-[#858585] text-white text-sm font-semibold p-4 rounded-[60px] flex justify-center hover:opacity-55 transition-all ${step === 5 ? `hidden`: ``}`, className)}
                 ><Image src={prev} width={14} height={16} alt="quickdecor" /> </button>
