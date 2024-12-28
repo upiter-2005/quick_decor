@@ -102,7 +102,7 @@ export const Form:React.FC<IForm> = ({className}) => {
                 <div className="w-full"> <Payment /></div>  
             </div>
             
-            <button type="submit" disabled={isPending} className="w-full flex justify-center bg-[#ff0000] text-white text-sm font-semibold  rounded-[60px]  hover:opacity-55 transition-all">{isPending ? <Image src={loader} width={52} height={45} alt="loader" /> : <span className="p-4">Оформити замовлення</span>  }</button>
+            <button type="submit" disabled={isPending} className=" w-[280px] m-auto md:w-full flex justify-center bg-[#ff0000] text-white text-sm font-semibold  rounded-[60px]  hover:opacity-55 transition-all">{isPending ? <Image src={loader} width={52} height={45} alt="loader" /> : <span className="p-4">Оформити замовлення</span>  }</button>
 
             </form>
 

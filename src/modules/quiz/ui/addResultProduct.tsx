@@ -23,8 +23,9 @@ type QuizProduct = {
     className?: string
     typeProduct: string
     typeFlat: string 
+    closeModal: () => void
   }
-  export const AddResultProduct:React.FC<IAddResultProduct> = ({typeProduct, className, typeFlat}) => {
+  export const AddResultProduct:React.FC<IAddResultProduct> = ({typeProduct, className, typeFlat, closeModal}) => {
 
     const [productList, setProductList] = useState<QuizProduct[]>([]);
 
@@ -50,7 +51,7 @@ type QuizProduct = {
         <DialogContent className={cn('', className)}>
             <DialogHeader>
             <DialogTitle className="">Оберіть колір</DialogTitle>
-                {productList.map((el, i) => <QuizProductItem key={i} product={el} typeFlat={typeFlat} />)}
+                {productList.map((el, i) => <QuizProductItem key={i} product={el} typeFlat={typeFlat} closeModal={closeModal} />)}
             </DialogHeader>
         </DialogContent>
     )

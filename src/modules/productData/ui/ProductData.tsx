@@ -157,7 +157,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                     {product.acf.front_name !== "Коробка помічниця" &&
                     
                         (<>
-                         <div className="flex gap-7 mb-5 mt-7">
+                         <div className="flex gap-7 mb-5 mt-7 flex-wrap">
                             {variations.map((el: string, i: number) => 
                                 <Link href={`/product/${product.acf.front_name.toLocaleLowerCase()}-${el}`} key={i} className={`flex flex-col items-center  `}>
                                     <div className={`w-9 h-9 rounded-[50%] block border border-[#ccc] ${el} ${el === product.acf.colors && 'border-4  border-[#ff0000]'}`}></div>
@@ -172,7 +172,8 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                    
                 </div>
                 {product.acf.front_name !== "Коробка помічниця" && <div className="text-sm mb-8 capitalize pl-4 md:pl-0 font-semibold hidden md:block">Колір - {product.acf.colors}</div> }
-                <div className="text-main leading-6 text-base mb-3">Є екологічно чистим покриттям. Має європейський сертифікат стандарту якості. </div>
+                {product.acf.front_name !== "Коробка помічниця" && <div className="text-main leading-6 text-base mb-3">Є екологічно чистим покриттям. Має європейський сертифікат стандарту якості. </div>}
+                
                 <ReadMore>{product.acf.description}</ReadMore>
                 
                     {product.acf.front_name === "Коробка помічниця" && 
@@ -203,7 +204,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                             <div className="relative w-full flex-wrap">
                                 {isError && <p className="text-xs text-[#ff0000] w-full">УВАГА! Ваш запит меньший за стандарт, і потребує індивідуального прорахунку. Радимо зателефонувати або написати або ми самі зв’яжемося з Вами
                                     </p>}
-                                    <p className="mn-0 text-[#373C45] text-sm font-medium">Кількість м2</p>
+                                    <p className="mn-0 text-[#373C45] text-sm font-medium">Кількість м2 <Link href="/instruktsiia" className="text-[#ff0000] font-semibold block md:inline">(інструкція)</Link> </p>
                                 <div className="flex gap-2 w-full">
                                
                                     <input 

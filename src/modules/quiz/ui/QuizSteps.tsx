@@ -38,6 +38,11 @@ interface quizObject {
 export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
     const [set, {has, toggle: toggleProps }] = useSet(new Set<string>([]));
     const [ scrolled, setScrolled ] = useState<boolean>(false)
+    const [open1, setOpen1] = useState<boolean>(false)
+    const [open2, setOpen2] = useState<boolean>(false)
+    const [open3, setOpen3] = useState<boolean>(false)
+    const [open4, setOpen4] = useState<boolean>(false)
+    const [open5, setOpen5] = useState<boolean>(false)
     const {setTypeFlat, typeFlat} = useCartStore()
    
 
@@ -305,11 +310,11 @@ console.log(params)
                         {pointsStep1.air + pointsStep2.air + pointsStep3.air + pointsStep4.air}
                         </div>
                        
-                    {step === 5 &&  <Dialog>
+                    {step === 5 &&  <Dialog open={open1} onOpenChange={setOpen1}>
                         <DialogTrigger asChild>
                             <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
-                            <AddResultProduct typeProduct='air' typeFlat={typeFlat}  />
+                            <AddResultProduct typeProduct='air' typeFlat={typeFlat} closeModal={()=>setOpen1(false)} />
                         </Dialog>}    
                 </div>
                 
@@ -321,11 +326,11 @@ console.log(params)
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.sand + pointsStep2.sand + pointsStep3.sand + pointsStep4.sand}
                         </div>
-                    {step === 5 &&  <Dialog>
+                    {step === 5 &&  <Dialog open={open2} onOpenChange={setOpen2}>
                             <DialogTrigger asChild>
                                 <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
-                            <AddResultProduct typeProduct='sand' typeFlat={typeFlat}  />
+                            <AddResultProduct typeProduct='sand' typeFlat={typeFlat} closeModal={()=>setOpen2(false)} />
                         </Dialog>}  
                         
                 </div>
@@ -337,11 +342,11 @@ console.log(params)
                     <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>MICROCEMENT</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.microcement + pointsStep2.microcement + pointsStep3.microcement + pointsStep4.microcement}</div>
-                    {step === 5 &&  <Dialog>
+                    {step === 5 &&  <Dialog open={open3} onOpenChange={setOpen3}>
                             <DialogTrigger asChild>
                                 <button className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
-                            <AddResultProduct typeProduct='microcement' typeFlat={typeFlat}  />
+                            <AddResultProduct typeProduct='microcement' typeFlat={typeFlat} closeModal={()=>setOpen3(false)} />
                         </Dialog>}
                     
                 </div>
@@ -354,11 +359,11 @@ console.log(params)
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.travertine + pointsStep2.travertine + pointsStep3.travertine + pointsStep4.travertine}</div>
                     {step === 5 &&
-                    <Dialog>
+                    <Dialog open={open4} onOpenChange={setOpen4}>
                             <DialogTrigger asChild>
                             <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
-                            <AddResultProduct typeProduct='travertine' typeFlat={typeFlat}  />
+                            <AddResultProduct typeProduct='travertine' typeFlat={typeFlat} closeModal={()=>setOpen4(false)} />
                         </Dialog>
                     }
                 </div>
@@ -372,11 +377,11 @@ console.log(params)
                     {pointsStep1.quickInterior + pointsStep2.quickInterior + pointsStep3.quickInterior + pointsStep4.quickInterior}
                     </div>
                     {step === 5 && 
-                        <Dialog>
+                        <Dialog open={open5} onOpenChange={setOpen5}>
                             <DialogTrigger asChild>
                             <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
-                            <AddResultProduct typeProduct='quick' typeFlat={typeFlat}  />
+                            <AddResultProduct typeProduct='quick' typeFlat={typeFlat} closeModal={()=>setOpen5(false)} />
                         </Dialog>
                     }
                 </div>
@@ -384,7 +389,7 @@ console.log(params)
                 <div className="md:hidden px-4 min-w-full">
                     <div className="flex justify-center mb-0 mt-9 md:mt-2 gap-4">
                     {step !== 1 && <button onClick={()=>setStep(prevStep => prevStep - 1)} 
-                        className={cn( `w-[69px] bg-[#858585] text-white text-xs font-semibold !p-3 rounded-[60px] flex justify-center hover:opacity-55 transition-all
+                        className={cn( `w-[69px] bg-[#858585] text-white text-xs font-semibold !p-3 rounded-[60px] flex justify-center items-center hover:opacity-55 transition-all
                              
                              `, className)}
                     ><Image src={prev} width={14} height={16} alt="quickdecor" /> </button>
@@ -433,7 +438,7 @@ console.log(params)
                 {params.type === 'Кухня' && <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="glass" text="Кухоний фартук (під скло)" image={icons.glass} />}
                 
                 <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="fireplace" text="Камін" image={icons.fireplace} />
-                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="fasad" text="Фасад" image={icons.fasad} />
+                {/* <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="fasad" text="Фасад" image={icons.fasad} /> */}
             </div>
             }
 

@@ -12,6 +12,7 @@ import { CrmChat } from "@/shared/api/crmChat";
 import { Suspense } from "react";
 import Script from "next/script";
 
+
 const inter = Inter({ subsets: ["cyrillic"], weight: ['300','400','500','600','700','800'] });
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const inria = Inria_Serif({subsets: ["latin"], weight: ['300', '400', '700']});
@@ -29,9 +30,54 @@ export default function RootLayout({
   return (
     <html lang="uk" className="scroll-smooth">
     <head>
+     
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
       <link rel="icon" href="/favicon.ico" sizes="any" />
     
-   
+        <Script
+        id="gtm-script"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+
+          <!-- Google tag (gtag.js) -->
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WV8977PZ');
+  `,
+        }}
+      />
+      <Script
+        id="window-size"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          document.addEventListener('DOMContentLoaded', function() {
+
+    // Store the window width
+    var windowWidth = window.innerWidth
+
+    // Resize Event
+    window.addEventListener("resize", function() {
+
+        // Check window width has actually changed and it's not just iOS triggering a resize event on scroll
+        if (window.innerWidth != windowWidth) {
+
+            // Update the window width for next time
+            windowWidth = window.innerWidth
+
+            // Do stuff here
+
+        }
+
+        // Otherwise do nothing
+    })
+
+})`
+        }}
+      />
       </head>
     
       <body className={cn(inter.className, 'bg-[#fff] text-[#000] overflow-x-hidden p-0 m-0')}>
@@ -74,21 +120,7 @@ export default function RootLayout({
           style={{ display: "none", visibility: "hidden" }}
         />
       </noscript>
-      {/* <Script
-        id="gtm-script"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-
-          <!-- Google tag (gtag.js) -->
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WV8977PZ');
-  `,
-        }}
-      /> */}
+ 
      
     </>
     </Suspense>

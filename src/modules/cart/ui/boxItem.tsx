@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 
 import {useCartStore} from "@/store/cartStore"
+import Link from "next/link"
 
 
 interface ICartItemBox {
@@ -22,7 +23,7 @@ export const BoxItem:React.FC<ICartItemBox> = ({className}) => {
             </div>
             
             <div className=" max-w-[215px] w-full"> 
-                <div className="flex items-center text-[#1e1e1e] text-[18px] uppercase">Коробка помічниця </div>
+                <Link href="/product/quick-box" className="flex items-center text-[#1e1e1e] text-[18px] uppercase">Коробка помічниця (оренда)</Link>
             </div>
          </div>
         

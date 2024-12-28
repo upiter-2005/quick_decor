@@ -16,8 +16,9 @@ type IQuizProduct = {
 interface IquizProductItem{
     product : IQuizProduct
     typeFlat: string
+    closeModal: () => void
 }
-export const QuizProductItem:React.FC<IquizProductItem> = ({product, typeFlat}) => {
+export const QuizProductItem:React.FC<IquizProductItem> = ({product, typeFlat, closeModal}) => {
     const [type, setType] = useState<string>('');
     
   const {addCartItem} = useCartStore()
@@ -33,6 +34,7 @@ export const QuizProductItem:React.FC<IquizProductItem> = ({product, typeFlat}) 
             type: type
         })
         toast.success("Товар додано в корзину!", {icon: '✅'})
+        closeModal()
     }
 
     useEffect(()=> {

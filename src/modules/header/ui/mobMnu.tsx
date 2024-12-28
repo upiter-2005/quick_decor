@@ -34,7 +34,7 @@ export const MobMenu:React.FC = () => {
         </SheetTrigger>
         <SheetContent side="left" className='w-[281px] overflow-auto px-6 py-16 pt-[100px] bg-[#fff]'>
         <SheetTitle></SheetTitle>
-          <div className="py-2 font-medium text-sm"><Link  href={`/catalog`} className="" onClick={()=>setIsOpen(false)}>Каталог</Link></div>
+          {/* <div className="py-2 font-medium text-sm"><Link  href={`/catalog`} className="" onClick={()=>setIsOpen(false)}>Каталог</Link></div> */}
          {/* {categoriesObj.map((el, i) => <NavMenuItem key={`${el.slug}${i}`} cat={el} closeMnu={()=>setIsOpen(false)} /> )} */}
 {/* 
             <Accordion  type="single" collapsible >
@@ -57,14 +57,23 @@ export const MobMenu:React.FC = () => {
               </AccordionItem>
             </Accordion> */}
 
-         <div className="py-2 font-medium text-[#ff0000]"><Link  href={`/cart`} className="text-sm" onClick={()=>setIsOpen(false)}>Розрахувати</Link></div>
-         <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Блог</Link></div>
-         <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Про нас</Link></div>
-         <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Контакти</Link></div>
+         {/* <div className="py-2 font-medium text-[#ff0000]"><Link  href={`/cart`} className="text-sm" onClick={()=>setIsOpen(false)}>Розрахувати</Link></div> */}
+         {/* <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Блог</Link></div>
+         <div className="py-2 font-medium"><Link  href={`#`} className="text-sm" onClick={()=>setIsOpen(false)}>Про нас</Link></div>*/}
+         
+         <div className="py-2 font-medium"><Link href="/catalog" className="py-2 font-medium ">Каталог </Link></div>
+                   
+         <div className="py-2 font-medium"><Link href="/cart" className="py-2 font-medium ">Розрахувати вартість</Link></div>
+         <div className="py-2 font-medium"><Link href="/quiz" className="py-2 font-medium ">Фільтр помічник</Link></div>
+         <div className="py-2 font-medium"><Link  href={`#`} className="py-2 font-medium" onClick={()=>setIsOpen(false)}>Контакти</Link></div> 
          <div className="py-2 font-medium text-[#ff0000]">
-         <a href="tel:+380631471218" >+38 063 <span className="font-bold">147 12 18</span> </a>
+   
+            <a href="tel:+380631471218" >+38 063 <span className="font-bold">147 12 18</span> </a>
           </div>
-
+          <div className="py-2 font-medium text-[#ff0000]">
+   
+            <a href="mailto:info@quickdecor.com.ua" >info@quickdecor.com.ua</a>
+          </div>
         </SheetContent>
 
       </Sheet>

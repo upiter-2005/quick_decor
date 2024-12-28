@@ -41,7 +41,7 @@ export const Bullets:React.FC = ({}) => {
 
           <div className='max-w-[300px] text-center'>
             <p className='text-main md:text-[32px] text-2xl font-bold mb-5'>ferrara-paint.ua</p>
-            <Link href="https://ferrara-paint.ua/" target='blank'>  <Image src={qr} width={144} height={144} alt='quickdecor' className='m-auto' /></Link>
+            <Link href="https://ferrara-paint.ua/?utm_source=quickdecor&utm_medium=site&utm_campaign=main-page" target='blank'>  <Image src={qr} width={144} height={144} alt='quickdecor' className='m-auto' /></Link>
           
           </div>
       </div>

@@ -43,9 +43,10 @@ export const Footer:React.FC = () => {
                 </div>
 
                 <div className="w-[49%] md:w-auto mb-4 md:mb-0">
-                    <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Каталог </Link>
+                    <Link href="/catalog" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Каталог </Link>
                    
-                    <Link href="/cart" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Розрахувати</Link>
+                    <Link href="/cart" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Розрахувати вартість</Link>
+                    <Link href="/quiz" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Фільтр помічник</Link>
                 </div>
 
                 {/* <div className="w-[49%] md:w-auto mb-4 md:mb-0">
@@ -55,7 +56,7 @@ export const Footer:React.FC = () => {
                 </div> */}
                
                 <div className="w-[49%] md:w-auto mb-4 md:mb-0 hidden  md:block">
-                    <Link href="mailto:info@quickdecor.ua" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">info@quickdecor.ua</Link>
+                    <Link href="mailto:info@quickdecor.com.ua" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">info@quickdecor.com.ua</Link>
                     <Link href="tel:+380631471218" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">+38 063 147 12 18</Link>
                 </div>
             </div>

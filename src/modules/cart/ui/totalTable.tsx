@@ -31,12 +31,12 @@ export const TotalTable:React.FC<ITotalTable> = ({className}) => {
             )}
             
             
-            <div className="border-t border-t-[#5F6C72] pt-4 mt-4"></div>
+            {/* <div className="border-t border-t-[#5F6C72] pt-4 mt-4"></div>
             
             <div className="w-full flex justify-between mb-6  ">
                 <span className=" text-base text-[#191C1F] leading-6">До сплати</span>
                 <span className=" text-base text-[#191C1F] font-semibold  leading-6">{cartItems.length > 0 ? total : '3000'} грн</span>
-            </div>
+            </div> */}
             <p className="text-xs pb-4">Перейти до замовлення та отримати додаткову вигоду</p>
             <Link href="/checkout" className="bg-[#ff0000] rounded-[54px] text-base font-bold uppercase w-full py-4  text-white flex items-center justify-center gap-3 hover:opacity-70 transition-all">оформити замовлення <Image src={arr} width={24} height={24} alt='quickdecor' /> </Link>
        </div>  

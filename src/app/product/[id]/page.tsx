@@ -54,12 +54,13 @@ export default async function ProductPage(props: { params: Params }) {
     { next: { revalidate: 60 } }
   ).then(res => res.json())
 
-  
-  const variations = getVariations(response[0].acf.variations)
-
   if(!response[0]){
     notFound()
   }
+  
+  const variations = getVariations(response[0].acf.variations)
+
+ 
 
   return <>
 

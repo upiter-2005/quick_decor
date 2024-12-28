@@ -41,7 +41,7 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
            <div className="border-t border-t-[#5F6C72] pt-4 mt-4"></div>
            <p className="font-semibold pb-2 ">Додаткові вигоди</p>
            <p className="text-sm">Вартість доставки матеріалів на об&apos;єкт розраховується окремо</p>
-            <div className="flex items-center space-x-2 cursor-pointer my-2 ">
+            <div className="flex items-center space-x-2 cursor-pointer my-3 ">
                <Checkbox id="selfDelivery"  onCheckedChange={(checked) => {
                    return checked ? discountTotal(true) : discountTotal(false)
                }}
@@ -50,10 +50,10 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                <label
                    htmlFor="selfDelivery"
                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"  >
-                   Самовивіз зі складу або відділення НП -3%
+                   Самовивіз зі складу або відділення НП <span className="text-[#ff0000] font-bold">-3%</span> 
                </label>
            </div>
-           <div className="flex items-center space-x-2 cursor-pointer my-2 ">
+           <div className="flex items-center space-x-2 cursor-pointer my-3 ">
                <Checkbox id="fotoCh"
                onCheckedChange={(checked) => {
                 return checked ? discountFotoTotal(true) : discountFotoTotal(false)
@@ -63,7 +63,7 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                <label
                    htmlFor="fotoCh"
                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer">
-                   Дозвіл на використання фото та відео контенту з об&apos;єкта -3%
+                   Дозвіл на використання фото та відео контенту з об&apos;єкта <span className="text-[#ff0000] font-bold">-3%</span> 
                </label>
            </div>
 
@@ -71,14 +71,16 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                <Checkbox id="discount" disabled checked/>
                <label
                    htmlFor="discount"
-                   className="text-sm text-[#ff0000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"  >
-                   Знижка дня -12%
+                   className="text-sm text-[#ff0000] font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-80 cursor-pointer"  >
+                   Знижка дня: -12%
                </label>
            </div>
             </>
            )}
            
-           <div className="w-full flex justify-between mb-6  ">
+           <div className="border-t border-t-[#5F6C72] pt-4 mt-4"></div>
+
+           <div className="w-full flex justify-between mb-6 mt-2  ">
                <span className=" text-base text-[#191C1F] leading-6">До сплати</span>
                <span className=" text-base text-[#191C1F] font-semibold  leading-6">{cartItems.length > 0 ? resultTotal : '3000'} грн</span>
            </div>

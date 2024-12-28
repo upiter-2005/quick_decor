@@ -29,7 +29,7 @@ export const HomeBaner = () => {
             <Tile text="Ознайомтесь з можливими ефектами та кольорами" image={step1} isFirst={true} />
             <Tile text="Оберіть покриття що відповідають вашим запитам" image={step2} />
             <Tile text="Зробіть замовлення будь яким зручним засобом" image={step3} />
-            <TileBox text="Отримайте коробку помічницю" image={step4} isLast={true} />
+            <TileBox text="Орендуйте коробку помічницю" image={step4} isLast={true} />
         </div>
     </div>
     <p className='md:hidden text-center font-semibold'>Як обрати декоративну штукатурку?</p>
@@ -37,7 +37,7 @@ export const HomeBaner = () => {
             <Tile text="Ознайомтесь з можливими ефектами та кольорами" image={step1} isFirst={true} />
             <Tile text="Оберіть покриття що відповідають вашим запитам" image={step2} />
             <Tile text="Зробіть замовлення будь яким зручним засобом" image={step3} />
-             <TileBox text="Отримайте коробку помічницю" image={step4} isLast={true} />
+             <TileBox text="Орендуйте коробку помічницю" image={step4} isLast={true} />
           
         </div>
         
