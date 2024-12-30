@@ -7,6 +7,7 @@ import { PickEffect } from "@/components/pickEffect";
 import { Divider } from "@/shared/ui/divider";
 import f1 from "@/shared/assets/images/f1.jpg"
 import { FooterFormWidget } from "@/modules/footer-form";
+import { RedButton } from "@/shared/ui/redButton";
 
 export default function Home() {
   return (
@@ -42,6 +43,9 @@ export default function Home() {
 
 
       </DataBlock>
+      <div className='w-full text-center mt-14'>
+        <RedButton text="Обрати ефекти через фільтр" href="/quiz" linkText="Обрати ефекти через фільтр"  />
+      </div>
       <Divider />
       <FooterFormWidget />
     </>

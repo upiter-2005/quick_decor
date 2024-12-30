@@ -42,13 +42,13 @@ export const CartItem:React.FC<ICartItemBox> = ({className, item, active = true}
                     {item.name} 
                     {/* <Image src={badroom} width={20} height={20} alt="quickdecor" className="ml-2 mr-2" /><span className="text-main text-[10px] capitalize">Вітальня</span>  */}
                 </div>
-                <div className=" text-[#1e1e1e] text-sm">{item.type} </div>
+                <div className=" text-[#ff0000] text-sm">{item.type} </div>
             </div>
          
         
             <div className="text-[#393939] font-semibold text-xl flex items-center gap-2 w-full md:w-auto justify-end">
                 {(active && item.uid !== '1') ? <>
-                    <span> <input type="number" min="1" value={square} onChange={e => changeSquareInput(e)} className="text-right max-w-[50px] w-auto" /> m&#178;</span>
+                    <span className="text-[#ff0000]"> <input type="number" min="1" value={square} onChange={e => changeSquareInput(e)} className="text-right max-w-[50px] w-auto " /> m&#178;</span>
                 <div className="flex flex-col items-center justify-center gap-[2px]">
                     <button onClick={()=> addSquare(item.uid)}><Image src={up} width={20} height={8} alt="quickdecor" /></button>
                     <button onClick={()=> {
@@ -57,7 +57,7 @@ export const CartItem:React.FC<ICartItemBox> = ({className, item, active = true}
                     }}><Image src={down} width={20} height={8} alt="quickdecor" /></button>
                 </div>
                 </> : 
-                  <span className="text-right max-w-[70px] w-auto">{square} m&#178;</span>
+                  <span className="text-right max-w-[70px] w-auto text-[#ff0000]">{square} m&#178;</span>
                 }
                 
                 <div className="text-[#393939] text-sm font-medium md:ml-8 ">x {item.price} грн </div>

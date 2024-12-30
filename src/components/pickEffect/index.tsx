@@ -32,7 +32,7 @@ export const PickEffect:React.FC<IPickEffect> = ({className}) => {
           </Link>
           <Link href="/product/microcemente-ash" className='block w-[110px] h-[160px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
             <Image src={cement}  objectFit="cover"  alt="quickdecor"   />
-            <p className='text-main mt-1 md:mt-4   md:text-2xl font-medium'>MICROCEMENT</p>
+            <p className='text-main mt-1 md:mt-4   md:text-2xl font-medium'>MICROCEMENTE</p>
           </Link>
           <Link href="/product/travertine-naturale" className='block w-[110px] h-[160px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
             <Image src={travertin}  objectFit="cover"  alt="quickdecor"   />
@@ -42,7 +42,7 @@ export const PickEffect:React.FC<IPickEffect> = ({className}) => {
             <Image src={quick}  objectFit="cover"  alt="quickdecor"   />
             <p className='text-main mt-1 md:mt-4  md:text-2xl font-medium'>QUICK</p>
           </Link>
-          <div className='w-full text-center'><RedButton linkText='Розрахувати вартiсть' text='Перейти в каталог' href='/cart' className='px-8' /></div>
+          <div className='w-full text-center'><RedButton linkText='Перейти до ефектів' text='Перейти в каталог' href='/catalog' className='px-8 mt-8' /></div>
       </div>
     </>
   

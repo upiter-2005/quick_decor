@@ -287,18 +287,19 @@ console.log(params)
         <>
         <div className={cn('max-w-[1144px] w-full m-auto py-12 px-3 md:px-0', className)}  >
 
-            {step === 1 &&  <p className="w-full text-center text-sm px-2 text-[#373C45] mb-5">Тепер Вам не треба витрачати зайвий час на годинні консультації щодо потрібного покриття під ваші умови. <br /> Нижче скористайтеся помічником, який швидко, на основі Ваших параметрів прорахує оптимальне покриття та надасть рекомендації за допомогою системи балів.</p>}
+            {step === 1 &&  <p className="w-full text-center text-sm px-2 text-[#373C45] mb-5">
+                <span className="font-bold text-xl md:text-2xl">Фільтр помічник для вибору покриття </span> <br />Всього 4 кроки до вашого ідеального інтер&apos;єру <br /> Оберіть приміщення, тип та підготовку поверхні, вкажіть важливі властивості для експлуатації <br />Фільтр сам порахує оптимальне покриття за допомогою системи балів <br /> Чим більший бал - тим більше покриття підходить під ваші параметри</p>}
            
             <RedText text="Бали" />
-            {step === 5 && <div className="w-full text-center text-black font-medium pt-5">Оберіть ефект орінтуючись на зібрані бали в кодному з них. Ми рекомендуємо обирати ефект з найвищим балом. </div>}
+            {step === 5 && <div className="w-full text-center text-black font-medium pt-5">Орієнтуйтеся на покриття з найвищими балами. Система автоматично прорахувала пріоритетні покриття, враховуючи задані Вами параметри </div>}
             <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[22px] bg-white transition-all  z-[50] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
                 
 
             <div className="w-full px-2 font-semibold text-xs md:text-sm flex gap-2 md:gap-5 mb-6 md:pt-10 pt-2 flex-col md:flex-row">
-                {params.type && <div>Тип приміщення: <span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.type}</span> </div>}
-                {params.area && <div>Тип поверхні:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.area}</span> </div>}
-                {params.create && <div>Тип стін:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.create}</span> </div>}
-                {params.props && <div>Властивості для експлуатації:<span className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block">{params.props}</span> </div>}
+                {params.type && <div>Тип приміщення: <span className="bg-[#222] text-white px-2 ml-1 rounded-xl inline-block">{params.type}</span> </div>}
+                {params.area && <div>Тип поверхні:<span className="bg-[#222] text-white px-2 ml-1 rounded-xl inline-block">{params.area}</span> </div>}
+                {params.create && <div>Тип стін:<span className="bg-[#222] text-white px-2 ml-1 rounded-xl inline-block">{params.create}</span> </div>}
+                {params.props && <div>Властивості для експлуатації:<span className="bg-[#222] text-white px-2 ml-1 rounded-xl inline-block">{params.props}</span> </div>}
             </div>
 
                 <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
@@ -312,7 +313,7 @@ console.log(params)
                        
                     {step === 5 &&  <Dialog open={open1} onOpenChange={setOpen1}>
                         <DialogTrigger asChild>
-                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
+                            <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='air' typeFlat={typeFlat} closeModal={()=>setOpen1(false)} />
                         </Dialog>}    
@@ -328,7 +329,7 @@ console.log(params)
                         </div>
                     {step === 5 &&  <Dialog open={open2} onOpenChange={setOpen2}>
                             <DialogTrigger asChild>
-                                <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
+                                <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='sand' typeFlat={typeFlat} closeModal={()=>setOpen2(false)} />
                         </Dialog>}  
@@ -344,7 +345,7 @@ console.log(params)
                     {pointsStep1.microcement + pointsStep2.microcement + pointsStep3.microcement + pointsStep4.microcement}</div>
                     {step === 5 &&  <Dialog open={open3} onOpenChange={setOpen3}>
                             <DialogTrigger asChild>
-                                <button className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
+                                <button className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='microcement' typeFlat={typeFlat} closeModal={()=>setOpen3(false)} />
                         </Dialog>}
@@ -361,7 +362,7 @@ console.log(params)
                     {step === 5 &&
                     <Dialog open={open4} onOpenChange={setOpen4}>
                             <DialogTrigger asChild>
-                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
+                            <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='travertine' typeFlat={typeFlat} closeModal={()=>setOpen4(false)} />
                         </Dialog>
@@ -379,7 +380,7 @@ console.log(params)
                     {step === 5 && 
                         <Dialog open={open5} onOpenChange={setOpen5}>
                             <DialogTrigger asChild>
-                            <button  className="bg-[#ff0000] text-white px-2 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
+                            <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='quick' typeFlat={typeFlat} closeModal={()=>setOpen5(false)} />
                         </Dialog>
@@ -415,7 +416,7 @@ console.log(params)
        
             {step === 1 && 
                 <div className="flex gap-5  w-full flex-wrap justify-center mt-6">
-                    <div className="w-full text-xl mb-2 text-[#373C45]">Оберіть приміщення (вибрати можно тільки одне)</div>
+                    <div className="w-full md:text-xl text-basic mb-2 text-[#373C45]"><RedText text="Крок 1" />Оберіть приміщення в якому планується нанесення декору</div>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="spalnya" text="Спальня" image={icons.badroom}  className="h-auto md:px-[20px]"/>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="gostinnaya" text="Вітальня" image={icons.gost} className="h-auto md:px-[20px]"/>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="child" text="Дитяча" image={icons.child} className="h-auto md:px-[20px]"/>
@@ -432,7 +433,7 @@ console.log(params)
 
             {step === 2 &&
              <div className="flex gap-5  w-full flex-wrap justify-center">
-                <div className="w-full text-xl mb-2 text-[#373C45] mt-6">Оберіть тип поверхні на яку планується нанесення декору (вибрати можно тільки одне)</div>
+                <div className="w-full text-xl mb-2 text-[#373C45] mt-6"><RedText text="Крок 2" />Оберіть тип поверхні на яку планується нанесення декору </div>
                 <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="wall" text="Стіна інтер'єр" image={icons.wall} />
                 <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="ceil" text="Стеля" image={icons.ceil} />
                 {params.type === 'Кухня' && <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="glass" text="Кухоний фартук (під скло)" image={icons.glass} />}
@@ -444,7 +445,7 @@ console.log(params)
 
         {step === 3 &&
              <div className="flex gap-5  w-full flex-wrap justify-center">
-                <div className="w-full text-xl mb-2 text-[#373C45] mt-6">Оберіть яка підготовка обраного типу стін наразі (вибрати можно тільки одне)</div>
+                <div className="w-full text-xl mb-2 text-[#373C45] mt-6"><RedText text="Крок 3" />Оберіть яка підготовка обраного типу стін наразі </div>
                 <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="wallpaper" text="Під шпалери" image={icons.wallpaper} />
                 <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="paint" text="Під фарбування" image={icons.paint} />
             </div>
@@ -452,7 +453,7 @@ console.log(params)
            
         {step === 4 &&
              <div className="flex gap-5  w-full flex-wrap justify-center">
-                <div className="w-full text-xl mb-2 text-[#373C45] mt-6">Оберіть важливі властивості для експлуатації (можна обрати декілька)</div>
+                <div className="w-full text-xl mb-2 text-[#373C45] mt-6"><RedText text="Крок 4" />Оберіть важливі властивості для експлуатації (можна обрати декілька)</div>
                 <QuizTileLastStep active={has('stable')} quizAction={nextStep4} slug="stable" text="Стійкість, прочність" image={icons.stable} />
                 <QuizTileLastStep active={has('wet')} quizAction={nextStep4} slug="wet" text="Вологе прибирання" image={icons.wet} />
                 <QuizTileLastStep active={has('water')} quizAction={nextStep4} slug="water" text="Прямий контакт з водою" image={icons.water} />

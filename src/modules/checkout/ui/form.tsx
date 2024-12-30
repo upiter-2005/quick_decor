@@ -3,24 +3,25 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { defaulFieldsSchema, TDefauldFields } from "@/shared/types/form";
 import { Input } from "@/shared/ui/input";
-import { useEffect,  useTransition } from "react"
+import { useEffect,  useState,  useTransition } from "react"
 import {useForm, FormProvider} from "react-hook-form"
 import toast from 'react-hot-toast';
 import loader from "@/shared/assets/images/loader.svg"
 import  {zodResolver}  from '@hookform/resolvers/zod'
 import { Payment } from "./payment";
-import { checkoutAction } from "@/lib/actions";
+import { checkoutAction, PurchaseCRM } from "@/lib/actions";
 import NovaPoshta from "@/components/delivery";
 import { useCartStore } from "@/store/cartStore";
-
+import {checkoutProducts, checkoutProductsType} from "@/shared/helpers/productCrmFormat"
 interface IForm{
     className?: string
 }
 
 export const Form:React.FC<IForm> = ({className}) => {
     const [isPending, startTransition] = useTransition()
-
-    const {selfDelivery, fotoPermition, cartItems, clear, setBox} = useCartStore()
+    const [crmProducts, setCrmProducts] = useState<checkoutProductsType[]>();
+    
+    const {selfDelivery, fotoPermition, cartItems, clear, setBox, box} = useCartStore()
 
     const form = useForm<TDefauldFields>({
         resolver: zodResolver(defaulFieldsSchema),
@@ -41,6 +42,16 @@ export const Form:React.FC<IForm> = ({className}) => {
         startTransition( async () => {
           await checkoutAction(data)
           if(data) {
+            if (box) crmProducts?.push({
+              "sku": "box_1", 
+              "quantity": 1, 
+              "price": cartItems.length > 0 ? 0 : 3000,
+              "unit_type": 'm',
+              "name": "Коробка помічниця",
+              "picture": "https://api.quickdecor.com.ua/wp-content/uploads/2024/12/3.jpg"
+           })
+            if(crmProducts) await PurchaseCRM(crmProducts, data)
+        
             toast.success('Заявка відправлена успішно!', {icon: '✅'})
             clear()
             setBox(false)
@@ -63,6 +74,9 @@ export const Form:React.FC<IForm> = ({className}) => {
       },[selfDelivery, fotoPermition])
 
       useEffect(()=>{
+
+        const crmProducts = checkoutProducts(cartItems)
+        setCrmProducts(crmProducts)
         let prodStr = ''
         if(cartItems.length > 0) {
           cartItems.forEach(el => {

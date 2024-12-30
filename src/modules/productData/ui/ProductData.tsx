@@ -10,7 +10,7 @@ import { useCartStore } from "@/store/cartStore"
 import { useEffect, useState } from "react"
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss"
-
+import mark from "@/shared/assets/images/mark.svg"
 
 import {flatTypes} from "@/shared/consts/flatTypes"
 import {
@@ -25,6 +25,7 @@ import { RedButton } from "@/shared/ui/redButton"
 import { ContactBaner } from "@/components/contactBaner"
 import { FooterFormWidget } from "@/modules/footer-form"
 import { ReadMore } from "@/components/readMore"
+import { PickEffect } from "@/components/pickEffect"
 
 interface IImageObj {
   image: string,
@@ -114,7 +115,12 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
 
     return(
         <>
-        <SectionTitle redText={`Каталог > ${product.acf.front_name}`} className=" mt-0 max-w-[1304px] w-full m-auto pt-6 pb-0 md:pb-0"/>
+ 
+          <div className={cn('max-w-[1304px] w-full m-auto mt-[50px] pb-0 md:pb-[5px] px-3 md:px-0 flex ', className)}>
+                <Image src={mark} width={17} height={4} alt="quickdecor" />
+                <Link href="/catalog" className="text-[#ff0000] text-xs md:text-sm font-semibold leading-4 md:leading-5 mr-1 ml-1">Каталог</Link> 
+                <span className="text-[#ff0000] text-xs md:text-sm font-semibold leading-4 md:leading-5"> {' >'} {product.acf.front_name}</span>           
+            </div>
          <div className={cn('max-w-[1304px] w-full m-auto pt-8 flex flex-col md:flex-row gap-5 ', className)}>
             <div className="flex justify-between flex-1 gap-5 flex-col md:flex-row pl-[6px]">
               
@@ -179,21 +185,21 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                     {product.acf.front_name === "Коробка помічниця" && 
                        ( <button className="w-[250px] rounded-[60px] block m-auto md:ml-0 mt-6 text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
                         onClick={()=>{setBox(true);  toast.success("Товар додано в корзину!", {icon: '✅'}) }}
-                        >До кошика</button>)
+                        >Замовити бокс</button>)
                     }
                 {product.acf.front_name !== "Коробка помічниця" && 
                     (<>
                     
                
 
-                        <div className="flex items-start md:items-start py-2 justify-center md:justify-start flex-c md:flex-row gap-4">
+                        <div className="flex items-start md:items-start py-2 justify-center md:justify-between flex-c md:flex-row gap-4">
                             <div className="flex-col ">
-                            <p className="text-main text-[38px] relative whitespace-nowrap">{product.acf.price} <span className='relative text-[34px] top-0 -left-1'> грн</span></p>
+                            <p className="text-main text-[30px] relative whitespace-nowrap">{product.acf.price} <span className='relative text-[20px] top-0 -left-1'> грн/m2</span></p>
                             {product.acf.old_price && <p className="text-[#858585] text-xl line-through font-medium relative -top-2 ml-3">{product.acf.old_price} грн </p>}
                             </div>
                            
                             <div>
-                                <p className="font-bold pb-3">Головне ви нічим не ризикуєте</p>
+                                <p className="font-bold pb-3 pl-4 md:pl-6 leading-4">Головне ви нічим не ризикуєте</p>
                                 <SectionTitle  redText={'гроші заброньовані на 7 днів. '} className="pb-0 mt-0 md:pb-1 text-xs"/>
                                 <SectionTitle  redText={'без зміни ціни за м2'} className="pb-0 mt-0 md:pb-1 text-xs"/>
                                 <SectionTitle  redText={'без додаткових нарахувань'} className="pb-0 mt-0 md:pb-1 text-xs"/>
@@ -204,7 +210,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                             <div className="relative w-full flex-wrap">
                                 {isError && <p className="text-xs text-[#ff0000] w-full">УВАГА! Ваш запит меньший за стандарт, і потребує індивідуального прорахунку. Радимо зателефонувати або написати або ми самі зв’яжемося з Вами
                                     </p>}
-                                    <p className="mn-0 text-[#373C45] text-sm font-medium">Кількість м2 <Link href="/instruktsiia" className="text-[#ff0000] font-semibold block md:inline">(інструкція)</Link> </p>
+                                    <p className="mn-0 text-[#373C45] text-sm font-medium pl-3 md:pl-0">Кількість м2 <Link href="/instruktsiia" className="text-[#ff0000] font-semibold block md:inline">(інструкція)</Link> </p>
                                 <div className="flex gap-2 w-full">
                                
                                     <input 
@@ -219,7 +225,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                                     <button 
                                         className="w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
                                         onClick={addToCartHandler}
-                                        >До кошика
+                                        >Розрахувати вартість 
                                     </button>
                                 </div>
                                
@@ -237,54 +243,56 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
 
 {product.acf.front_name !== "Коробка помічниця" &&
     (<>
-        <SectionTitle redText='Ідеально підходить для наступних приміщень'/>
+        <h2 className="max-w-[1144px] w-full m-auto text-2xl md:text-4xl mt-10 font-medium pl-1">Наші рекомендаціі</h2>
+
+        <SectionTitle redText='Ідеально підходить для наступних приміщень' className="mt-5 md:mt-14" />
       
-      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12 ' >
+      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-1 md:mb-[55px] px-3 md:px-0 pb-12 ' >
         {type_flats?.map((el:IImageObj, i: number) => 
-         ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
+         ( <Link href="/quiz" key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
           <Image src={el.image}  fill alt="quickdecor" className='rounded-[10px] object-cover' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
-          </div>)
+          </Link>)
         )}
       </div>
 
       
-      <SectionTitle redText='Підходить для таких поверхонь'/>
+      <SectionTitle redText='Підходить для таких поверхонь' className="mt-2" />
       
-      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12' >
+      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-1 md:mb-[55px] px-3 md:px-0 pb-12 ' >
       
         {serf_area?.map((el:IImageObj, i: number) => 
-         ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
+         ( <Link href="/quiz" key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
           <Image src={el.image} fill alt="quickdecor" className='rounded-[10px] object-cover' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
-          </div>)
+          </Link>)
         )}
         
       </div>
 
 
-      <SectionTitle redText='Необхідна підготовка поверхонь'/>
+      <SectionTitle redText='Необхідна підготовка поверхонь' className="mt-2" />
       
-      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12' >
+      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-1 md:mb-[55px] px-3 md:px-0 pb-12' >
   
       {prepare?.map((el:IImageObj, i: number) => 
-         ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
+         ( <Link href="/quiz" key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
           <Image src={el.image} fill alt="quickdecor" className='rounded-[10px] object-cover' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
-          </div>)
+          </Link>)
         )}  
       </div>
 
 
-      <SectionTitle redText='Має такі властивості'/>
+      <SectionTitle redText='Має такі властивості' className="mt-2" />
       
-      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12' >
+      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-1 md:mb-[55px] px-3 md:px-0 pb-12' >
           
       {usefull?.map((el:IImageObj, i: number) => 
-         ( <div key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
+         ( <Link href="/quiz" key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
           <Image src={el.image}  fill   alt="quickdecor" className='rounded-[10px] object-cover' />
           <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>{el.name}</p>
-          </div>)
+          </Link>)
         )}
           
       </div>
@@ -295,6 +303,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
       </>)
 }
 
+      <PickEffect />
       <ContactBaner />
       <FooterFormWidget />
 

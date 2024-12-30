@@ -63,10 +63,7 @@ export default async function ProductPage(props: { params: Params }) {
  
 
   return <>
-
       <ProductDataWidget product={response[0]} variations={variations}  />  
-      
       <Divider />
-    
     </>
 }

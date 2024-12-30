@@ -37,10 +37,7 @@ export const Payment:React.FC<IPayment> = ({className}) => {
             <RadioGroupItem value="Оплата частинами (3 платежі)" id="pay3" {...register("payment")}   />
             <label htmlFor="pay3" className="cursor-pointer">Оплата частинами (3 платежі)</label>
           </div>
-          <div className="flex items-center space-x-1">
-            <RadioGroupItem value="Готівка" id="pay4" {...register("payment")}   />
-            <label htmlFor="pay4" className="cursor-pointer">Готівка</label>
-          </div>
+         
         </RadioGroup>
       </div>
     </div>

@@ -26,18 +26,18 @@ export const HomeBaner = () => {
         </div>
     
         <div className='hidden md:flex flex-wrap justify-center gap-2 md:gap-3 max-w-[1116px] w-full absolute -bottom-10 z-30 left-[50%] -translate-x-[50%]'>
-            <Tile text="Ознайомтесь з можливими ефектами та кольорами" image={step1} isFirst={true} />
-            <Tile text="Оберіть покриття що відповідають вашим запитам" image={step2} />
-            <Tile text="Зробіть замовлення будь яким зручним засобом" image={step3} />
-            <TileBox text="Орендуйте коробку помічницю" image={step4} isLast={true} />
+            <Tile link="/catalog" text="Ознайомтесь з можливими ефектами та кольорами" image={step1} isFirst={true} />
+            <Tile link="/quiz" text="Оберіть покриття що відповідають вашим запитам" image={step2} />
+            <Tile link="/cart" text="Зробіть замовлення будь яким зручним засобом" image={step3} />
+            <TileBox text="Бокс взірців (під заставу)" image={step4} isLast={true} />
         </div>
     </div>
     <p className='md:hidden text-center font-semibold'>Як обрати декоративну штукатурку?</p>
     <div className='flex md:hidden flex-wrap justify-center gap-2 md:gap-3 max-w-[1116px] w-full pt-8 '>
-            <Tile text="Ознайомтесь з можливими ефектами та кольорами" image={step1} isFirst={true} />
-            <Tile text="Оберіть покриття що відповідають вашим запитам" image={step2} />
-            <Tile text="Зробіть замовлення будь яким зручним засобом" image={step3} />
-             <TileBox text="Орендуйте коробку помічницю" image={step4} isLast={true} />
+            <Tile link="/catalog" text="Ознайомтесь з можливими ефектами та кольорами" image={step1} isFirst={true} />
+            <Tile link="/quiz" text="Оберіть покриття що відповідають вашим запитам" image={step2} />
+            <Tile link="/cart" text="Зробіть замовлення будь яким зручним засобом" image={step3} />
+             <TileBox text="Бокс взірців (під заставу)" image={step4} isLast={true} />
           
         </div>
         

@@ -53,6 +53,10 @@ type QuizProduct = {
             <DialogTitle className="">Оберіть колір</DialogTitle>
                 {productList.map((el, i) => <QuizProductItem key={i} product={el} typeFlat={typeFlat} closeModal={closeModal} />)}
             </DialogHeader>
+            <div className="text-sm text-center text-[#ff0000] font-semibold">Не впевнені у виборі? Не переживайте, колір можна буде замінити до відвантаження замовлення, без зміни вартості!
+                <br />
+                Або додайте до замовлення наш бокс взірців для 100% точного вибору
+            </div>
         </DialogContent>
     )
 }

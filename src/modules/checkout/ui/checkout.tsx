@@ -13,7 +13,7 @@ interface ICheckout{
 }
 
 export const Checkout:React.FC<ICheckout> = ({className}) => {
-    const {cartItems, total, resultTotal, discountTotal, discountFotoTotal, selfDelivery, fotoPermition, setResultTotal} = useCartStore()
+    const {cartItems, total, resultTotal, discountTotal, discountFotoTotal, selfDelivery, fotoPermition, setResultTotal, box} = useCartStore()
 
     useEffect(()=>{
         setResultTotal()
@@ -24,7 +24,7 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
             <Form />
             <div className="flex-1 px-3 w-full">
                 {cartItems.map((obj, i) => <CartItem key={i} item={obj} active={false}  />) }
-                <BoxItem key="dq_box" />
+                {box && <BoxItem />}
 
                 <div className={cn(' flex-1 w-full border border-[#E4E7E9] px-5 pt-5 pb-6 rounded-sm ', className)}>
            
@@ -50,7 +50,7 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                <label
                    htmlFor="selfDelivery"
                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"  >
-                   Самовивіз зі складу або відділення НП <span className="text-[#ff0000] font-bold">-3%</span> 
+                   Самовивіз зі складу в м. Києві або з відділення НП у вашому місті <span className="text-[#ff0000] font-bold">-3%</span> 
                </label>
            </div>
            <div className="flex items-center space-x-2 cursor-pointer my-3 ">
@@ -63,7 +63,7 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                <label
                    htmlFor="fotoCh"
                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer">
-                   Дозвіл на використання фото та відео контенту з об&apos;єкта <span className="text-[#ff0000] font-bold">-3%</span> 
+                   Дозвіл на використання фото покриттів та відео контенту <span className="text-[#ff0000] font-bold">-3%</span> 
                </label>
            </div>
 
@@ -85,6 +85,10 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                <span className=" text-base text-[#191C1F] font-semibold  leading-6">{cartItems.length > 0 ? resultTotal : '3000'} грн</span>
            </div>
            
+           <div className="w-full flex justify-between mb-6 mt-2  ">
+               <span className=" text-base text-[#191C1F] leading-6">Ваша знижка</span>
+               <span className=" text-base text-[#191C1F] font-semibold  leading-6">{total - resultTotal} грн</span>
+           </div>
       </div>  
 
 

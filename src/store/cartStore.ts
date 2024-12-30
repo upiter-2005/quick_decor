@@ -190,7 +190,7 @@ export const useCartStore = create<CartState>()(
     ),
     {
       name: 'qdCart',
-      version: 0.1,
+      version: 0.2,
       storage: createJSONStorage(()=> localStorage),
        partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat, selfDelivery: state.selfDelivery, fotoPermition: state.fotoPermition, box: state.box}),
 

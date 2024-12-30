@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 'use server'
 //import { revalidatePath } from 'next/cache'
-//import axios from "axios"
-
 
 import {transporter} from "@/shared/api/nodemailer"
+import { checkoutProductsType } from "@/shared/helpers/productCrmFormat"
+import { TDefauldFields } from "@/shared/types/form"
 
 
 
@@ -34,11 +35,47 @@ export async function checkoutAction(body: any){
       <br> Додаткова інформація : ${body.aditionals} <br> ${body.productArr}`
     })
     console.log(info)
+
     
   }catch(e){
     console.log(e)
   }
 }
 
+
+export const PurchaseCRM = async(body: checkoutProductsType[], data: TDefauldFields) => {
+  const products = body
+
+    try{
+      const raw = JSON.stringify({
+        "source_id": 1,
+        "manager_comment": `${data.aditionals}`,
+        "contact": {
+          "full_name": `${data.first_name} ${data.last_name}`,
+          "email": `${data.email}`,
+          "phone": `${data.tel} `
+        },
+        products: products
+      });
+
+      
+
+      fetch("https://openapi.keycrm.app/v1/pipelines/cards", {
+        method: "POST",
+        headers: {
+            authorization:  `Bearer ${process.env.NEXT_KEY_CRM}`,
+            'Content-Type': 'application/json'
+        },
+        body: raw,
+        redirect: "follow"
+      })
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+
+  }catch(e){
+    console.log(e);
+  }
+}
 
 

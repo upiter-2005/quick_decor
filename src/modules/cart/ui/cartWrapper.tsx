@@ -6,8 +6,9 @@ import { CartItem } from "./cartItem"
 // import { SeenProducts } from "@/components/seenProducts"
 import { Divider } from "@/shared/ui/divider"
 import { useCartStore } from "@/store/cartStore"
-import { BoxItem } from "./boxItem"
+//import { BoxItem } from "./boxItem"
 import { useEffect } from "react"
+import { BoxItem } from "./boxItem"
 
 
 interface ICartWrapper {
@@ -15,10 +16,10 @@ interface ICartWrapper {
 }
 
 export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
-    const {cartItems, setBox, box} = useCartStore()
+    const {cartItems,  box} = useCartStore()
 
     useEffect(()=> {
-        if(!box){setBox(true)}
+       // if(!box){setBox(true)}
         
     }, [box])
 
@@ -34,12 +35,21 @@ export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
                     <div className="text-sm text-[#1e1e1e] mb-7">Кількість позицій у Вашому кошику:  {cartItems.length}</div>
 
                     {cartItems.map((obj, i) => <CartItem key={i} item={obj}  />) }
-                    <BoxItem />
+                    {box && <BoxItem />}
 
-                    <p className="font-600 pb-4">+ додати примiщення</p>
+                    <p className="font-600 pb-4">+ Додати приміщення чи ефект для розрахунку</p>
                     <div className="flex justify-between gap-2 flex-wrap">
-                        <Link href="/quiz" className="w-full md:w-6/12 uppercase flex-1 flex justify-center items-center text-center  p-9 rounded-2xl input-shadow mb-6 border border-[#efefef] hover:opacity-60 transition-all">Через фільтр</Link>
-                        <Link href="/#front-catalog" className="w-full md:w-6/12 uppercase flex-1 flex justify-center items-center text-center  p-9 rounded-2xl input-shadow mb-6 border border-[#efefef] hover:opacity-60 transition-all">Через каталог</Link>
+                        <div className="w-full md:w-6/12 flex-1 flex flex-col">
+                            <Link href="/quiz" className="w-full uppercase flex-1 flex justify-center items-center text-center md:p-9 p-3 rounded-2xl input-shadow mb-1 border border-[#efefef] hover:opacity-60 transition-all text-white bg-black">
+                            Через фільтр помічник</Link>
+                            <span className="text-xs font-semibold text-center">Якщо не знаєте який ефект обрати</span>
+                        </div>
+                        <div className="w-full md:w-6/12 flex-1 flex flex-col">
+                            <Link href="/#front-catalog" className="w-full  uppercase flex-1 flex justify-center items-center text-center md:p-9 p-3 rounded-2xl input-shadow mb-1 border border-[#efefef] hover:opacity-60 transition-all text-white bg-black">Через каталог ефектів</Link>
+                            <span className="text-xs font-semibold text-center">Якщо вже знаєте свій ефект та колір</span>
+                        </div>
+                        
+                        
                     </div>
                 </div>
                 <TotalTable className="md:sticky md:top-[104px]" />

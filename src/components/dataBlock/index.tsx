@@ -37,6 +37,8 @@ export const DataBlock:React.FC<IDataBlock> = ({children, title, redTitle, rever
             </div>
         </div>
     </div>
+    
+ 
    
       
     </>
