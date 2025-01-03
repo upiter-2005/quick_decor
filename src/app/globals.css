@@ -142,3 +142,13 @@ input[type=number] {
 
 .concrete{ background-color: #9a9ea4}
 .stone{ background-color: #9c9d9e}
+
+.servBlock h3{
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 14px;
+  margin-top: 28px;
+}
+.servBlock p{
+  margin-bottom: 18px;
+}

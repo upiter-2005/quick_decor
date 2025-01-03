@@ -38,8 +38,8 @@ export const Footer:React.FC = () => {
 
                 <div className="w-[49%] md:w-auto mb-4 md:mb-0">
                     <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Оплата</Link>
-                    <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Договір оферти</Link>
-                    <Link href="#" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Політика конфіденційності</Link>
+                    <Link href="/oferta" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Договір оферти</Link>
+                    <Link href="/policy" className="text-white text-sm font-semibold block leading-6 hover:opacity-70 transition-all">Політика конфіденційності</Link>
                 </div>
 
                 <div className="w-[49%] md:w-auto mb-4 md:mb-0">

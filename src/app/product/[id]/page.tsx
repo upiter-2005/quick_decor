@@ -42,10 +42,8 @@ import { getVariations } from '@/shared/helpers/getVariations'
 // }
 
 
-type Params = Promise<{ id: string }>;
+type Params = Promise<{ id: string }>
 export const dynamic = 'force-dynamic'
-
-
 
 export default async function ProductPage(props: { params: Params }) {
   const params = await props.params
@@ -59,8 +57,6 @@ export default async function ProductPage(props: { params: Params }) {
   }
   
   const variations = getVariations(response[0].acf.variations)
-
- 
 
   return <>
       <ProductDataWidget product={response[0]} variations={variations}  />  
