@@ -52,7 +52,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
         const [usefull, setUsefull] = useState<IImageObj[]>();
        
 
-        console.log(product);
+       
       
     const {addCartItem, typeFlat, setBox} = useCartStore()
   
@@ -155,7 +155,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                     <div className="text-sm md:mb-8 capitalize md:pl-0 font-semibold md:hidden pl-0">Колір - {product.acf.colors}</div>
                     </>  }
                     {product.acf.front_name === "Коробка помічниця" &&
-                    <><SectionTitle title={product.acf.front_name} className="pb-0 mt-0 md:pb-1 pl-0"/>
+                    <><SectionTitle title="Бокс взірців" className="pb-0 mt-0 md:pb-1 pl-0"/>
                     
                     </>  }
                    
@@ -194,7 +194,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
 
                         <div className="flex items-start md:items-start py-2 justify-center md:justify-between flex-c md:flex-row gap-4">
                             <div className="flex-col ">
-                            <p className="text-main text-[30px] relative whitespace-nowrap">{product.acf.price} <span className='relative text-[20px] top-0 -left-1'> грн/m2</span></p>
+                            <p className="text-main text-[30px] relative whitespace-nowrap">{product.acf.price} <span className='relative text-[20px] top-0 -left-1'> грн/м2</span></p>
                             {product.acf.old_price && <p className="text-[#858585] text-xl line-through font-medium relative -top-2 ml-3">{product.acf.old_price} грн </p>}
                             </div>
                            
@@ -243,7 +243,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
 
 {product.acf.front_name !== "Коробка помічниця" &&
     (<>
-        <h2 className="max-w-[1144px] w-full m-auto text-2xl md:text-4xl mt-10 font-medium pl-1">Наші рекомендаціі</h2>
+        <h2 className="max-w-[1144px] w-full m-auto text-2xl md:text-4xl mt-10 font-medium pl-1 text-center">Наші рекомендаціі</h2>
 
         <SectionTitle redText='Ідеально підходить для наступних приміщень' className="mt-5 md:mt-14" />
       
@@ -297,9 +297,9 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
           
       </div>
 
-      <h2 className={cn('text-[28px] md:text-[46px] leading-9 md:leading-[64px] w-full  text-center')}>Не впевненні у виборі?</h2> 
+      <h2 className={cn('text-[28px] md:text-[46px] leading-9 md:leading-[64px] w-full  text-center mt-10')}>Не впевненні у виборі?</h2> 
       <p className={cn('text-[14px] md:text-[18px] leading-5 md:leading-[26px] w-full  text-center px-2 pt-3')}>Скористайтеся нашим фільтром помічником. <br /> В залежності від обраних вами параметрів, ми порекомендуємо найкращий ефект за допомогою системи балів.</p>
-      <div className='w-full text-center mb-16 mt-14'><RedButton linkText='Обрати ефект через фільтр' text='Обрати ефект через фільтр' href='/quiz' className='px-8' /></div>
+      <div className='w-full text-center mb-1 mt-14'><RedButton linkText='Обрати ефект через фільтр' text='Обрати ефект через фільтр' href='/quiz' className='px-8' /></div>
       </>)
 }
 

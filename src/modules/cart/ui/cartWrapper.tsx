@@ -27,6 +27,8 @@ export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
         <>
             <div className={cn('max-w-[1144px] w-full m-auto flex flex-col md:flex-row justify-center items-start gap-[65px] pb-14 pt-4 px-3 md:px-0', className)}>
                 <div className="max-w-[608px] w-full ">
+                    <h1 className="text-3xl font-semibold mb-3">Розрахунок вартості декоритвних покриттів </h1>
+                    <p className="text-sm mb-5">Додавайте бажані ефекти щоб дізнатись вартість замовлення (черній обічній)</p>
                     <div className="text-[18px] font-semibold text-[#1e1e1e] pb-7 border-b border-b-[#858585] mb-6" >
                         <Link href="/catalog" className="text-[#858585]">   До каталогу </Link> | Кошик
                     </div>

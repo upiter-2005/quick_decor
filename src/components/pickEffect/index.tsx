@@ -22,23 +22,23 @@ export const PickEffect:React.FC<IPickEffect> = ({className}) => {
         <div className='w-full'> 
            <SectionTitle  redText='5 трендових та практичних ефектів' className='!pb-2'  / >
            </div>
-          <Link href="/product/air-white" className='block w-[110px] h-[160px] md:w-[186px] relative md:h-[270px] text-center hover:opacity-75 transition-all'>
+          <Link href="/product/air-white" className='block w-[120px] h-[190px] md:w-[186px] relative md:h-[270px] text-center hover:opacity-75 transition-all'>
             <Image src={air}  objectFit="cover"  alt="quickdecor" />
             <p className='text-main mt-1 md:mt-4  md:text-2xl font-medium '>AIR</p>
           </Link>
-          <Link href="/product/sand-cool" className='block w-[110px] h-[160px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
+          <Link href="/product/sand-cool" className='block w-[120px] h-[190px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
             <Image src={sand}  objectFit="cover"  alt="quickdecor"   />
             <p className='text-main mt-1 md:mt-4   md:text-2xl font-medium'>SAND</p>
           </Link>
-          <Link href="/product/microcemente-ash" className='block w-[110px] h-[160px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
+          <Link href="/product/microcemente-ash" className='block w-[120px] h-[190px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
             <Image src={cement}  objectFit="cover"  alt="quickdecor"   />
             <p className='text-main mt-1 md:mt-4   md:text-2xl font-medium'>MICROCEMENTE</p>
           </Link>
-          <Link href="/product/travertine-naturale" className='block w-[110px] h-[160px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
+          <Link href="/product/travertine-naturale" className='block w-[120px] h-[190px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
             <Image src={travertin}  objectFit="cover"  alt="quickdecor"   />
             <p className='text-main mt-1 md:mt-4   md:text-2xl font-medium'>TRAVERTINE</p>
           </Link>
-          <Link href="/product/quick-concrete" className='block w-[110px] h-[160px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
+          <Link href="/product/quick-concrete" className='block w-[120px] h-[190px] md:w-[186px] relative md:h-[270px]   text-center hover:opacity-75 transition-all'>
             <Image src={quick}  objectFit="cover"  alt="quickdecor"   />
             <p className='text-main mt-1 md:mt-4  md:text-2xl font-medium'>QUICK</p>
           </Link>

@@ -11,7 +11,7 @@ export const Sale:React.FC<IPickEffect> = ({className}) => {
   console.log(pathname)
   return (
     <>
-      {pathname !== '/quiz' &&    <div className={cn('bg-[#ff0000] text-[11px]  p-3 rounded-br-3xl rounded-tl-3xl fixed top-14 md:top-[96px] right-0 z-[199] text-white font-bold' , className)} >
+      {pathname !== '/quiz' &&    <div className={cn('bg-[#ff0000] text-[11px]  p-3 rounded-br-3xl rounded-tl-3xl fixed top-14 md:top-[96px] right-0 z-[199] text-white font-bold hidden' , className)} >
        Знижка дня - 12%
       </div>}
    

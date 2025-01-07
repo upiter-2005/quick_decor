@@ -24,7 +24,7 @@ export const BoxItem:React.FC<ICartItemBox> = ({className}) => {
                </div>
                
                <div className=" max-w-[315px] w-full"> 
-                   <Link href="/product/quick-box" className="flex items-center text-[#1e1e1e] text-[18px] uppercase">Коробка помічниця (оренда)</Link>
+                   <Link href="/product/quick-box" className="flex items-center text-[#1e1e1e] text-[18px] uppercase">Бокс взірців  (під заставу)</Link>
                    <div className="text-[#ff0000] text-sm">Зафіксуємо передплатою або повернемо у разі відмови</div>
                </div>
                

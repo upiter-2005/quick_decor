@@ -5,7 +5,7 @@
 
 import {transporter} from "@/shared/api/nodemailer"
 import { checkoutProductsType } from "@/shared/helpers/productCrmFormat"
-import { TDefauldFields } from "@/shared/types/form"
+import { TDefauldFields, TSimpleForm } from "@/shared/types/form"
 
 
 
@@ -56,6 +56,38 @@ export const PurchaseCRM = async(body: checkoutProductsType[], data: TDefauldFie
           "phone": `${data.tel} `
         },
         products: products
+      });
+
+      
+
+      fetch("https://openapi.keycrm.app/v1/pipelines/cards", {
+        method: "POST",
+        headers: {
+            authorization:  `Bearer ${process.env.NEXT_KEY_CRM}`,
+            'Content-Type': 'application/json'
+        },
+        body: raw,
+        redirect: "follow"
+      })
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+
+  }catch(e){
+    console.log(e);
+  }
+}
+
+export const sendCRMForm = async( data: TSimpleForm) => {
+
+    try{
+      const raw = JSON.stringify({
+        "source_id": 1,
+        "manager_comment": "Заявка з футер форми",
+        "contact": {
+          "full_name": `${data.name}`,
+          "phone": `${data.tel} `
+        }
       });
 
       

@@ -13,6 +13,8 @@ import { checkoutAction, PurchaseCRM } from "@/lib/actions";
 import NovaPoshta from "@/components/delivery";
 import { useCartStore } from "@/store/cartStore";
 import {checkoutProducts, checkoutProductsType} from "@/shared/helpers/productCrmFormat"
+import { InputPhone } from "@/shared/ui/inputPhone";
+
 interface IForm{
     className?: string
 }
@@ -109,7 +111,8 @@ export const Form:React.FC<IForm> = ({className}) => {
                     <Input type='text' placeholder="Email" name="email" />
                 </div>
                 <div className="w-full md:w-[48%]">
-                    <Input type='text' placeholder="Телефон" name="tel" />
+                   <InputPhone name="tel" className="w-full text-[#9A9FA8] outline-none py-1 border-b-[1px] border-b-[#D9DADD] placeholder:text-[#9A9FA8] text-base" />
+                    {/* <Input type='text' placeholder="Телефон" name="tel" /> */}
                 </div>
 
                 <NovaPoshta />
@@ -119,7 +122,6 @@ export const Form:React.FC<IForm> = ({className}) => {
             <button type="submit" disabled={isPending} className=" w-[280px] m-auto md:w-full flex justify-center bg-[#ff0000] text-white text-sm font-semibold  rounded-[60px]  hover:opacity-55 transition-all">{isPending ? <Image src={loader} width={52} height={45} alt="loader" /> : <span className="p-4">Оформити замовлення</span>  }</button>
 
             </form>
-
             
         </FormProvider>
     </div>
