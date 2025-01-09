@@ -13,10 +13,12 @@ import { TileBox } from '@/shared/ui/tileBox'
 export const HomeBaner = () => {
   return (
     <>
-    <div className='w-full md:min-h-[750px] h-[85vh] bg-baner bg-cover bg-center bg-no-repeat 
+    <div className='w-full md:min-h-[750px] h-[85vh] bg-baner bg-cover md:bg-center bg-no-repeat 
     flex flex-col items-start mb-20
      relative after:content-[""] after:absolute after:w-full after:h-full after:z-20 after:block 
-     after:bg-gradient-to-r after:from-white after:from-[7%] after:to-transparent after:to-86% '>
+     after:bg-gradient-to-r after:from-white after:from-[7%] after:to-transparent after:to-86%
+    bg-right
+     '>
 
         <div className='flex flex-col gap-3 max-w-[1116px] w-full m-auto relative z-30 px-3 md:px-0'>
             <RedText text='#quickdecor' />
@@ -42,8 +44,6 @@ export const HomeBaner = () => {
         </div>
         
         </>
-    
-
     
   )
 }

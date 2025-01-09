@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { TotalTable } from "./totalTable"
 import { CartItem } from "./cartItem"
-// import { SeenProducts } from "@/components/seenProducts"
 import { Divider } from "@/shared/ui/divider"
 import { useCartStore } from "@/store/cartStore"
 //import { BoxItem } from "./boxItem"
@@ -16,7 +15,7 @@ interface ICartWrapper {
 }
 
 export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
-    const {cartItems,  box} = useCartStore()
+    const {cartItems,  box, setBox} = useCartStore()
 
     useEffect(()=> {
        // if(!box){setBox(true)}
@@ -38,7 +37,10 @@ export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
 
                     {cartItems.map((obj, i) => <CartItem key={i} item={obj}  />) }
                     {box && <BoxItem />}
-
+                    {!box && <div className="w-full flex md:justify-between items-center  pb-4 pt-4 rounded-2xl input-shadow border border-[#efefef] p-[10px] mb-6 gap-2 flex-wrap relative">
+                        <button onClick={()=> setBox(true)} className="bg-[#ff0000] text-sm font-semibold text-white px-2 rounded-xl">Додати</button>
+                        <span className="flex-1">Додайте безкоштовно до замовлення наш бокс взірців для 100% точного вибору</span>
+                        </div>}
                     <p className="font-600 pb-4">+ Додати приміщення чи ефект для розрахунку</p>
                     <div className="flex justify-between gap-2 flex-wrap">
                         <div className="w-full md:w-6/12 flex-1 flex flex-col">

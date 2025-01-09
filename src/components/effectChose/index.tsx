@@ -94,7 +94,7 @@ export const EffectChose:React.FC = ({}) => {
       <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-[55px] px-3 md:px-0 pb-12' >
           <Link href="/quiz" className='block w-[80px] h-[80px] relative md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
             <Image src={icons.stable}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]'  />
-            <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>Стійкість, прочність</p>
+            <p className='text-black mt-[84px] md:mt-[135px] text-xs md:text-xl font-medium'>Стійкість, міцність</p>
           </Link>
           <Link href="/quiz" className='block w-[80px] h-[80px] relative md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
             <Image src={icons.wet}  fill objectFit='cover'  alt="quickdecor" className='rounded-[10px]'  />

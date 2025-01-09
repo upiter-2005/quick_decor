@@ -13,7 +13,7 @@ interface ICheckout{
 }
 
 export const Checkout:React.FC<ICheckout> = ({className}) => {
-    const {cartItems, total, resultTotal, discountTotal, discountFotoTotal, selfDelivery, fotoPermition, setResultTotal, box} = useCartStore()
+    const {cartItems, total, resultTotal, discountTotal, discountFotoTotal, selfDelivery, fotoPermition, setResultTotal, box, setBox} = useCartStore()
 
     useEffect(()=>{
         setResultTotal()
@@ -25,7 +25,10 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
             <div className="flex-1 px-3 w-full">
                 {cartItems.map((obj, i) => <CartItem key={i} item={obj} active={false}  />) }
                 {box && <BoxItem />}
-
+                {!box && <div className="w-full flex md:justify-between items-center  pb-4 pt-4 rounded-2xl input-shadow border border-[#efefef] p-[10px] mb-6 gap-2 flex-wrap relative">
+                        <button onClick={()=> setBox(true)} className="bg-[#ff0000] text-sm font-semibold text-white px-2 rounded-xl">Додати</button>
+                        <span className="flex-1">Додайте безкоштовно до замовлення наш бокс взірців для 100% точного вибору</span>
+                        </div>}
                 <div className={cn(' flex-1 w-full border border-[#E4E7E9] px-5 pt-5 pb-6 rounded-sm ', className)}>
            
           

@@ -1,7 +1,7 @@
 'use client'
 import { cn } from "@/lib/utils"
 import Image from "next/image"
-import { defaulFieldsSchema, TDefauldFields } from "@/shared/types/form";
+import { checkoutFieldsSchema, TCheckoutFieldsSchema } from "@/shared/types/form";
 import { Input } from "@/shared/ui/input";
 import { useEffect,  useState,  useTransition } from "react"
 import {useForm, FormProvider} from "react-hook-form"
@@ -10,10 +10,11 @@ import loader from "@/shared/assets/images/loader.svg"
 import  {zodResolver}  from '@hookform/resolvers/zod'
 import { Payment } from "./payment";
 import { checkoutAction, PurchaseCRM } from "@/lib/actions";
-import NovaPoshta from "@/components/delivery";
+
 import { useCartStore } from "@/store/cartStore";
 import {checkoutProducts, checkoutProductsType} from "@/shared/helpers/productCrmFormat"
 import { InputPhone } from "@/shared/ui/inputPhone";
+import { Delivery } from "./delivery";
 
 interface IForm{
     className?: string
@@ -25,23 +26,28 @@ export const Form:React.FC<IForm> = ({className}) => {
     
     const {selfDelivery, fotoPermition, cartItems, clear, setBox, box} = useCartStore()
 
-    const form = useForm<TDefauldFields>({
-        resolver: zodResolver(defaulFieldsSchema),
+    const form = useForm<TCheckoutFieldsSchema>({
+        mode: "onChange",
+        resolver: zodResolver(checkoutFieldsSchema),
         defaultValues:{
           first_name: '',
           last_name: '',
           tel: '',
           email: '',
-          payment: '',
+          payment: 'Картою на сайті',
+          delivery: 'До відділення Нової Пошти',
           city: '',
           department: '',
           aditionals: '',
           productArr: ''
-        }
+        },
+        shouldUnregister: true
       })
     
-      const onSubmit = async(data: TDefauldFields) => {
+      const onSubmit = async(data: TCheckoutFieldsSchema) => {
+        console.log(data)
         startTransition( async () => {
+          
           await checkoutAction(data)
           if(data) {
             if (box) crmProducts?.push({
@@ -53,7 +59,6 @@ export const Form:React.FC<IForm> = ({className}) => {
               "picture": "https://api.quickdecor.com.ua/wp-content/uploads/2024/12/3.jpg"
            })
             if(crmProducts) await PurchaseCRM(crmProducts, data)
-        
             toast.success('Заявка відправлена успішно!', {icon: '✅'})
             clear()
             setBox(false)
@@ -92,7 +97,7 @@ export const Form:React.FC<IForm> = ({className}) => {
         }
         
       },[cartItems])
-      
+  
     return (
         <div className={cn('max-w-[600px] w-full md:sticky top-[100px]', className)}>
             <FormProvider {...form}>
@@ -111,11 +116,11 @@ export const Form:React.FC<IForm> = ({className}) => {
                     <Input type='text' placeholder="Email" name="email" />
                 </div>
                 <div className="w-full md:w-[48%]">
-                   <InputPhone name="tel" className="w-full text-[#9A9FA8] outline-none py-1 border-b-[1px] border-b-[#D9DADD] placeholder:text-[#9A9FA8] text-base" />
-                    {/* <Input type='text' placeholder="Телефон" name="tel" /> */}
+                   <InputPhone name="tel" className="w-full text-[#9A9FA8] outline-none pb-2 border-b-[1px] border-b-[#D9DADD] placeholder:text-[#9A9FA8] text-base" />
+                  
                 </div>
-
-                <NovaPoshta />
+                <Delivery/>
+      
                 <div className="w-full"> <Payment /></div>  
             </div>
             

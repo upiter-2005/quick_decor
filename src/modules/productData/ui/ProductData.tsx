@@ -183,15 +183,19 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                 <ReadMore>{product.acf.description}</ReadMore>
                 
                     {product.acf.front_name === "Коробка помічниця" && 
-                       ( <button className="w-[250px] rounded-[60px] block m-auto md:ml-0 mt-6 text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
-                        onClick={()=>{setBox(true);  toast.success("Товар додано в корзину!", {icon: '✅'}) }}
-                        >Замовити бокс</button>)
+                       ( <div className="flex g-1 flex-wrap">
+                            <Link href="/catalog" className="w-[250px] rounded-[60px] block m-auto text-center md:ml-0 mt-6 text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70">
+                                Перейти до ефектів
+                            </Link>
+
+                            <button className="w-[250px] rounded-[60px] block m-auto md:ml-0 mt-6 text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
+                            onClick={()=>{setBox(true);  toast.success("Товар додано в корзину!", {icon: '✅'}) }}
+                            >Замовити бокс</button>
+                       </div> )
                     }
+
                 {product.acf.front_name !== "Коробка помічниця" && 
                     (<>
-                    
-               
-
                         <div className="flex items-start md:items-start py-2 justify-center md:justify-between flex-c md:flex-row gap-4">
                             <div className="flex-col ">
                             <p className="text-main text-[30px] relative whitespace-nowrap">{product.acf.price} <span className='relative text-[20px] top-0 -left-1'> грн/м2</span></p>
@@ -286,7 +290,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
 
       <SectionTitle redText='Має такі властивості' className="mt-2" />
       
-      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px] mb-1 md:mb-[55px] px-3 md:px-0 pb-12' >
+      <div className='max-w-[1144px] w-full m-auto flex flex-wrap justify-center gap-8 md:gap-[55px]  md:mb-[55px] px-3 md:px-0 pb-12 ' >
           
       {usefull?.map((el:IImageObj, i: number) => 
          ( <Link href="/quiz" key={i}  className='block w-[80px] h-[80px] relative  md:w-[133px] md:h-[133px] text-center hover:opacity-75 transition-all mt-6'>
@@ -297,7 +301,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
           
       </div>
 
-      <h2 className={cn('text-[28px] md:text-[46px] leading-9 md:leading-[64px] w-full  text-center mt-10')}>Не впевненні у виборі?</h2> 
+      <h2 className={cn('text-[28px] md:text-[46px] leading-9 md:leading-[64px] w-full  text-center mt-[45px] md:mt-[140px]')}>Не впевненні у виборі?</h2> 
       <p className={cn('text-[14px] md:text-[18px] leading-5 md:leading-[26px] w-full  text-center px-2 pt-3')}>Скористайтеся нашим фільтром помічником. <br /> В залежності від обраних вами параметрів, ми порекомендуємо найкращий ефект за допомогою системи балів.</p>
       <div className='w-full text-center mb-1 mt-14'><RedButton linkText='Обрати ефект через фільтр' text='Обрати ефект через фільтр' href='/quiz' className='px-8' /></div>
       </>)

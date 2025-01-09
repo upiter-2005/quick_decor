@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 import Image from 'next/image'
-
+import remove from "@/shared/assets/images/remove.svg"
 
 import {useCartStore} from "@/store/cartStore"
 import Link from "next/link"
@@ -12,7 +12,7 @@ interface ICartItemBox {
 
 export const BoxItem:React.FC<ICartItemBox> = ({className}) => {
 
-    const {cartItems} = useCartStore()
+    const {cartItems, setBox} = useCartStore()
 
     return (
         <>
@@ -24,7 +24,9 @@ export const BoxItem:React.FC<ICartItemBox> = ({className}) => {
                </div>
                
                <div className=" max-w-[315px] w-full"> 
-                   <Link href="/product/quick-box" className="flex items-center text-[#1e1e1e] text-[18px] uppercase">Бокс взірців  (під заставу)</Link>
+                   <Link href="/product/quick-box" className="flex items-center text-[#1e1e1e] text-[18px] uppercase">
+                    Бокс взірців  (під заставу)
+                    </Link>
                    <div className="text-[#ff0000] text-sm">Зафіксуємо передплатою або повернемо у разі відмови</div>
                </div>
                
@@ -34,8 +36,12 @@ export const BoxItem:React.FC<ICartItemBox> = ({className}) => {
                    <div className="text-[#393939] text-sm font-semibold md:ml-8 ">{cartItems.length > 0 ? '0' : '3000'} грн </div>
                </div>
             
-            {cartItems.length === 0  && <p className="bg-[#ff0000] text-white font-semibold text-xs absolute rounded-[12px] p-1 -bottom-3 right-2 z-30">Додайте хоча б один ефект щоб отримати безкоштовно</p> }
+            {cartItems.length === 0  && <Link href="/catalog" className="bg-[#ff0000] text-white font-semibold text-xs absolute rounded-[12px] p-1 -bottom-3 right-2 z-30">Додайте хоча б один ефект щоб отримати безкоштовно</Link> }
                 
+                
+                <button className="absolute right-3 top-2 "
+                onClick={()=>setBox(false)}
+            ><Image src={remove} width={20} height={20} alt="quickdecor" className="md:relative md:top-0"  /></button>
           </div> 
           
         

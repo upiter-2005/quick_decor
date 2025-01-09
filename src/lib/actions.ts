@@ -55,7 +55,17 @@ export const PurchaseCRM = async(body: checkoutProductsType[], data: TDefauldFie
           "email": `${data.email}`,
           "phone": `${data.tel} `
         },
-        products: products
+        products: products,
+        "custom_fields": [
+          {
+            "uuid": "LD_1001",
+            "value": data.city
+          },
+          {
+            "uuid": "LD_1005",
+            "value": data.department
+          }
+        ]
       });
 
       

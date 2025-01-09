@@ -26,7 +26,7 @@ export const Bullets:React.FC = ({}) => {
 
           <div className='max-w-[300px] text-center'>
             <p className='text-main md:text-[32px] text-2xl font-bold mb-5'>Сертифікація</p>
-            <div className='text-gray text-base md:text-xl leading-5 md:leading-6'>Ferrara Paint та Simpletone TM - єдина українська продукція, що має якість, підтверджену Європейським Національним Інститутом Гігієни, та вже 2-й рік має дочірнє підприємство на території країни Європейського союзу. </div>
+            <div className='text-gray text-base md:text-xl leading-5 md:leading-6'>Ferrara Paint та Simpletone TM - українська продукція, що має якість, підтверджену Європейським Національним Інститутом Гігієни, та вже 2-й рік має дочірнє підприємство на території країни Європейського союзу. </div>
           </div>
 
           <div className='max-w-[300px] text-center'>

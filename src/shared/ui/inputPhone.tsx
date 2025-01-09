@@ -18,7 +18,6 @@ export const InputPhone:React.FC<InputType> = ({name, className}) => {
 
   const {
     formState: { errors },
-    register,
     setValue
   } = useFormContext()
 
@@ -31,7 +30,7 @@ export const InputPhone:React.FC<InputType> = ({name, className}) => {
     setValue('tel', e.target.value)
   }
   return(
-    <div className={cn("relative w-full", className)}>
+    <div className={cn("relative w-full maskPhone", className)}>
 
      <Controller
        control={control}

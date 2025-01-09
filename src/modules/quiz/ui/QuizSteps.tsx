@@ -454,15 +454,12 @@ console.log(params)
         {step === 4 &&
              <div className="flex gap-5  w-full flex-wrap justify-center">
                 <div className="w-full text-xl mb-2 text-[#373C45] mt-6"><RedText text="Крок 4" />Оберіть важливі властивості для експлуатації (можна обрати декілька)</div>
-                <QuizTileLastStep active={has('stable')} quizAction={nextStep4} slug="stable" text="Стійкість, прочність" image={icons.stable} />
+                <QuizTileLastStep active={has('stable')} quizAction={nextStep4} slug="stable" text="Стійкість, міцність" image={icons.stable} />
                 <QuizTileLastStep active={has('wet')} quizAction={nextStep4} slug="wet" text="Вологе прибирання" image={icons.wet} />
                 <QuizTileLastStep active={has('water')} quizAction={nextStep4} slug="water" text="Прямий контакт з водою" image={icons.water} />
                 <QuizTileLastStep active={has('dust')} quizAction={nextStep4} slug="dust" text="Не сприймає пилу" image={icons.dust} />
             </div>
         }
-
-
-
 
             <div className="hidden md:flex justify-center mb-3 mt-5 gap-4">
                 {step !== 1 &&   <button onClick={()=>setStep(prevStep => prevStep - 1)} 
@@ -475,7 +472,6 @@ console.log(params)
                 disabled={step === 5}
                 >{step === 4 ? 'Отримати результати' : 'Наступний крок'}</button>}
              
-
              {step === 5 &&    <button className={cn( 'w-[250px] bg-[#222] text-white text-sm font-semibold p-4 rounded-[60px] inline-block hover:opacity-55 transition-all', className)}
                 onClick={()=> window.location.reload()} >Почати спочатку</button>}
             </div>

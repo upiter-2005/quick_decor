@@ -15,11 +15,24 @@ export const defaulFieldsSchema = z.object({
   tel: z.string().regex(phoneRegex, 'Перевірте коректність телефону'),
   email: z.string().email({ message: 'Введіть коректну пошту' }),
   payment: z.string(),
-  city: z.string().min(2, {message: "Занадто коротка назва"}),
-  department: z.string().min(2, {message: "Занадто коротка назва"}),
+
+  delivery: z.string(),
+  city: z.string().min(3, {message: "Введіть місто"}).optional(),
+  department: z.string().min(1, {message: "Введіть відділення або адресу"}).optional(),
+
   aditionals: z.string(),
   productArr: z.string()
 })
 
+export const checkoutFieldsSchema = defaulFieldsSchema
+  .merge(
+    z.object({
+      adress1: z.string().min(3, {message: "Занадто коротко"}).optional(),
+      adress2: z.string().min(3, {message: "Занадто коротко"}).optional(),
+    })
+  )
+
+
 export type TDefauldFields = z.infer<typeof defaulFieldsSchema>
 export type TSimpleForm = z.infer<typeof simpleForm>
+export type TCheckoutFieldsSchema = z.infer<typeof checkoutFieldsSchema>
