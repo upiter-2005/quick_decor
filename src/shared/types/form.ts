@@ -16,6 +16,7 @@ export const defaulFieldsSchema = z.object({
   email: z.string().email({ message: 'Введіть коректну пошту' }),
   payment: z.string(),
 
+  priceDiscount: z.number().optional(),
   delivery: z.string(),
   city: z.string().min(3, {message: "Введіть місто"}).optional(),
   department: z.string().min(1, {message: "Введіть відділення або адресу"}).optional(),

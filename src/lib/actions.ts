@@ -64,13 +64,21 @@ export const PurchaseCRM = async(body: checkoutProductsType[], data: TDefauldFie
           {
             "uuid": "LD_1005",
             "value": data.department
+          },
+          {
+            "uuid": "LD_1008",
+            "value": data.priceDiscount
+          },
+          {
+            "uuid": "LD_1009",
+            "value": data.payment
           }
         ]
       });
 
       
 
-      fetch("https://openapi.keycrm.app/v1/pipelines/cards", {
+      const response = fetch("https://openapi.keycrm.app/v1/pipelines/cards", {
         method: "POST",
         headers: {
             authorization:  `Bearer ${process.env.NEXT_KEY_CRM}`,
@@ -79,10 +87,10 @@ export const PurchaseCRM = async(body: checkoutProductsType[], data: TDefauldFie
         body: raw,
         redirect: "follow"
       })
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.error(error));
-
+        .then((response) => response.json())
+        .then((result) => result)
+       
+      return response
   }catch(e){
     console.log(e);
   }
@@ -101,7 +109,6 @@ export const sendCRMForm = async( data: TSimpleForm) => {
       });
 
       
-
       fetch("https://openapi.keycrm.app/v1/pipelines/cards", {
         method: "POST",
         headers: {

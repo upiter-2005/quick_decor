@@ -5,7 +5,6 @@ import { checkoutFieldsSchema, TCheckoutFieldsSchema } from "@/shared/types/form
 import { Input } from "@/shared/ui/input";
 import { useEffect,  useState,  useTransition } from "react"
 import {useForm, FormProvider} from "react-hook-form"
-import toast from 'react-hot-toast';
 import loader from "@/shared/assets/images/loader.svg"
 import  {zodResolver}  from '@hookform/resolvers/zod'
 import { Payment } from "./payment";
@@ -15,16 +14,25 @@ import { useCartStore } from "@/store/cartStore";
 import {checkoutProducts, checkoutProductsType} from "@/shared/helpers/productCrmFormat"
 import { InputPhone } from "@/shared/ui/inputPhone";
 import { Delivery } from "./delivery";
+import { KeyCrm } from "@/shared/types/keyCrm";
+import { LiqPay } from "@/modules/liqpay";
+import { useRouter } from 'next/navigation'
 
 interface IForm{
     className?: string
 }
 
 export const Form:React.FC<IForm> = ({className}) => {
-    const [isPending, startTransition] = useTransition()
-    const [crmProducts, setCrmProducts] = useState<checkoutProductsType[]>();
+  const {selfDelivery, fotoPermition, cartItems, box, resultTotal, showLiqPay, setShowLiqPay} = useCartStore()
+  const [isPending, startTransition] = useTransition()
+  const [crmProducts, setCrmProducts] = useState<checkoutProductsType[]>();
+  //const [showLiqPay, setShowLiqPay] = useState<boolean>(false)
+  const [crmOrderId, setCrmOrderId] = useState<string>('')
+  const [liqPayTotal, setLiqPayTotal] = useState<number>(resultTotal)
+  const router = useRouter()
     
-    const {selfDelivery, fotoPermition, cartItems, clear, setBox, box} = useCartStore()
+    
+   
 
     const form = useForm<TCheckoutFieldsSchema>({
         mode: "onChange",
@@ -36,6 +44,7 @@ export const Form:React.FC<IForm> = ({className}) => {
           email: '',
           payment: 'Картою на сайті',
           delivery: 'До відділення Нової Пошти',
+          priceDiscount: resultTotal,
           city: '',
           department: '',
           aditionals: '',
@@ -49,7 +58,7 @@ export const Form:React.FC<IForm> = ({className}) => {
         startTransition( async () => {
           
           await checkoutAction(data)
-          if(data) {
+          if(data) { 
             if (box) crmProducts?.push({
               "sku": "box_1", 
               "quantity": 1, 
@@ -58,10 +67,17 @@ export const Form:React.FC<IForm> = ({className}) => {
               "name": "Коробка помічниця",
               "picture": "https://api.quickdecor.com.ua/wp-content/uploads/2024/12/3.jpg"
            })
-            if(crmProducts) await PurchaseCRM(crmProducts, data)
-            toast.success('Заявка відправлена успішно!', {icon: '✅'})
-            clear()
-            setBox(false)
+            if(crmProducts){
+              const response: KeyCrm  = await PurchaseCRM(crmProducts, data)
+              setCrmOrderId(response.title)
+              if(response)  console.log(response.title)
+            } 
+      console.log(data.payment);
+            if(data.payment !== 'Картою на сайті') {
+              router.push('/thank')
+            }else{
+              setShowLiqPay(true)
+            }
           }else{
            
           }
@@ -98,13 +114,23 @@ export const Form:React.FC<IForm> = ({className}) => {
         
       },[cartItems])
   
+      useEffect(()=>{
+        setLiqPayTotal(resultTotal)
+        form.setValue("priceDiscount", resultTotal)
+      }, [resultTotal])
+
+      useEffect(()=>{
+        form.setValue("payment", "Картою на сайті")
+      }, [])
+
     return (
         <div className={cn('max-w-[600px] w-full md:sticky top-[100px]', className)}>
             <FormProvider {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className={`w-full max-w-[500px]` } >
+            <form onSubmit={form.handleSubmit(onSubmit)} className={cn(`w-full max-w-[500px] ${showLiqPay ? `disabledForm` : ''}`) } >
             <h1 className="text-3xl mb-8 px-3">Оформити замовлення</h1>
             <input type="hidden" name="aditionals" />
             <input type="hidden" name="productArr" />
+            <input type="hidden" name="priceDiscount" />
             <div className="flex flex-wrap gap-5 px-3 md:px-0">
                 <div className="w-full md:w-[48%]"> 
                     <Input type='text' placeholder="Ім'я" name="first_name"/>
@@ -127,6 +153,18 @@ export const Form:React.FC<IForm> = ({className}) => {
             <button type="submit" disabled={isPending} className=" w-[280px] m-auto md:w-full flex justify-center bg-[#ff0000] text-white text-sm font-semibold  rounded-[60px]  hover:opacity-55 transition-all">{isPending ? <Image src={loader} width={52} height={45} alt="loader" /> : <span className="p-4">Оформити замовлення</span>  }</button>
 
             </form>
+
+            {showLiqPay && 
+              <LiqPay
+              amount={liqPayTotal.toString()}
+              title="Quickdecor Liqpay"
+              description={`Онлайн оплата замовлення Quickdecor ${crmOrderId} `}
+              currency="UAH"
+              orderId={crmOrderId}
+              disabled={false}
+              className="text-white"
+            />
+            }
             
         </FormProvider>
     </div>

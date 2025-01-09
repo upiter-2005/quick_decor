@@ -1,0 +1,1 @@
+export {LiqPay} from "./ui/LiqPay"

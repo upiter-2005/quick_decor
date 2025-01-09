@@ -20,6 +20,8 @@ interface CartState {
   selfDelivery: boolean
   fotoPermition: boolean
   box: boolean
+  showLiqPay: boolean
+  setShowLiqPay: (val: boolean) => void
   setBox: (val: boolean) => void
   // openCart: boolean
   // setOpen: (val: boolean) => void 
@@ -45,6 +47,7 @@ export const useCartStore = create<CartState>()(
       {
         cartItems: [],
         total: 0,
+        showLiqPay: false,
         selfDelivery: false,
         fotoPermition: false,
         typeFlat: '',
@@ -55,6 +58,9 @@ export const useCartStore = create<CartState>()(
         },
         setBox: (val) => {
           set({box: val})
+        },
+        setShowLiqPay: (val) => {
+          set({showLiqPay: val})
         },
         addCartItem: (item) => {
           // const existItem = get().cartItems.find((el:ICartItem) => el.id === item.id)
@@ -190,9 +196,9 @@ export const useCartStore = create<CartState>()(
     ),
     {
       name: 'qdCart',
-      version: 0.2,
+      version: 0.3,
       storage: createJSONStorage(()=> localStorage),
-       partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat, selfDelivery: state.selfDelivery, fotoPermition: state.fotoPermition, box: state.box}),
+       partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat, selfDelivery: state.selfDelivery, fotoPermition: state.fotoPermition, box: state.box, showLiqPay: state.showLiqPay}),
 
     }
   )

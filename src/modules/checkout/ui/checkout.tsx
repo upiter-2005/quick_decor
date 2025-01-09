@@ -13,7 +13,7 @@ interface ICheckout{
 }
 
 export const Checkout:React.FC<ICheckout> = ({className}) => {
-    const {cartItems, total, resultTotal, discountTotal, discountFotoTotal, selfDelivery, fotoPermition, setResultTotal, box, setBox} = useCartStore()
+    const {cartItems, total, resultTotal, discountTotal, discountFotoTotal, selfDelivery, fotoPermition, setResultTotal, box, setBox, showLiqPay } = useCartStore()
 
     useEffect(()=>{
         setResultTotal()
@@ -22,7 +22,7 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
     return (
         <div className={cn('max-w-[1230px] w-full m-auto flex flex-wrap flex-col-reverse md:flex-row justify-between items-start gap-10 py-14', className)}>
             <Form />
-            <div className="flex-1 px-3 w-full">
+            <div className={cn(`flex-1 px-3 w-full ${showLiqPay ? `disabledForm` : ''}`)}>
                 {cartItems.map((obj, i) => <CartItem key={i} item={obj} active={false}  />) }
                 {box && <BoxItem />}
                 {!box && <div className="w-full flex md:justify-between items-center  pb-4 pt-4 rounded-2xl input-shadow border border-[#efefef] p-[10px] mb-6 gap-2 flex-wrap relative">
