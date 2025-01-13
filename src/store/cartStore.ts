@@ -190,13 +190,29 @@ export const useCartStore = create<CartState>()(
         setResultTotal: () => {
           const priceResult = Math.floor(get().total* 0.88)
           set({resultTotal: priceResult})
+          if(get().fotoPermition === true) {
+            if(get().fotoPermition === true && get().selfDelivery === true){
+              const priceResult = Math.floor(get().total* 0.82)
+              set({resultTotal: priceResult})
+            }else{
+              const priceResult = Math.floor(get().total* 0.85)
+              set({resultTotal: priceResult})
+            }
+          }else{
+            if(get().selfDelivery === true){
+              const priceResult = Math.floor(get().total* 0.85)
+              set({resultTotal: priceResult})
+            }else{
+              set({resultTotal: Math.floor(get().total* 0.88)})
+            }
+          }
         }
      
       }
     ),
     {
       name: 'qdCart',
-      version: 0.3,
+      version: 0.4,
       storage: createJSONStorage(()=> localStorage),
        partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat, selfDelivery: state.selfDelivery, fotoPermition: state.fotoPermition, box: state.box, showLiqPay: state.showLiqPay}),
 

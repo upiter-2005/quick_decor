@@ -127,4 +127,43 @@ export const sendCRMForm = async( data: TSimpleForm) => {
   }
 }
 
+export const createPartPaymaent = async(data: any) => {
+
+  const raw = JSON.stringify({
+    "storeId": data.storeId,
+    "orderId": data.orderId,
+    "amount": data.amount,
+    "partsCount": data.partsCount,
+    "merchantType": "PP",
+    "products": data.products,
+    "recipientId": data.recipientId,
+    "responseUrl": "",
+    "redirectUrl": "",
+    "signature": data.signature
+  })
+
+  try{
+    const response = fetch("https://payparts2.privatbank.ua/ipp/v2/payment/create", 
+      {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Accept-Encoding': 'UTF-8;',
+          'Content-Type': 'application/json; charset=UTF-8;'
+        },
+        body: raw,
+        redirect: "follow"
+      }
+    )
+      .then((response) => response.json())
+      .then((result) => result)
+
+      return response 
+  }catch(e){
+    console.log(e);
+  }
+
+  
+}
+
 

@@ -10,8 +10,8 @@ export const simpleForm = z.object({
 })
 
 export const defaulFieldsSchema = z.object({
-  first_name: z.string().min(3, {message: "Занадто коротке ім'я"}),
-  last_name: z.string().min(3, {message: "Занадто коротке прізвище"}),
+  first_name: z.string().min(1, {message: "Занадто коротке ім'я"}),
+  last_name: z.string().min(1, {message: "Занадто коротке прізвище"}),
   tel: z.string().regex(phoneRegex, 'Перевірте коректність телефону'),
   email: z.string().email({ message: 'Введіть коректну пошту' }),
   payment: z.string(),

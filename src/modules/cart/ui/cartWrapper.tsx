@@ -5,8 +5,7 @@ import { TotalTable } from "./totalTable"
 import { CartItem } from "./cartItem"
 import { Divider } from "@/shared/ui/divider"
 import { useCartStore } from "@/store/cartStore"
-//import { BoxItem } from "./boxItem"
-import { useEffect } from "react"
+
 import { BoxItem } from "./boxItem"
 
 
@@ -17,16 +16,11 @@ interface ICartWrapper {
 export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
     const {cartItems,  box, setBox} = useCartStore()
 
-    useEffect(()=> {
-       // if(!box){setBox(true)}
-        
-    }, [box])
-
     return (
         <>
             <div className={cn('max-w-[1144px] w-full m-auto flex flex-col md:flex-row justify-center items-start gap-[65px] pb-14 pt-4 px-3 md:px-0', className)}>
                 <div className="max-w-[608px] w-full ">
-                    <h1 className="text-3xl font-semibold mb-3">Розрахунок вартості декоритвних покриттів </h1>
+                    <h1 className="text-xl md:text-2xl font-semibold mb-3">Розрахунок вартості декоритвних покриттів </h1>
                     <p className="text-sm mb-5">Додавайте бажані ефекти щоб дізнатись вартість замовлення (черній обічній)</p>
                     <div className="text-[18px] font-semibold text-[#1e1e1e] pb-7 border-b border-b-[#858585] mb-6" >
                         <Link href="/catalog" className="text-[#858585]">   До каталогу </Link> | Кошик
@@ -39,7 +33,7 @@ export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
                     {box && <BoxItem />}
                     {!box && <div className="w-full flex md:justify-between items-center  pb-4 pt-4 rounded-2xl input-shadow border border-[#efefef] p-[10px] mb-6 gap-2 flex-wrap relative">
                         <button onClick={()=> setBox(true)} className="bg-[#ff0000] text-sm font-semibold text-white px-2 rounded-xl">Додати</button>
-                        <span className="flex-1">Додайте безкоштовно до замовлення наш бокс взірців для 100% точного вибору</span>
+                        <span className="flex-1">Додайте {cartItems.length > 0 ? <span className="text-[#ff0000]">безкоштовно</span> : ''}  до замовлення наш бокс взірців для 100% точного вибору</span>
                         </div>}
                     <p className="font-600 pb-4">+ Додати приміщення чи ефект для розрахунку</p>
                     <div className="flex justify-between gap-2 flex-wrap">
@@ -59,7 +53,7 @@ export const CartWrapper:React.FC<ICartWrapper> = ({className}) => {
                 <TotalTable className="md:sticky md:top-[104px]" />
             </div> 
 
-            {/* <SeenProducts /> */}
+           
             <Divider />
             
         </>

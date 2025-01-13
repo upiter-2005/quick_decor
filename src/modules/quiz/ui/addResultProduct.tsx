@@ -9,6 +9,8 @@ import {
 import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 import { QuizProductItem } from "./quizProductItem"
+import { useCartStore } from "@/store/cartStore"
+import toast from "react-hot-toast"
   
 type QuizProduct = {
     uid: string,
@@ -18,6 +20,7 @@ type QuizProduct = {
     effect: string,
     square:  number,
     image: string
+    color: string
 }
   interface IAddResultProduct{
     className?: string
@@ -28,6 +31,7 @@ type QuizProduct = {
   export const AddResultProduct:React.FC<IAddResultProduct> = ({typeProduct, className, typeFlat, closeModal}) => {
 
     const [productList, setProductList] = useState<QuizProduct[]>([]);
+        const {setBox} = useCartStore()
 
     useEffect(()=>{
         if(typeProduct === 'air'){
@@ -56,7 +60,9 @@ type QuizProduct = {
             <div className="text-sm text-center text-[#ff0000] font-semibold">Не впевнені у виборі? Не переживайте, колір можна буде замінити до відвантаження замовлення, без зміни вартості!
                 <br />
                 Або додайте до замовлення наш бокс взірців для 100% точного вибору
+                
             </div>
+            <button className="bg-[#ff0000] text-white max-w-[212px] m-auto rounded-[12px] px-6 py-2 font-semibold" onClick={()=> {setBox(true); toast.success("Бокс додано в корзину!", {icon: '✅', duration: 8000})}}>Додати бокс</button>
         </DialogContent>
     )
 }

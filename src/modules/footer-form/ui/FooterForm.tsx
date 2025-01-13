@@ -38,7 +38,7 @@ export const FooterForm:React.FC<IFooterForm> = ({className}) => {
             startTransition( async () => {
               await sendCRMForm(data)
               console.log(data);
-                toast.success('Заявка відправлена успішно!', {icon: '✅'})
+                toast.success('Заявка відправлена успішно!', {icon: '✅', duration: 8000})
               })
             }
           

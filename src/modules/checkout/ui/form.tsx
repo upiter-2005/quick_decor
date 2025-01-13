@@ -15,7 +15,7 @@ import {checkoutProducts, checkoutProductsType} from "@/shared/helpers/productCr
 import { InputPhone } from "@/shared/ui/inputPhone";
 import { Delivery } from "./delivery";
 import { KeyCrm } from "@/shared/types/keyCrm";
-import { LiqPay } from "@/modules/liqpay";
+import { LiqPay, OplataChastynamy } from "@/modules/liqpay";
 import { useRouter } from 'next/navigation'
 
 interface IForm{
@@ -25,15 +25,12 @@ interface IForm{
 export const Form:React.FC<IForm> = ({className}) => {
   const {selfDelivery, fotoPermition, cartItems, box, resultTotal, showLiqPay, setShowLiqPay} = useCartStore()
   const [isPending, startTransition] = useTransition()
-  const [crmProducts, setCrmProducts] = useState<checkoutProductsType[]>();
-  //const [showLiqPay, setShowLiqPay] = useState<boolean>(false)
+  const [crmProducts, setCrmProducts] = useState<checkoutProductsType[]>()
   const [crmOrderId, setCrmOrderId] = useState<string>('')
   const [liqPayTotal, setLiqPayTotal] = useState<number>(resultTotal)
+  const [showPP, setShowPP] = useState<boolean>(false)
   const router = useRouter()
     
-    
-   
-
     const form = useForm<TCheckoutFieldsSchema>({
         mode: "onChange",
         resolver: zodResolver(checkoutFieldsSchema),
@@ -73,7 +70,9 @@ export const Form:React.FC<IForm> = ({className}) => {
               if(response)  console.log(response.title)
             } 
       console.log(data.payment);
-            if(data.payment !== 'Картою на сайті') {
+            if(data.payment === "Оплата частинами (3 платежі)"){
+              setShowPP( true)
+            }else  if(data.payment !== 'Картою на сайті') {
               router.push('/thank')
             }else{
               setShowLiqPay(true)
@@ -150,7 +149,8 @@ export const Form:React.FC<IForm> = ({className}) => {
                 <div className="w-full"> <Payment /></div>  
             </div>
             
-            <button type="submit" disabled={isPending} className=" w-[280px] m-auto md:w-full flex justify-center bg-[#ff0000] text-white text-sm font-semibold  rounded-[60px]  hover:opacity-55 transition-all">{isPending ? <Image src={loader} width={52} height={45} alt="loader" /> : <span className="p-4">Оформити замовлення</span>  }</button>
+            {!showPP &&   <button type="submit" disabled={isPending} className=" w-[280px] m-auto md:w-full flex justify-center bg-[#ff0000] text-white text-sm font-semibold  rounded-[60px]  hover:opacity-55 transition-all">{isPending ? <Image src={loader} width={52} height={45} alt="loader" /> : <span className="p-4">Оформити замовлення</span>  }</button>}
+          
 
             </form>
 
@@ -165,7 +165,7 @@ export const Form:React.FC<IForm> = ({className}) => {
               className="text-white"
             />
             }
-            
+           {showPP &&  <OplataChastynamy orderId={crmOrderId} />}
         </FormProvider>
     </div>
      

@@ -46,8 +46,6 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
     const {setTypeFlat, typeFlat} = useCartStore()
    
 
-
-  
     const [pointsStep1, setPointsStep1] = useState<quizObject>({
         air: 0,
         sand: 0,
@@ -288,13 +286,13 @@ console.log(params)
         <div className={cn('max-w-[1144px] w-full m-auto py-12 px-3 md:px-0', className)}  >
 
             {step === 1 &&  <p className="w-full text-center text-sm px-2 text-[#373C45] mb-5">
-                <span className="font-bold text-xl md:text-2xl">Фільтр помічник для вибору покриття </span> <br />Всього 4 кроки до вашого ідеального інтер&apos;єру <br /> Оберіть приміщення, тип та підготовку поверхні, вкажіть важливі властивості для експлуатації <br />Фільтр сам порахує оптимальне покриття за допомогою системи балів <br /> Чим більший бал - тим більше покриття підходить під ваші параметри</p>}
+                <span className="font-bold text-xl md:text-2xl">Фільтр помічник для вибору покриття </span> <br />Всього <span className="text-[#ff0000]">4 кроки</span>  до вашого ідеального інтер&apos;єру <br /> Оберіть приміщення, тип та підготовку поверхні, вкажіть важливі властивості для експлуатації <br /><span className="text-[#ff0000]">Фільтр сам порахує</span> оптимальне покриття за допомогою системи балів <br />  <span className="text-[#ff0000] text-center w-full text-sm md:text-xl">Чим більший бал - тим більше покриття підходить під ваші параметри</span> </p>}
            
             <RedText text="Бали" />
             {step === 5 && <div className="w-full text-center text-black font-medium pt-5">Орієнтуйтеся на покриття з найвищими балами. Система автоматично прорахувала пріоритетні покриття, враховуючи задані Вами параметри </div>}
-            <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center md:gap-[65px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[22px] bg-white transition-all  z-[50] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
+            <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center md:gap-[3px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[22px] bg-white transition-all  z-[50] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
                 
-
+          
             <div className="w-full px-2 font-semibold text-xs md:text-sm flex gap-2 md:gap-5 mb-6 md:pt-10 pt-2 flex-col md:flex-row">
                 {params.type && <div>Тип приміщення: <span className="bg-[#222] text-white px-2 ml-1 rounded-xl inline-block">{params.type}</span> </div>}
                 {params.area && <div>Тип поверхні:<span className="bg-[#222] text-white px-2 ml-1 rounded-xl inline-block">{params.area}</span> </div>}

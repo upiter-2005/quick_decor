@@ -10,10 +10,10 @@ import travertin from '@/shared/assets/images/Travertine.png'
 import quick from '@/shared/assets/images/Quick.png'
 
 import a1 from "@/shared/assets/images/1-Air.png" 
-import a2 from "@/shared/assets/images/a2.jpg" 
-import a3 from "@/shared/assets/images/a3.jpg" 
-import a4 from "@/shared/assets/images/a4.jpg" 
-import a5 from "@/shared/assets/images/a5.jpg" 
+import a2 from "@/shared/assets/images/1-Send.png" 
+import a3 from "@/shared/assets/images/1-Microcemente.png" 
+import a4 from "@/shared/assets/images/1-Travertine.png" 
+import a5 from "@/shared/assets/images/1-Quick.png" 
 import { RedButton } from "@/shared/ui/redButton";
 import { ContactBaner } from "@/components/contactBaner";
 import { FooterFormWidget } from "@/modules/footer-form";

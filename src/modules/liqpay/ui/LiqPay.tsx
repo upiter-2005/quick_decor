@@ -31,7 +31,7 @@ export const LiqPay:React.FC<ILiqPay> = ({
     currency: currency,
     description: description,
     order_id: orderId,
-    result_url: process.env.NEXT_PUBLIC_THANK_PAGE || '/thank'
+    result_url:  'https://quickdecor.com.ua/thank'
   }
 
   const private_key = process.env.NEXT_PUBLIC_LIQPAY_PRIVATE_TEST

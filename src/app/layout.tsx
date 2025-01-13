@@ -88,6 +88,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <HeaderModule />
         <main className={cn('')}>{children}</main>
         <Toaster 
+       
           containerStyle={{
             top: 70,
           }}

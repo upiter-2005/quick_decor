@@ -71,7 +71,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
             image: imgs[0].original,
             type: typeFlat
         })
-        toast.success("Товар додано в корзину!", {icon: '✅'})
+        toast.success("Товар додано в корзину!", {icon: '✅', duration: 8000})
       
     }
 
@@ -86,7 +86,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
             image: imgs[0].original,
             type: val
         })
-        toast.success("Товар додано в корзину!", {icon: '✅'})
+        toast.success("Товар додано в корзину!", {icon: '✅', duration: 8000})
         setIsOpen(false)
     }
 
@@ -189,7 +189,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                             </Link>
 
                             <button className="w-[250px] rounded-[60px] block m-auto md:ml-0 mt-6 text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
-                            onClick={()=>{setBox(true);  toast.success("Товар додано в корзину!", {icon: '✅'}) }}
+                            onClick={()=>{setBox(true);  toast.success("Товар додано в корзину!", {icon: '✅', duration: 8000}) }}
                             >Замовити бокс</button>
                        </div> )
                     }

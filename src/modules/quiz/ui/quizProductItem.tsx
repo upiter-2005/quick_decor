@@ -1,5 +1,5 @@
 import { useCartStore } from "@/store/cartStore"
-import Image from "next/image"
+
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 
@@ -10,7 +10,8 @@ type IQuizProduct = {
     price: string,
     effect: string,
     square:  number,
-    image: string
+    image: string,
+    color: string
 }
 
 interface IquizProductItem{
@@ -33,7 +34,7 @@ export const QuizProductItem:React.FC<IquizProductItem> = ({product, typeFlat, c
             image: product.image,
             type: type
         })
-        toast.success("Товар додано в корзину!", {icon: '✅'})
+        toast.success("Товар додано в корзину!", {icon: '✅', duration: 8000})
         closeModal()
     }
 
@@ -41,9 +42,10 @@ export const QuizProductItem:React.FC<IquizProductItem> = ({product, typeFlat, c
         setType(typeFlat)
     }, [])
     return (
-        <div className="flex w-full items-center justify-between bg-[#eee] p-3 rounded-[4px]">
+        <div className="flex w-full items-center justify-between bg-[#f4f4f4] p-3 rounded-[4px]">
             <div className="flex gap-4 items-center">
-                <Image src={product.image} width={50} height={50} alt='quickdecor' className="rounded-[4px]" />
+                {/* <Image src={product.image} width={50} height={50} alt='quickdecor' className="rounded-[4px]" /> */}
+                <div className={`w-[50px] h-[50px] rounded-[4px] border border-[#e6e6e6] box-shadow` } style={{backgroundColor: product.color}}></div>
                 <span className="text-sm flex-1 text-left"> {product.name}</span>
                 <span className="font-bold text-sm whitespace-nowrap pr-3"> {product.price} грн</span>
               

@@ -60,7 +60,7 @@ const addAir = () => {
 ,
         type: typeFlat
     })
-    toast.success("Товар додано в корзину!", {icon: '✅'})
+    toast.success("Товар додано в корзину!", {icon: '✅', duration: 8000})
 }
 
 

@@ -10,7 +10,7 @@ interface IPayment {
 }
 
 export const Payment:React.FC<IPayment> = ({className}) => {
-  const {cartItems} = useCartStore()
+  const {cartItems, box} = useCartStore()
   const {
     register,
     setValue,
@@ -35,7 +35,7 @@ export const Payment:React.FC<IPayment> = ({className}) => {
             <RadioGroupItem value="Перевод на IBAN" id="pay2" {...register("payment")}   />
             <label htmlFor="pay2" className="cursor-pointer">Перевод на IBAN</label>
           </div>
-          {cartItems.length > 0 ? 
+          {cartItems.length > 0 && !box ? 
            <div className="flex items-center space-x-1">
            <RadioGroupItem value="Оплата частинами (3 платежі)" id="pay3" {...register("payment")}   />
            <label htmlFor="pay3" className="cursor-pointer">Оплата частинами (3 платежі)</label>
