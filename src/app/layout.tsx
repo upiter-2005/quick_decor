@@ -11,6 +11,7 @@ import { Sale } from "@/components/sale";
 import { CrmChat } from "@/shared/api/crmChat";
 import { Suspense } from "react";
 import Script from "next/script";
+import { Utm } from "@/shared/helpers/utm";
 
 
 const inter = Inter({ subsets: ["cyrillic"], weight: ['300','400','500','600','700','800'] });
@@ -84,7 +85,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <Suspense>
           <CrmChat/>
         </Suspense>
-        
+        <Suspense><Utm/></Suspense>
         <HeaderModule />
         <main className={cn('')}>{children}</main>
         <Toaster 

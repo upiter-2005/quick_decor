@@ -418,7 +418,7 @@ console.log(params)
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="spalnya" text="Спальня" image={icons.badroom}  className="h-auto md:px-[20px]"/>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="gostinnaya" text="Вітальня" image={icons.gost} className="h-auto md:px-[20px]"/>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="child" text="Дитяча" image={icons.child} className="h-auto md:px-[20px]"/>
-                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="stear" text="Холл, лестничный марш" image={icons.stear} className="h-auto md:px-[20px]"/>
+                    <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="stear" text="Хол, сходи" image={icons.stear} className="h-auto md:px-[20px]"/>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="kitchen" text="Кухня" image={icons.kitchen} className="h-auto md:px-[20px]"/>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="hall" text="Коридор" image={icons.hall} className="h-auto md:px-[20px]"/>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="cabinet" text="Кабінет" image={icons.cabinet} className="h-auto md:px-[20px]"/>

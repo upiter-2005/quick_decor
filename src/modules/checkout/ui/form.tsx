@@ -17,6 +17,7 @@ import { Delivery } from "./delivery";
 import { KeyCrm } from "@/shared/types/keyCrm";
 import { LiqPay, OplataChastynamy } from "@/modules/liqpay";
 import { useRouter } from 'next/navigation'
+import { useUtmStore } from "@/store/utmStore";
 
 interface IForm{
     className?: string
@@ -30,6 +31,7 @@ export const Form:React.FC<IForm> = ({className}) => {
   const [liqPayTotal, setLiqPayTotal] = useState<number>(resultTotal)
   const [showPP, setShowPP] = useState<boolean>(false)
   const router = useRouter()
+  const {utmData} = useUtmStore()
     
     const form = useForm<TCheckoutFieldsSchema>({
         mode: "onChange",
@@ -65,11 +67,12 @@ export const Form:React.FC<IForm> = ({className}) => {
               "picture": "https://api.quickdecor.com.ua/wp-content/uploads/2024/12/3.jpg"
            })
             if(crmProducts){
-              const response: KeyCrm  = await PurchaseCRM(crmProducts, data)
+             
+              const response: KeyCrm  = await PurchaseCRM(crmProducts, data, utmData)
               setCrmOrderId(response.title)
               if(response)  console.log(response.title)
             } 
-      console.log(data.payment);
+    
             if(data.payment === "Оплата частинами (3 платежі)"){
               setShowPP( true)
             }else  if(data.payment !== 'Картою на сайті') {

@@ -35,18 +35,19 @@ export const Payment:React.FC<IPayment> = ({className}) => {
             <RadioGroupItem value="Перевод на IBAN" id="pay2" {...register("payment")}   />
             <label htmlFor="pay2" className="cursor-pointer">Перевод на IBAN</label>
           </div>
-          {cartItems.length > 0 && !box ? 
+          {cartItems.length > 0 ? 
            <div className="flex items-center space-x-1">
            <RadioGroupItem value="Оплата частинами (3 платежі)" id="pay3" {...register("payment")}   />
            <label htmlFor="pay3" className="cursor-pointer">Оплата частинами (3 платежі)</label>
          </div>
          :
-         <div className="flex items-center space-x-1">
-         <RadioGroupItem value="Накладеним платежем" id="pay4" {...register("payment")}   />
-         <label htmlFor="pay4" className="cursor-pointer">Накладеним платежем</label>
-       </div>
+        ''
        }
          
+         { (box && cartItems.length === 0) &&  <div className="flex items-center space-x-1">
+         <RadioGroupItem value="Накладеним платежем" id="pay4" {...register("payment")}   />
+         <label htmlFor="pay4" className="cursor-pointer">Накладеним платежем</label>
+       </div>}
          
         </RadioGroup>
       </div>

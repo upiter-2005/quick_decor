@@ -13,7 +13,7 @@ interface ICheckout{
 }
 
 export const Checkout:React.FC<ICheckout> = ({className}) => {
-    const {cartItems, total, resultTotal, discountTotal, discountFotoTotal, selfDelivery, fotoPermition, setResultTotal, box, setBox, showLiqPay } = useCartStore()
+    const {cartItems, total, resultTotal, discountTotal, discountFotoTotal, selfDelivery, fotoPermition, setResultTotal, box, setBox, showLiqPay, dayPersentCoef } = useCartStore()
 
     useEffect(()=>{
         setResultTotal()
@@ -75,7 +75,7 @@ export const Checkout:React.FC<ICheckout> = ({className}) => {
                <label
                    htmlFor="discount"
                    className="text-sm text-[#ff0000] font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-80 cursor-pointer"  >
-                   Знижка дня: -12%
+                   Знижка дня: -{dayPersentCoef}%
                </label>
            </div>
             </>

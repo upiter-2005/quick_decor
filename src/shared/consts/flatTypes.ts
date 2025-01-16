@@ -15,7 +15,7 @@ export const flatTypes = [
         image: '/quiz/child.png'
     },
     {
-        name: 'Холл, лестничный марш',
+        name: 'Хол, сходи',
         slug: 'stear',
         image: '/quiz/stear.png'
     },

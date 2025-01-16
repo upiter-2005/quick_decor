@@ -38,7 +38,7 @@ export const InputPhone:React.FC<InputType> = ({name, className}) => {
        
        render={({}) => (
             <InputMask 
-                style={{fontSize: "16px", color: "#9a9fa8"}}
+                style={{fontSize: "16px", color: "#9a9fa8", height: "26px"}}
                 name='tel'
                 mask="+38(0__) ___-__-__" 
                 showMask={true}
@@ -49,7 +49,7 @@ export const InputPhone:React.FC<InputType> = ({name, className}) => {
             />
         )}
       />  
-      {errotText && <ErrorText text={errotText} className="absolute bottom-[12px] text-xs" />}
+      {errotText && <ErrorText text="Введіть номер телефону" className="absolute -bottom-[5px] text-xs" />}
     </div>
   )
 }

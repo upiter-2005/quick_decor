@@ -20,6 +20,7 @@ interface CartState {
   selfDelivery: boolean
   fotoPermition: boolean
   box: boolean
+  dayPersentCoef: string
   showLiqPay: boolean
   setShowLiqPay: (val: boolean) => void
   setBox: (val: boolean) => void
@@ -51,6 +52,7 @@ export const useCartStore = create<CartState>()(
         selfDelivery: false,
         fotoPermition: false,
         typeFlat: '',
+        dayPersentCoef: '',
         resultTotal: 0,
         box: false,
         setTypeFlat: (val: string) => {
@@ -142,77 +144,120 @@ export const useCartStore = create<CartState>()(
           })
         },
 
-        discountTotal: ( selfDelivery) => {
-          if(selfDelivery === true) {
-            set({selfDelivery: true})
-            if(get().selfDelivery === true && get().fotoPermition === true){
-              const priceResult = Math.floor(get().total* 0.82)
-              set({resultTotal: priceResult})
+        discountTotal: async ( selfDelivery) => {
+          try{
+          const resp = await fetch(`https://api.quickdecor.com.ua/wp-json/wp/v2/posts?slug=persent`, 
+            { next: { revalidate: 60 } }
+          ).then(res => res.json())
+
+          set({dayPersentCoef: resp[0].acf.persent})
+          console.log(resp[0].acf.persent)
+          const dayPersent = resp[0].acf.persent / 100
+          console.log(dayPersent)
+
+            if(selfDelivery === true) {
+              set({selfDelivery: true})
+              if(get().selfDelivery === true && get().fotoPermition === true){
+                const priceResult = Math.floor(get().total* (0.94 - dayPersent))
+                set({resultTotal: priceResult})
+              }else{
+                const priceResult = Math.floor(get().total* (0.97 - dayPersent))
+                set({resultTotal: priceResult})
+              }
             }else{
-              const priceResult = Math.floor(get().total* 0.85)
-              set({resultTotal: priceResult})
+              set({selfDelivery: false})
+              if(get().fotoPermition === true){
+                const priceResult = Math.floor(get().total* (0.97 - dayPersent))
+                set({resultTotal: priceResult})
+              }else{
+                set({resultTotal: Math.floor(get().total* (1 - dayPersent))})
+              }
             }
-          }else{
-            set({selfDelivery: false})
-            if(get().fotoPermition === true){
-              const priceResult = Math.floor(get().total* 0.85)
-              set({resultTotal: priceResult})
-            }else{
-              set({resultTotal: Math.floor(get().total* 0.88)})
-            }
+          }catch(e){
+            console.log(e);
           }
-          console.log(selfDelivery)
+       
         },
 
 
-        discountFotoTotal: ( fotoPermit) => {
-          if(fotoPermit === true) {
-            set({fotoPermition: true})
-            if(get().fotoPermition === true && get().selfDelivery === true){
-              const priceResult = Math.floor(get().total* 0.82)
-              set({resultTotal: priceResult})
-            }else{
-              const priceResult = Math.floor(get().total* 0.85)
-              set({resultTotal: priceResult})
-            }
-          }else{
-            set({fotoPermition: false})
-            if(get().selfDelivery === true){
-              const priceResult = Math.floor(get().total* 0.85)
-              set({resultTotal: priceResult})
-            }else{
-              set({resultTotal: Math.floor(get().total* 0.88)})
-            }
-          }
+        discountFotoTotal: async ( fotoPermit) => {
 
-          console.log(fotoPermit)
+          try{
+            const resp = await fetch(`https://api.quickdecor.com.ua/wp-json/wp/v2/posts?slug=persent`, 
+              { next: { revalidate: 60 } }
+            ).then(res => res.json())
+  
+            set({dayPersentCoef: resp[0].acf.persent})
+            console.log(resp[0].acf.persent)
+            const dayPersent = resp[0].acf.persent / 100
+            console.log(dayPersent)
+
+            if(fotoPermit === true) {
+              set({fotoPermition: true})
+              if(get().fotoPermition === true && get().selfDelivery === true){
+                const priceResult = Math.floor(get().total* (0.94 - dayPersent))
+                set({resultTotal: priceResult})
+              }else{
+                const priceResult = Math.floor(get().total* (0.97 - dayPersent))
+                set({resultTotal: priceResult})
+              }
+            }else{
+              set({fotoPermition: false})
+              if(get().selfDelivery === true){
+                const priceResult = Math.floor(get().total* (0.97 - dayPersent))
+                set({resultTotal: priceResult})
+              }else{
+                set({resultTotal: Math.floor(get().total*  (1 - dayPersent))})
+              }
+            }
+
+          }catch(e){console.log(e)}
+
+          
         },
-        setResultTotal: () => {
-          const priceResult = Math.floor(get().total* 0.88)
-          set({resultTotal: priceResult})
-          if(get().fotoPermition === true) {
-            if(get().fotoPermition === true && get().selfDelivery === true){
-              const priceResult = Math.floor(get().total* 0.82)
-              set({resultTotal: priceResult})
+
+
+        setResultTotal: async () => {
+
+          try{
+            const resp = await fetch(`https://api.quickdecor.com.ua/wp-json/wp/v2/posts?slug=persent`, 
+              { next: { revalidate: 60 } }
+            ).then(res => res.json())
+  
+            set({dayPersentCoef: resp[0].acf.persent})
+            console.log(resp[0].acf.persent)
+            const dayPersent = resp[0].acf.persent / 100
+            console.log(dayPersent)
+
+            const priceResult = Math.floor(get().total *  dayPersent)
+            set({resultTotal: priceResult})
+            if(get().fotoPermition === true) {
+              if(get().fotoPermition === true && get().selfDelivery === true){
+                const priceResult = Math.floor(get().total* (0.94 - dayPersent))
+                set({resultTotal: priceResult})
+              }else{
+                const priceResult = Math.floor(get().total* (0.97 - dayPersent))
+                set({resultTotal: priceResult})
+              }    
             }else{
-              const priceResult = Math.floor(get().total* 0.85)
-              set({resultTotal: priceResult})
+              if(get().selfDelivery === true){
+                const priceResult = Math.floor(get().total* (0.97 - dayPersent))
+                set({resultTotal: priceResult})
+              }else{
+                set({resultTotal: Math.floor(get().total*  (1 - dayPersent))})
+              }
             }
-          }else{
-            if(get().selfDelivery === true){
-              const priceResult = Math.floor(get().total* 0.85)
-              set({resultTotal: priceResult})
-            }else{
-              set({resultTotal: Math.floor(get().total* 0.88)})
-            }
-          }
+          }catch(e){console.log(e);}
+          
         }
      
       }
     ),
+
+    
     {
       name: 'qdCart',
-      version: 0.4,
+      version: 0.6,
       storage: createJSONStorage(()=> localStorage),
        partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat, selfDelivery: state.selfDelivery, fotoPermition: state.fotoPermition, box: state.box, showLiqPay: state.showLiqPay}),
 

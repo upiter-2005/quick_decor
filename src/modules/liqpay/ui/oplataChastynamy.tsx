@@ -30,7 +30,7 @@ export const OplataChastynamy:React.FC<OplataChastynamy> = ({ orderId }) => {
         const password = process.env.NEXT_PUBLIC_STORE_PASS
         //const amountData = withoutFloatingPoint(amount)
         if(password){
-            const signature = password + process.env.NEXT_PUBLIC_STORE_ID + orderId + totalPP * 100 + 4 +  "PP" + "" + "" + products_string + password 
+            const signature = password + process.env.NEXT_PUBLIC_STORE_ID + orderId + totalPP * 100 + 3 +  "PP" + "" + "" + products_string + password 
             const sha1 = crypto.createHash('sha1')
             sha1.update(signature)
             const signatureData = sha1.digest('base64')
@@ -38,7 +38,7 @@ export const OplataChastynamy:React.FC<OplataChastynamy> = ({ orderId }) => {
 
             const data = {
                 orderId,
-                partsCount: 4, 
+                partsCount: 3, 
                 amount: totalPP,
                 products,
                 storeId: process.env.NEXT_PUBLIC_STORE_ID,

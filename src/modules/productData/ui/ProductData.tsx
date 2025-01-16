@@ -27,6 +27,10 @@ import { FooterFormWidget } from "@/modules/footer-form"
 import { ReadMore } from "@/components/readMore"
 import { PickEffect } from "@/components/pickEffect"
 
+import np from "@/shared/assets/images/np_100.png"
+import oplata from "@/shared/assets/images/credit_100.png"
+
+
 interface IImageObj {
   image: string,
   name: string
@@ -199,6 +203,14 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
                         <div className="flex items-start md:items-start py-2 justify-center md:justify-between flex-c md:flex-row gap-4">
                             <div className="flex-col ">
                             <p className="text-main text-[30px] relative whitespace-nowrap">{product.acf.price} <span className='relative text-[20px] top-0 -left-1'> грн/м2</span></p>
+                            <div className="flex gap-1 justify-between items-center">
+                                <Image src={np} width={25} height={25} alt="nova poshta" />
+                                <span className="flex-1 text-xs">Доставка по всій Україні</span>
+                            </div>
+                            <div className="flex gap-1 justify-between items-center">
+                                <Image src={oplata} width={25} height={25} alt="oplata chastynamy" />
+                                <span className="flex-1 text-xs">Оплата частинами від ПриватБанку на 3 платежі</span>
+                            </div>
                             {product.acf.old_price && <p className="text-[#858585] text-xl line-through font-medium relative -top-2 ml-3">{product.acf.old_price} грн </p>}
                             </div>
                            

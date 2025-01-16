@@ -10,6 +10,7 @@ import { TDefauldFields, TSimpleForm } from "@/shared/types/form"
 
 
 
+
 export async function callUser(body: any){
   try{
     const info = await transporter.sendMail({
@@ -43,18 +44,24 @@ export async function checkoutAction(body: any){
 }
 
 
-export const PurchaseCRM = async(body: checkoutProductsType[], data: TDefauldFields) => {
+export const PurchaseCRM = async(body: checkoutProductsType[], data: TDefauldFields, utmData: any) => {
   const products = body
+  const { utm_source, utm_medium, utm_campaign, utm_term, utm_content} = utmData
 
     try{
       const raw = JSON.stringify({
-        "source_id": 1,
+        "source_id": 7,
         "manager_comment": `${data.aditionals}`,
         "contact": {
           "full_name": `${data.first_name} ${data.last_name}`,
           "email": `${data.email}`,
           "phone": `${data.tel} `
         },
+        "utm_source": utm_source,
+        "utm_medium": utm_medium,
+        "utm_campaign": utm_campaign,
+        "utm_term": utm_term,
+        "utm_content": utm_content,
         products: products,
         "custom_fields": [
           {
@@ -100,7 +107,7 @@ export const sendCRMForm = async( data: TSimpleForm) => {
 
     try{
       const raw = JSON.stringify({
-        "source_id": 1,
+        "source_id": 8,
         "manager_comment": "Заявка з футер форми",
         "contact": {
           "full_name": `${data.name}`,
