@@ -8,6 +8,25 @@ import { Divider } from "@/shared/ui/divider";
 import f1 from "@/shared/assets/images/f1.jpg"
 import { FooterFormWidget } from "@/modules/footer-form";
 import { RedButton } from "@/shared/ui/redButton";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "Декоративна штукатурка під ключ | #Quickdecor",
+  description: "Нанесення декоративної штукатурки під ключ. 5 трендових та практичних фактур. Унікальний Бокс взірців для 100% точного вибору. Гарантовані знижки на замовлення онлайн.",
+  openGraph: {
+    title: 'Декоративна штукатурка під ключ | #Quickdecor',
+    description: "Нанесення декоративної штукатурки під ключ. 5 трендових та практичних фактур. Унікальний Бокс взірців для 100% точного вибору. Гарантовані знижки на замовлення онлайн",
+    // images: [
+    //   {
+    //     url: response[0].images[0].src,
+    //     width: 800,
+    //     height: 600,
+    //   },
+    // ],
+  },
+
+}
 
 export default function Home() {
   return (

@@ -1,4 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Умови оплати та доставки замовлення ",
+    description: "Сплачуйте ваше замовлення онлайн на сайті. Оплата по рахунку чи оплатою частинами на 3 платежі віж ПриватБанку. Доставка Новою Поштою по всій Україні",
+    openGraph: {
+      title: 'Умови оплати та доставки замовлення ',
+      description: "Сплачуйте ваше замовлення онлайн на сайті. Оплата по рахунку чи оплатою частинами на 3 платежі віж ПриватБанку. Доставка Новою Поштою по всій Україні",
+      // images: [
+      //   {
+      //     url: response[0].images[0].src,
+      //     width: 800,
+      //     height: 600,
+      //   },
+      // ],
+    },
+  
+  }
+  
 export default async function Oplata () {
     const response: any =  await fetch(`https://api.quickdecor.com.ua/wp-json/wp/v2/pages/531`,
         { next: { revalidate: 60 } }

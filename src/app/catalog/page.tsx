@@ -17,6 +17,24 @@ import a5 from "@/shared/assets/images/1-Quick.png"
 import { RedButton } from "@/shared/ui/redButton";
 import { ContactBaner } from "@/components/contactBaner";
 import { FooterFormWidget } from "@/modules/footer-form";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Каталог ефектів декоративної штукатурки | #Quickdecor",
+  description: "Перегляньте каталог ефектів декоративної штукатурки. Вибір текстур і кольорів для сучасного дизайну. Замовляйте якісну штукатурку у нас!",
+  openGraph: {
+    title: 'Каталог ефектів декоративної штукатурки | #Quickdecor',
+    description: "Перегляньте каталог ефектів декоративної штукатурки. Вибір текстур і кольорів для сучасного дизайну. Замовляйте якісну штукатурку у нас!",
+    // images: [
+    //   {
+    //     url: response[0].images[0].src,
+    //     width: 800,
+    //     height: 600,
+    //   },
+    // ],
+  },
+
+}
 
 export default function Category() {
   return (

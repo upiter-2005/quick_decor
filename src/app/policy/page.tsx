@@ -1,4 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Політика конфіденційності – захист ваших даних",
+    description: "Дізнайтеся, як ми обробляємо та захищаємо ваші персональні дані. Прозора політика конфіденційності для клієнтів.",
+    openGraph: {
+      title: 'Політика конфіденційності – захист ваших даних',
+      description: "Дізнайтеся, як ми обробляємо та захищаємо ваші персональні дані. Прозора політика конфіденційності для клієнтів.",
+      // images: [
+      //   {
+      //     url: response[0].images[0].src,
+      //     width: 800,
+      //     height: 600,
+      //   },
+      // ],
+    },
+  
+  }
+  
 export default async function Policy () {
     const response: any =  await fetch(`https://api.quickdecor.com.ua/wp-json/wp/v2/pages/525`,
         { next: { revalidate: 60 } }

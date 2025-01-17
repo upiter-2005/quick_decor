@@ -12,6 +12,7 @@ import { CrmChat } from "@/shared/api/crmChat";
 import { Suspense } from "react";
 import Script from "next/script";
 import { Utm } from "@/shared/helpers/utm";
+import { HotJar } from "@/shared/api/hotjar";
 
 
 const inter = Inter({ subsets: ["cyrillic"], weight: ['300','400','500','600','700','800'] });
@@ -84,6 +85,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <body className={cn(inter.className, 'bg-[#fff] text-[#000] overflow-x-hidden p-0 m-0')}>
         <Suspense>
           <CrmChat/>
+          <HotJar/>
         </Suspense>
         <Suspense><Utm/></Suspense>
         <HeaderModule />
