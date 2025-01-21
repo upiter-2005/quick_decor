@@ -55,7 +55,7 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
         const [prepare, setPrepare] = useState<IImageObj[]>();
         const [usefull, setUsefull] = useState<IImageObj[]>();
        
-
+console.log(product);
        
       
     const {addCartItem, typeFlat, setBox} = useCartStore()

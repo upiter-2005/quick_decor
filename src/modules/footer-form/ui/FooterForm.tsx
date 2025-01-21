@@ -11,6 +11,7 @@ import loader from "@/shared/assets/images/loader.svg"
 import { Input } from "@/shared/ui/input"
 import { sendCRMForm } from "@/lib/actions"
 import { InputPhone } from "@/shared/ui/inputPhone"
+import { useUtmStore } from "@/store/utmStore"
 
 interface IFooterForm{
     className?: string
@@ -18,7 +19,7 @@ interface IFooterForm{
 
 export const FooterForm:React.FC<IFooterForm> = ({className}) => {
     const [isPending, startTransition] = useTransition()
-
+    const {utmData} = useUtmStore()
   
 
       const form = useForm<TSimpleForm>({
@@ -36,7 +37,7 @@ export const FooterForm:React.FC<IFooterForm> = ({className}) => {
           const onSubmit = async(data: TSimpleForm) => {
             console.log(data);
             startTransition( async () => {
-              await sendCRMForm(data)
+              await sendCRMForm(data, utmData)
               console.log(data);
                 toast.success('Заявка відправлена успішно!', {icon: '✅', duration: 8000})
               })

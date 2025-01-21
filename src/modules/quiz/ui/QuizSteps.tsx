@@ -21,6 +21,7 @@ import {
     DialogTrigger
   } from "@/shared/ui/dialog"
 import { AddResultProduct } from "./addResultProduct"
+import Link from "next/link"
 
 interface IQuizSteps {
     className?: string
@@ -286,24 +287,27 @@ console.log(params)
         <div className={cn('max-w-[1144px] w-full m-auto py-12 px-3 md:px-0', className)}  >
 
             {step === 1 &&  <p className="w-full text-center text-sm px-2 text-[#373C45] mb-5">
-                <span className="font-bold text-xl md:text-2xl">Фільтр помічник для вибору покриття </span> <br />Всього <span className="text-[#ff0000]">4 кроки</span>  до вашого ідеального інтер&apos;єру <br /> Оберіть приміщення, тип та підготовку поверхні, вкажіть важливі властивості для експлуатації <br /><span className="text-[#ff0000]">Фільтр сам порахує</span> оптимальне покриття за допомогою системи балів <br />  <span className="text-[#ff0000] text-center w-full text-sm md:text-xl">Чим більший бал - тим більше покриття підходить під ваші параметри</span> </p>}
+                <span className="font-bold text-xl md:text-2xl  block">Фільтр помічник для вибору покриття </span> <br />Всього <span className="text-[#ff0000]">4 кроки</span>  до вашого ідеального інтер&apos;єру <br /> Оберіть приміщення, тип та підготовку поверхні, вкажіть важливі властивості для експлуатації <br /><span className="text-[#ff0000]">Фільтр сам порахує</span> оптимальне покриття за допомогою системи балів <br />  <span className="text-[#ff0000] text-center w-full text-sm md:text-xl">Чим більший бал - тим більше покриття підходить під ваші параметри</span> </p>}
            
             <RedText text="Бали" />
             {step === 5 && <div className="w-full text-center text-black font-medium pt-5">Орієнтуйтеся на покриття з найвищими балами. Система автоматично прорахувала пріоритетні покриття, враховуючи задані Вами параметри </div>}
+
             <div className={cn(`max-w-[1230px] w-full m-auto flex flex-wrap justify-center md:gap-[3px] pb-4 mt-5 sticky  top-[7px] pt-4 md:pt-0  md:top-[22px] bg-white transition-all  z-[50] ${scrolled && 'scaled rounded-2xl custom-shadow'}`, className)} >
-                
+               
           
             <div className="w-full px-2 font-semibold text-xs md:text-sm flex gap-2 md:gap-5 mb-6 md:pt-10 pt-2 flex-col md:flex-row">
                 {params.type && <div>Тип приміщення: <span className="bg-[#222] text-white px-2 ml-1 rounded-xl inline-block">{params.type}</span> </div>}
                 {params.area && <div>Тип поверхні:<span className="bg-[#222] text-white px-2 ml-1 rounded-xl inline-block">{params.area}</span> </div>}
                 {params.create && <div>Тип стін:<span className="bg-[#222] text-white px-2 ml-1 rounded-xl inline-block">{params.create}</span> </div>}
                 {params.props && <div>Властивості для експлуатації:<span className="bg-[#222] text-white px-2 ml-1 rounded-xl inline-block">{params.props}</span> </div>}
+                
+                
             </div>
-
+            {step !== 1 &&  <span className="text-[#ff0000] text-center w-full text-[12px] md:text-xl block font-bold mb-5">Чим більший бал - тим більше покриття підходить під ваші параметри</span>}
                 <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
-                    <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                    <Link href="/product/air-white"  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef1}  fill objectFit="cover"  alt="quickdecor" className="block"  />
-                    </div>
+                    </Link>
                     <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>AIR</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.air + pointsStep2.air + pointsStep3.air + pointsStep4.air}
@@ -311,16 +315,16 @@ console.log(params)
                        
                     {step === 5 &&  <Dialog open={open1} onOpenChange={setOpen1}>
                         <DialogTrigger asChild>
-                            <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
+                            <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl in line-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='air' typeFlat={typeFlat} closeModal={()=>setOpen1(false)} />
                         </Dialog>}    
                 </div>
                 
                 <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
-                    <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                <Link href="/product/sand-cool" className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef2}  fill objectFit="cover"  alt="quickdecor" className="block"  />
-                    </div>
+                    </Link>
                     <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>SAND</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.sand + pointsStep2.sand + pointsStep3.sand + pointsStep4.sand}
@@ -335,9 +339,9 @@ console.log(params)
                 </div>
 
                 <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
-                    <div  className=' w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                <Link href="/product/microcemente-ash" className=' w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef3}  fill objectFit="cover"  alt="quickdecor" className="block"  />
-                    </div>
+                    </Link>
                     <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>MICROCEMENT</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.microcement + pointsStep2.microcement + pointsStep3.microcement + pointsStep4.microcement}</div>
@@ -351,9 +355,9 @@ console.log(params)
                 </div>
 
                 <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
-                    <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                <Link href="/product/travertine-naturale" className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef4}  fill objectFit="cover"  alt="quickdecor" className="block"  />
-                    </div>
+                    </Link>
                     <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>TRAVERTINE</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.travertine + pointsStep2.travertine + pointsStep3.travertine + pointsStep4.travertine}</div>
@@ -368,9 +372,9 @@ console.log(params)
                 </div>
 
                 <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
-                    <div  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
+                <Link href="/product/quick-concrete"  className='block w-[48px] md:w-[116px] h-[48px] md:h-[116px]  text-center hover:opacity-75 transition-all rounded-[50%] relative overflow-hidden '>
                         <Image src={ef5}  fill objectFit="cover"  alt="quickdecor" className="block"  />
-                    </div>
+                    </Link>
                     <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>QUICK</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.quickInterior + pointsStep2.quickInterior + pointsStep3.quickInterior + pointsStep4.quickInterior}
@@ -385,8 +389,8 @@ console.log(params)
                     }
                 </div>
                 
-                <div className="md:hidden px-4 min-w-full">
-                    <div className="flex justify-center mb-0 mt-9 md:mt-2 gap-4">
+                <div className=" px-4 min-w-full">
+                    <div className="flex justify-center mb-0 mt-10 md:mt-2 gap-4">
                     {step !== 1 && <button onClick={()=>setStep(prevStep => prevStep - 1)} 
                         className={cn( `w-[69px] bg-[#858585] text-white text-xs font-semibold !p-3 rounded-[60px] flex justify-center items-center hover:opacity-55 transition-all
                              
@@ -394,7 +398,7 @@ console.log(params)
                     ><Image src={prev} width={14} height={16} alt="quickdecor" /> </button>
                     }
                 
-                {step !== 5 &&    <button className={cn( 'w-[250px] bg-[#ff0000] text-white text-xs font-semibold p-3 rounded-[60px] inline-block hover:opacity-55 transition-all', className)}
+                {step !== 5 &&    <button className={cn( 'w-[250px] bg-[#ff0000] text-white text-xs font-semibold p-3 rounded-[60px]  inline-block hover:opacity-55 transition-all', className)}
                     onClick={()=> setStep(prevStep => prevStep + 1)}
                     disabled={step === 5}
                     >{step === 4 ? 'Отримати результати' : 'Наступний крок'}</button>}
@@ -459,20 +463,7 @@ console.log(params)
             </div>
         }
 
-            <div className="hidden md:flex justify-center mb-3 mt-5 gap-4">
-                {step !== 1 &&   <button onClick={()=>setStep(prevStep => prevStep - 1)} 
-                    className={cn( `w-[139px] bg-[#858585] text-white text-sm font-semibold p-4 rounded-[60px] flex justify-center hover:opacity-55 transition-all ${step === 5 ? `hidden`: ``}`, className)}
-                ><Image src={prev} width={14} height={16} alt="quickdecor" /> </button>
-                }
-              
-              {step !== 5 &&    <button className={cn( 'w-[250px] bg-[#ff0000] text-white text-sm font-semibold p-4 rounded-[60px] inline-block hover:opacity-55 transition-all', className)}
-                onClick={()=> setStep(prevStep => prevStep + 1)}
-                disabled={step === 5}
-                >{step === 4 ? 'Отримати результати' : 'Наступний крок'}</button>}
-             
-             {step === 5 &&    <button className={cn( 'w-[250px] bg-[#222] text-white text-sm font-semibold p-4 rounded-[60px] inline-block hover:opacity-55 transition-all', className)}
-                onClick={()=> window.location.reload()} >Почати спочатку</button>}
-            </div>
+           
         
     </div>
     </>

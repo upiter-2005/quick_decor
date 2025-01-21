@@ -7,7 +7,8 @@ export const airLines = [
         effect: 'white',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/air-white-w-13.jpg",
-        color: "#fff"
+        color: "#fff",
+        link: "/air-white"
     },
     {
         uid: new Date().getTime().toString() + 2,
@@ -17,7 +18,8 @@ export const airLines = [
         effect: 'cream',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/air-cream-3600.jpg",
-        color: "#c3b7ac"
+        color: "#c3b7ac",
+        link: "/air-cream"
     },
     {
         uid: new Date().getTime().toString() + 3,
@@ -27,7 +29,8 @@ export const airLines = [
         effect: 'platinum',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/air-platinum-06-11.jpg",
-        color: "#cdcccb"
+        color: "#cdcccb",
+        link: "/air-platinum"
     },
     {
         uid: new Date().getTime().toString() + 4,
@@ -37,7 +40,8 @@ export const airLines = [
         effect: 'silver',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/air-silver-10-80.jpg",
-        color: "#b2b4b1"
+        color: "#b2b4b1",
+        link: "/air-silver"
     },
     {
         uid: new Date().getTime().toString() + 5,
@@ -47,7 +51,8 @@ export const airLines = [
         effect: 'powdery',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/air-powdery.jpg",
-        color: "#beb7b3"
+        color: "#beb7b3",
+        link: "/air-powdery"
     }
 ]
 
@@ -60,7 +65,8 @@ export const sandLines = [
         effect: 'classic',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/sand-classic1.png",
-        color: "#e8e8e8"
+        color: "#e8e8e8",
+        link: "/sand-classic"
     },
     {
         uid: new Date().getTime().toString() + 12,
@@ -70,7 +76,8 @@ export const sandLines = [
         effect: 'dark-gray',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/sand-dark-gray1.jpg",
-        color: "#4b4b54"
+        color: "#4b4b54",
+        link: "/sand-dark-grey"
     },
     {
         uid: new Date().getTime().toString() + 13,
@@ -80,7 +87,8 @@ export const sandLines = [
         effect: 'dune',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/sand-dune-1.png",
-        color: "#e9e9e7"
+        color: "#e9e9e7",
+        link: "/sand-dune"
     },
     {
         uid: new Date().getTime().toString() + 14,
@@ -90,7 +98,8 @@ export const sandLines = [
         effect: 'cool',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/sand-cool-2.png",
-        color: "#e8e8e8"
+        color: "#e8e8e8",
+        link: "/sand-cool"
     }
 ]
 
@@ -103,7 +112,8 @@ export const microcementLines = [
         effect: 'grey',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/mc-gray-11702.jpg",
-        color: "#d9e3e3"
+        color: "#d9e3e3",
+        link: "/microcemente-grey"
     } ,
     {
         uid: new Date().getTime().toString() + 22,
@@ -113,7 +123,8 @@ export const microcementLines = [
         effect: 'naturale',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/mc-gray-11702.jpg",
-        color: "#8a8985"
+        color: "#8a8985",
+        link: "/microcemente-naturale"
     },
     {
         uid: new Date().getTime().toString() + 23,
@@ -123,7 +134,8 @@ export const microcementLines = [
         effect: 'cashmere',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/cashmere-11101.jpg",
-        color: "#a49f9c"
+        color: "#a49f9c",
+        link: "/microcemente-cashmere"
     },
     {
         uid: new Date().getTime().toString() + 24,
@@ -133,7 +145,8 @@ export const microcementLines = [
         effect: 'ash',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/mc-ash-118-01.jpg",
-        color: "#e0e3e0"
+        color: "#e0e3e0",
+        link: "/microcemente-ash"
     }
 ]
 
@@ -146,7 +159,8 @@ export const travertinLines = [
         effect: 'fog',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/fog0.png",
-        color: "#b4c1cb"
+        color: "#b4c1cb",
+        link: "/travertine-fog"
     },
     {
         uid: new Date().getTime().toString() + 52,
@@ -156,7 +170,8 @@ export const travertinLines = [
         effect: 'smoke',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/smoke0.png",
-        color: "#a0aab9"
+        color: "#a0aab9",
+        link: "/travertine-smoke"
     },
     {
         uid: new Date().getTime().toString() + 53,
@@ -166,7 +181,8 @@ export const travertinLines = [
         effect: 'beige',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/beige-0.png",
-        color: "№daddd5"
+        color: "№daddd5",
+        link: "/travertine-beige"
     },
     {
         uid: new Date().getTime().toString() + 54,
@@ -176,7 +192,8 @@ export const travertinLines = [
         effect: 'sandstone',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/sandstone1.webp",
-        color: "#d7dbd2"
+        color: "#d7dbd2",
+        link: "/travertine-sandStone"
     },
     {
         uid: new Date().getTime().toString() + 59,
@@ -186,7 +203,8 @@ export const travertinLines = [
         effect: 'naturale',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/naturale-0.jpg",
-        color: "#8a8985"
+        color: "#8a8985",
+        link: "/travertine-naturale"
     }
 ]
 
@@ -199,7 +217,8 @@ export const quickLines = [
         effect: 'stone',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/quick-stone-1.jpg",
-        color: "#9c9d9e"
+        color: "#9c9d9e",
+        link: "/quick-stone"
     },
     {
         uid: new Date().getTime().toString() + 62,
@@ -209,6 +228,7 @@ export const quickLines = [
         effect: 'concrete',
         square: 5,
         image: "https://api.quickdecor.com.ua/wp-content/uploads/2024/11/quick-concrete.jpg",
-        color: "#9a9ea4"
+        color: "#9a9ea4",
+        link: "/quick-concrete"
     }
 ]

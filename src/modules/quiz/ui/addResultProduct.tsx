@@ -13,14 +13,15 @@ import { useCartStore } from "@/store/cartStore"
 import toast from "react-hot-toast"
   
 type QuizProduct = {
-    uid: string,
-    id: number,
-    name: string,
-    price: string,
-    effect: string,
-    square:  number,
+    uid: string
+    id: number
+    name: string
+    price: string
+    effect: string
+    square:  number
     image: string
     color: string
+    link: string
 }
   interface IAddResultProduct{
     className?: string
