@@ -80,14 +80,14 @@ export const steps = {
             quickInterior: 2,
             quickExterior: 3
         },
-        fasad: {
-            air: 0,
-            sand: 0,
-            microcement: 0,
-            travertine: 3,
-            quickInterior: 0,
-            quickExterior: 3
-        }
+        // fasad: {
+        //     air: 0,
+        //     sand: 0,
+        //     microcement: 0,
+        //     travertine: 3,
+        //     quickInterior: 0,
+        //     quickExterior: 3
+        // }
     },
     props: {
         stable: {
@@ -161,8 +161,8 @@ export const steps = {
             sand: 0,
             microcement: 0,
             travertine: 3,
-            quickInterior: 0,
-            quickExterior: 3
+            quickInterior: 3,
+            quickExterior: 0
         },
     },
     create: {
@@ -182,5 +182,13 @@ export const steps = {
             quickInterior: 3,
             quickExterior: 3
         },
+         fasad: {
+            air: 0,
+            sand: 0,
+            microcement: 0,
+            travertine: 3,
+            quickInterior: 0,
+            quickExterior: 3
+        }
     }
 }

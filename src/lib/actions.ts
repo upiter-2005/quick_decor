@@ -103,7 +103,7 @@ export const PurchaseCRM = async(body: checkoutProductsType[], data: TDefauldFie
   }
 }
 
-export const sendCRMForm = async( data: TSimpleForm, utmData: any) => {
+export const sendCRMForm = async( data: TSimpleForm, utmData: any, pageUrl: string) => {
   const { utm_source, utm_medium, utm_campaign, utm_term, utm_content} = utmData
     try{
       const raw = JSON.stringify({
@@ -117,7 +117,14 @@ export const sendCRMForm = async( data: TSimpleForm, utmData: any) => {
         "contact": {
           "full_name": `${data.name}`,
           "phone": `${data.tel} `
-        }
+        },
+        "custom_fields": [
+          {
+            "uuid": "LD_1010",
+            "value": pageUrl
+          },
+          
+        ]
       });
 
       

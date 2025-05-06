@@ -12,6 +12,7 @@ import { Input } from "@/shared/ui/input"
 import { sendCRMForm } from "@/lib/actions"
 import { InputPhone } from "@/shared/ui/inputPhone"
 import { useUtmStore } from "@/store/utmStore"
+import { usePathname } from "next/navigation"
 
 interface IFooterForm{
     className?: string
@@ -20,7 +21,7 @@ interface IFooterForm{
 export const FooterForm:React.FC<IFooterForm> = ({className}) => {
     const [isPending, startTransition] = useTransition()
     const {utmData} = useUtmStore()
-  
+    const pathname = usePathname()
 
       const form = useForm<TSimpleForm>({
             resolver: zodResolver(simpleForm),
@@ -37,7 +38,7 @@ export const FooterForm:React.FC<IFooterForm> = ({className}) => {
           const onSubmit = async(data: TSimpleForm) => {
             console.log(data);
             startTransition( async () => {
-              await sendCRMForm(data, utmData)
+              await sendCRMForm(data, utmData, `https://www.quickdecor.com.ua${pathname}`)
               console.log(data);
                 toast.success('Заявка відправлена успішно!', {icon: '✅', duration: 8000})
               })

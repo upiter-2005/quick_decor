@@ -1,3 +1,4 @@
+
 import React from 'react'
 import Image from 'next/image'
 
@@ -9,7 +10,12 @@ import { cn } from '@/lib/utils'
 import { RedButton } from '@/shared/ui/redButton'
 import Link from 'next/link'
 
+
 export const EffectChose:React.FC = ({}) => {
+
+
+
+
   return (
     <>
       <h2 className={cn('text-[28px] md:text-[46px] leading-9 md:leading-[64px] w-full  text-center')}>Подобаються всі ефекти?</h2> 

@@ -22,6 +22,7 @@ interface CartState {
   box: boolean
   dayPersentCoef: string
   showLiqPay: boolean
+  modalCart: boolean
   setShowLiqPay: (val: boolean) => void
   setBox: (val: boolean) => void
   // openCart: boolean
@@ -36,6 +37,7 @@ interface CartState {
    setResultTotal: () => void
    discountTotal: ( selfDelivery: boolean,) => void
    discountFotoTotal: ( fotoPermit: boolean,) => void
+   setModalCart: ( fotoPermit: boolean,) => void
 
 
   // clearCart: () => void
@@ -55,11 +57,15 @@ export const useCartStore = create<CartState>()(
         dayPersentCoef: '',
         resultTotal: 0,
         box: false,
+        modalCart: false,
         setTypeFlat: (val: string) => {
           set({typeFlat: val})
         },
         setBox: (val) => {
           set({box: val})
+        },
+        setModalCart: (val) => {
+          set({modalCart: val})
         },
         setShowLiqPay: (val) => {
           set({showLiqPay: val})
@@ -257,7 +263,7 @@ export const useCartStore = create<CartState>()(
     
     {
       name: 'qdCart',
-      version: 0.6,
+      version: 0.7,
       storage: createJSONStorage(()=> localStorage),
        partialize: (state) => ({cartItems: state.cartItems, total: state.total, resultTotal: state.resultTotal, typeFlat: state.typeFlat, selfDelivery: state.selfDelivery, fotoPermition: state.fotoPermition, box: state.box, showLiqPay: state.showLiqPay}),
 

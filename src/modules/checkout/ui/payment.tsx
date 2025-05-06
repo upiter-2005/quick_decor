@@ -33,7 +33,7 @@ export const Payment:React.FC<IPayment> = ({className}) => {
           </div>
           <div className="flex items-center space-x-1">
             <RadioGroupItem value="Перевод на IBAN" id="pay2" {...register("payment")}   />
-            <label htmlFor="pay2" className="cursor-pointer">Перевод на IBAN</label>
+            <label htmlFor="pay2" className="cursor-pointer">Переказ на IBAN</label>
           </div>
           {cartItems.length > 0 ? 
            <div className="flex items-center space-x-1">

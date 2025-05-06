@@ -50,6 +50,7 @@ export interface IProduct {
   }
   
   export interface Acf {
+    title_for_site_page: string | undefined
     front_name: string
     variations: string
     gallery_images: []

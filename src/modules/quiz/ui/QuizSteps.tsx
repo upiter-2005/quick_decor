@@ -14,13 +14,10 @@ import { useEffect, useState } from "react"
 import {useSet} from 'react-use'
 import {steps as data}  from "@/shared/consts/steps"
 import { QuizTileAction } from "./quizTileAction"
-import { useCartStore } from "@/store/cartStore"
+import { ICartItem, useCartStore } from "@/store/cartStore"
 import { QuizTileLastStep } from "./QuizTileLastStep"
-import {
-    Dialog,
-    DialogTrigger
-  } from "@/shared/ui/dialog"
-import { AddResultProduct } from "./addResultProduct"
+import {universalProducts } from "@/shared/consts/universalLines"
+//import { AddResultProduct } from "./addResultProduct"
 import Link from "next/link"
 
 interface IQuizSteps {
@@ -37,16 +34,37 @@ interface quizObject {
 }
 
 export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
-    const [set, {has, toggle: toggleProps }] = useSet(new Set<string>([]));
+    const [set, {has, toggle: toggleProps, clear }] = useSet(new Set<string>([]));
     const [ scrolled, setScrolled ] = useState<boolean>(false)
-    const [open1, setOpen1] = useState<boolean>(false)
-    const [open2, setOpen2] = useState<boolean>(false)
-    const [open3, setOpen3] = useState<boolean>(false)
-    const [open4, setOpen4] = useState<boolean>(false)
-    const [open5, setOpen5] = useState<boolean>(false)
-    const {setTypeFlat, typeFlat} = useCartStore()
-   
+    const [ fasadProps, setFasadProps ] = useState<string>("false")
+    const {addCartItem, setModalCart} = useCartStore()
+    // const [open1, setOpen1] = useState<boolean>(false)
+    // const [open2, setOpen2] = useState<boolean>(false)
+    // const [open3, setOpen3] = useState<boolean>(false)
+    // const [open4, setOpen4] = useState<boolean>(false)
+    // const [open5, setOpen5] = useState<boolean>(false)
+    const {
+        setTypeFlat,
+        //typeFlat
+        } = useCartStore()
 
+    const addToCartQuiz = (product: string) => {
+        const obj = universalProducts[product as never] as ICartItem
+        console.log();
+        addCartItem({
+            uid: new Date().getTime().toString() + 21,
+            id: obj.id,
+            name: obj.name,
+            price: obj.price,
+            effect: obj.effect,
+            square: 5,
+            image: obj.image,
+            type: "Universal"
+        })
+        // toast.success("Товар додано в корзину!", {icon: '✅', duration: 8000})
+        // closeModal()
+        setModalCart(true)
+    }
     const [pointsStep1, setPointsStep1] = useState<quizObject>({
         air: 0,
         sand: 0,
@@ -102,33 +120,32 @@ export const QuizSteps:React.FC<IQuizSteps> = ({className}) =>{
 console.log(params)
     const nextStep1 = (e: string, param: string) => {
         
-        // window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" }); 
         setTypeFlat(param)
         setParams({...params, type: param, area: '', create: '', props: '',})
-        setPointsStep2({...pointsStep2, 
-            air: 0,
-            sand: 0,
-            microcement: 0,
-            travertine: 0,
-            quickInterior: 0,
-            quickExterior: 0
-        })
-        setPointsStep3({...pointsStep3, 
-            air: 0,
-            sand: 0,
-            microcement: 0,
-            travertine: 0,
-            quickInterior: 0,
-            quickExterior: 0
-        })
-        setPointsStep4({...pointsStep4, 
-            air: 0,
-            sand: 0,
-            microcement: 0,
-            travertine: 0,
-            quickInterior: 0,
-            quickExterior: 0
-        })
+        // setPointsStep2({...pointsStep2, 
+        //     air: 0,
+        //     sand: 0,
+        //     microcement: 0,
+        //     travertine: 0,
+        //     quickInterior: 0,
+        //     quickExterior: 0
+        // })
+        // setPointsStep3({...pointsStep3, 
+        //     air: 0,
+        //     sand: 0,
+        //     microcement: 0,
+        //     travertine: 0,
+        //     quickInterior: 0,
+        //     quickExterior: 0
+        // })
+        // setPointsStep4({...pointsStep4, 
+        //     air: 0,
+        //     sand: 0,
+        //     microcement: 0,
+        //     travertine: 0,
+        //     quickInterior: 0,
+        //     quickExterior: 0
+        // })
         if (currentStep.type === e) return
        
         if (currentStep.type === "") {
@@ -161,13 +178,12 @@ console.log(params)
     }
 
     const nextStep2 = (e: string, param: string) => {
-        // window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         setParams({...params, area: param})
         if (currentStep.area === e) return
        
         if (currentStep.area === "") {
             setCurrentStep({...currentStep, area: e})
-            const val: quizObject = data.area[e as never]
+            const val: quizObject = data.area[e as never ]
             console.log(val)
             setPointsStep2({...pointsStep2,
                 air:  val.air,
@@ -176,7 +192,8 @@ console.log(params)
                 travertine: val.travertine,  
                 quickInterior: val.quickInterior  
             }) 
-        }else{
+        }
+        else{
             setCurrentStep({...currentStep, area: e})
             const val: quizObject = data.area[e as never]
 
@@ -222,24 +239,151 @@ console.log(params)
                     quickInterior: prevPoints.quickInterior - prevPoints.quickInterior + val.quickInterior  
                 }
             })
-            
         }
     }
 
     const nextStep4 = (e: string, param: string) => {
         // window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         setParams({...params, props: param})
-        if (currentStep.area === e) return
+        if (currentStep.area === e) return 
         toggleProps(e)
+    }
+
+    const fasadStep1 = (e: string, param: string) => {
+        console.log(param);
+        //setParams({...params, area: param})
+        
+        setCurrentStep({...currentStep, area: e, create: "", type: ""})
+        setParams({ ...params,
+            type: '',
+            area: '',
+            create: '',
+            props: '',
+        });
+        clear()
+        setPointsStep1(prevPoints => {
+            return {...prevPoints,
+                air:  0,
+                sand: 0,
+                microcement: 0,
+                travertine: 3,  
+                quickInterior: 3  
+            }
+        })
+        setPointsStep2(prevPoints => {
+            return {...prevPoints,
+                air:  0,
+                sand: 0,
+                microcement: 0,
+                travertine: 0,  
+                quickInterior: 0  
+            }
+        })
+        setPointsStep3(prevPoints => {
+            return {...prevPoints,
+                air:  0,
+                sand: 0,
+                microcement: 0,
+                travertine: 0,  
+                quickInterior: 0
+            }
+        })
+        setPointsStep4(prevPoints => {
+            return {...prevPoints,
+                air:  0,
+                sand: 0,
+                microcement: 0,
+                travertine: 0,  
+                quickInterior: 0 
+            }
+        })
+            
+        
+    }
+
+
+    const fasadStep2 = (e: string, param: string) => {
+     setParams({...params, type: param})
+     console.log(e, param);
+    //  toggleProps(e)
+
+        // if (currentStep.area === e) return
+        setPointsStep1(prevPoints => {
+            
+            return {...prevPoints,
+                air:  0,
+                sand: 0,
+                microcement: 0,
+                travertine: 3,  
+                quickInterior: 3  
+            }
+        })
+        if(e === 'dust'){
+            setFasadProps('dust')
+            setPointsStep2(prevPoints => {
+                return {...prevPoints,
+                    air:  0,
+                    sand: 0,
+                    microcement: 0,
+                    travertine: 0,  
+                    quickInterior: 3
+                }
+            })
+        }else{
+            setFasadProps('stable')
+            setPointsStep2(prevPoints => {
+                return {...prevPoints,
+                    air:  0,
+                    sand: 0,
+                    microcement: 0,
+                    travertine: 3,  
+                    quickInterior: 0
+                }
+            })
+        }
+       
+        setPointsStep3(prevPoints => {
+            return {...prevPoints,
+                air:  0,
+                sand: 0,
+                microcement: 0,
+                travertine: 0,  
+                quickInterior: 0
+            }
+        })
+        setPointsStep4(prevPoints => {
+            return {...prevPoints,
+                air:  0,
+                sand: 0,
+                microcement: 0,
+                travertine: 0,  
+                quickInterior: 0 
+            }
+        })
+    }
+    const doResultSteps = () => {
+        if(step === 4 || (currentStep.area === 'fasad' && step === 2)) {
+       setStep(5)
+        }else {
+            setStep(prevStep => prevStep + 1)
+            // 
+        }
+    }
+
+    const goPrevStep = () => {
+        if(currentStep.area === 'fasad' && step === 5){
+            setStep(2)
+        }else{
+            setStep(prevStep => prevStep - 1)
+        }
+        
     }
     
     useEffect(()=>{
         window.scrollTo(0, 0); 
     }, [step])
     useEffect(()=>{
-        console.log(set)
-
-        console.log(JSON.stringify(Array.from(set), null, 2))
+        
         const arrProps = Array.from(set)
         setCurrentStep({...currentStep, props: 'props'})
         
@@ -312,13 +456,16 @@ console.log(params)
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.air + pointsStep2.air + pointsStep3.air + pointsStep4.air}
                         </div>
+                        {step === 5 &&  <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl in line-block text-xs font-bold"
+                            onClick={()=>addToCartQuiz("air")}
+                        >В кошик</button>}
                        
-                    {step === 5 &&  <Dialog open={open1} onOpenChange={setOpen1}>
+                    {/* {step === 5 &&  <Dialog open={open1} onOpenChange={setOpen1}>
                         <DialogTrigger asChild>
-                            <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl in line-block text-xs font-bold">В кошик</button>
+                            
                             </DialogTrigger>
                             <AddResultProduct typeProduct='air' typeFlat={typeFlat} closeModal={()=>setOpen1(false)} />
-                        </Dialog>}    
+                        </Dialog>}     */}
                 </div>
                 
                 <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
@@ -329,12 +476,15 @@ console.log(params)
                     <div className="text-main md:text-2xl font-medium text-center">
                         {pointsStep1.sand + pointsStep2.sand + pointsStep3.sand + pointsStep4.sand}
                         </div>
-                    {step === 5 &&  <Dialog open={open2} onOpenChange={setOpen2}>
+                        {step === 5 &&  <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl in line-block text-xs font-bold"
+                            onClick={()=>addToCartQuiz("sand")}
+                        >В кошик</button>}
+                    {/* {step === 5 &&  <Dialog open={open2} onOpenChange={setOpen2}>
                             <DialogTrigger asChild>
                                 <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='sand' typeFlat={typeFlat} closeModal={()=>setOpen2(false)} />
-                        </Dialog>}  
+                        </Dialog>}   */}
                         
                 </div>
 
@@ -345,12 +495,15 @@ console.log(params)
                     <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>MICROCEMENT</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.microcement + pointsStep2.microcement + pointsStep3.microcement + pointsStep4.microcement}</div>
-                    {step === 5 &&  <Dialog open={open3} onOpenChange={setOpen3}>
+                    {step === 5 &&  <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl in line-block text-xs font-bold"
+                            onClick={()=>addToCartQuiz("microcemente")}
+                        >В кошик</button>}
+                    {/* {step === 5 &&  <Dialog open={open3} onOpenChange={setOpen3}>
                             <DialogTrigger asChild>
                                 <button className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='microcement' typeFlat={typeFlat} closeModal={()=>setOpen3(false)} />
-                        </Dialog>}
+                        </Dialog>} */}
                     
                 </div>
 
@@ -361,14 +514,17 @@ console.log(params)
                     <p className='text-black mt-1 text-[9px]   md:text-xl font-bold text-center'>TRAVERTINE</p>
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.travertine + pointsStep2.travertine + pointsStep3.travertine + pointsStep4.travertine}</div>
-                    {step === 5 &&
+                    {step === 5 &&  <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl in line-block text-xs font-bold"
+                            onClick={()=>addToCartQuiz("travertine")}
+                        >В кошик</button>}
+                    {/* {step === 5 &&
                     <Dialog open={open4} onOpenChange={setOpen4}>
                             <DialogTrigger asChild>
                             <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='travertine' typeFlat={typeFlat} closeModal={()=>setOpen4(false)} />
                         </Dialog>
-                    }
+                    } */}
                 </div>
 
                 <div className="flex flex-col justify-center items-center w-[70px] md:w-[150px]">
@@ -379,29 +535,31 @@ console.log(params)
                     <div className="text-main md:text-2xl font-medium text-center">
                     {pointsStep1.quickInterior + pointsStep2.quickInterior + pointsStep3.quickInterior + pointsStep4.quickInterior}
                     </div>
-                    {step === 5 && 
+                    {step === 5 &&  <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl in line-block text-xs font-bold"
+                            onClick={()=>addToCartQuiz("quick")}
+                        >В кошик</button>}
+                    {/* {step === 5 && 
                         <Dialog open={open5} onOpenChange={setOpen5}>
                             <DialogTrigger asChild>
                             <button  className="bg-[#ff0000] text-white px-2 py-1 ml-1 rounded-xl inline-block text-xs font-bold">В кошик</button>
                             </DialogTrigger>
                             <AddResultProduct typeProduct='quick' typeFlat={typeFlat} closeModal={()=>setOpen5(false)} />
                         </Dialog>
-                    }
+                    } */}
                 </div>
                 
                 <div className=" px-4 min-w-full">
                     <div className="flex justify-center mb-0 mt-10 md:mt-2 gap-4">
-                    {step !== 1 && <button onClick={()=>setStep(prevStep => prevStep - 1)} 
-                        className={cn( `w-[69px] bg-[#858585] text-white text-xs font-semibold !p-3 rounded-[60px] flex justify-center items-center hover:opacity-55 transition-all
-                             
-                             `, className)}
+                    {step !== 1 && <button onClick={goPrevStep} 
+                        className={cn( `w-[69px] bg-[#858585] text-white text-xs font-semibold !p-3 rounded-[60px] flex justify-center items-center hover:opacity-55 transition-all `, className)}
                     ><Image src={prev} width={14} height={16} alt="quickdecor" /> </button>
                     }
                 
                 {step !== 5 &&    <button className={cn( 'w-[250px] bg-[#ff0000] text-white text-xs font-semibold p-3 rounded-[60px]  inline-block hover:opacity-55 transition-all', className)}
-                    onClick={()=> setStep(prevStep => prevStep + 1)}
+                   // onClick={()=> setStep(prevStep => prevStep + 1)}
+                    onClick={doResultSteps}
                     disabled={step === 5}
-                    >{step === 4 ? 'Отримати результати' : 'Наступний крок'}</button>}
+                    >{(step === 4 || (currentStep.area === 'fasad' && step === 2) ) ? 'Отримати результати' : 'Наступний крок'}</button>}
                 
 
                     {step === 5 &&    <button className={cn( 'w-[250px] bg-[#222] text-white text-sm font-semibold p-3 rounded-[60px] inline-block hover:opacity-55 transition-all', className)}
@@ -416,9 +574,48 @@ console.log(params)
             
 
        
-            {step === 1 && 
+            {step === 1 &&
+             <div className="flex gap-5  w-full flex-wrap justify-center">
+                <div className="w-full text-xl mb-2 text-[#373C45] mt-6"><RedText text="Крок 1" />Оберіть тип поверхні на яку планується нанесення декору </div>
+                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="wall" text="Стіна інтер'єр" image={icons.wall} />
+                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="ceil" text="Стеля" image={icons.ceil} />
+                {params.type === 'Кухня' && <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="glass" text="Кухоний фартук (під скло)" image={icons.glass} />}
+                
+                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="fireplace" text="Камін" image={icons.fireplace} />
+                <QuizTileAction current={currentStep.area} quizAction={fasadStep1} slug="fasad" text="Фасад" image={icons.fasad} />
+            </div>
+            }
+            
+            {step === 2 &&
+                <div className="flex gap-5  w-full flex-wrap justify-center">
+                    <div className="w-full text-xl mb-2 text-[#373C45] mt-6"><RedText text="Крок 2" />Оберіть важливі властивості для експлуатації (можна обрати декілька)</div>
+                    {currentStep.area !== 'fasad' && (<>
+                        <QuizTileLastStep active={has('wet')} quizAction={nextStep4} slug="wet" text="Вологе прибирання" image={icons.wet} />
+                        <QuizTileLastStep active={has('water')} quizAction={nextStep4} slug="water" text="Прямий контакт з водою" image={icons.water} />
+                        <QuizTileLastStep active={has('stable')} quizAction={nextStep4} slug="stable" text="Стійкість, міцність" image={icons.stable} />
+                        <QuizTileLastStep active={has('dust')} quizAction={nextStep4} slug="dust" text="Не сприймає пилу" image={icons.dust} />
+                    </>) }
+                    {currentStep.area === 'fasad' && (<>
+                        <QuizTileLastStep active={fasadProps === 'stable'} quizAction={fasadStep2} slug="stable" text="Стійкість, міцність" image={icons.stable} />
+                        <QuizTileLastStep active={fasadProps === 'dust'} quizAction={fasadStep2} slug="dust" text="Не сприймає пилу" image={icons.dust} />
+                    </>) }
+                </div>
+            }
+
+           
+
+        {step === 3 &&
+             <div className="flex gap-5  w-full flex-wrap justify-center">
+                <div className="w-full text-xl mb-2 text-[#373C45] mt-6"><RedText text="Крок 3" />Оберіть яка підготовка обраного типу стін наразі </div>
+                <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="wallpaper" text="Під шпалери" image={icons.wallpaper} />
+                <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="paint" text="Під фарбування" image={icons.paint} />
+                
+            </div>
+        }
+           
+           {step === 4 && 
                 <div className="flex gap-5  w-full flex-wrap justify-center mt-6">
-                    <div className="w-full md:text-xl text-basic mb-2 text-[#373C45]"><RedText text="Крок 1" />Оберіть приміщення в якому планується нанесення декору</div>
+                    <div className="w-full md:text-xl text-basic mb-2 text-[#373C45]"><RedText text="Крок 4" />Оберіть приміщення в якому планується нанесення декору</div>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="spalnya" text="Спальня" image={icons.badroom}  className="h-auto md:px-[20px]"/>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="gostinnaya" text="Вітальня" image={icons.gost} className="h-auto md:px-[20px]"/>
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="child" text="Дитяча" image={icons.child} className="h-auto md:px-[20px]"/>
@@ -431,37 +628,6 @@ console.log(params)
                     <QuizTileAction current={currentStep.type} quizAction={nextStep1} slug="childClubs" text="Дитячі клуби/учбові класи" image={icons.child} className="h-auto md:px-[20px]" />
                 </div>
             }
-            
-
-            {step === 2 &&
-             <div className="flex gap-5  w-full flex-wrap justify-center">
-                <div className="w-full text-xl mb-2 text-[#373C45] mt-6"><RedText text="Крок 2" />Оберіть тип поверхні на яку планується нанесення декору </div>
-                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="wall" text="Стіна інтер'єр" image={icons.wall} />
-                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="ceil" text="Стеля" image={icons.ceil} />
-                {params.type === 'Кухня' && <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="glass" text="Кухоний фартук (під скло)" image={icons.glass} />}
-                
-                <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="fireplace" text="Камін" image={icons.fireplace} />
-                {/* <QuizTileAction current={currentStep.area} quizAction={nextStep2} slug="fasad" text="Фасад" image={icons.fasad} /> */}
-            </div>
-            }
-
-        {step === 3 &&
-             <div className="flex gap-5  w-full flex-wrap justify-center">
-                <div className="w-full text-xl mb-2 text-[#373C45] mt-6"><RedText text="Крок 3" />Оберіть яка підготовка обраного типу стін наразі </div>
-                <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="wallpaper" text="Під шпалери" image={icons.wallpaper} />
-                <QuizTileAction current={currentStep.create} quizAction={nextStep3} slug="paint" text="Під фарбування" image={icons.paint} />
-            </div>
-        }
-           
-        {step === 4 &&
-             <div className="flex gap-5  w-full flex-wrap justify-center">
-                <div className="w-full text-xl mb-2 text-[#373C45] mt-6"><RedText text="Крок 4" />Оберіть важливі властивості для експлуатації (можна обрати декілька)</div>
-                <QuizTileLastStep active={has('stable')} quizAction={nextStep4} slug="stable" text="Стійкість, міцність" image={icons.stable} />
-                <QuizTileLastStep active={has('wet')} quizAction={nextStep4} slug="wet" text="Вологе прибирання" image={icons.wet} />
-                <QuizTileLastStep active={has('water')} quizAction={nextStep4} slug="water" text="Прямий контакт з водою" image={icons.water} />
-                <QuizTileLastStep active={has('dust')} quizAction={nextStep4} slug="dust" text="Не сприймає пилу" image={icons.dust} />
-            </div>
-        }
 
            
         

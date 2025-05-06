@@ -7,7 +7,8 @@ import { useCartStore } from "@/store/cartStore"
 import { Adress } from "./adress"
 
 interface IDelivery {
-  className?: string
+  className?: string,
+  
 }
 
 const enum Methods {
@@ -18,8 +19,8 @@ const enum Methods {
 
 export const Delivery:React.FC<IDelivery> = ({className}) => {
 
-  const [delivery, setDelivery] = useState<string>(Methods.DEPARTMENT)
-  const {cartItems} = useCartStore()
+  const [delivery, setDelivery] = useState<string>(Methods.SELF)
+  const {cartItems, box} = useCartStore()
 
   const {
     register,
@@ -38,32 +39,38 @@ export const Delivery:React.FC<IDelivery> = ({className}) => {
       <div className="flex  items-center gap-2 mb-8">
         <RadioGroup
           onValueChange={(val: string)=>handleDelivery(val)}
-          defaultValue={Methods.DEPARTMENT}
+          defaultValue={Methods.SELF}
           className='flex flex-col '
         >
             {cartItems.length > 0 && <div className="flex items-start ">
             <RadioGroupItem value={Methods.SELF} id="selfdelivery" className='relative top-1 w-auto'  {...register("delivery")} />
             <label htmlFor="selfdelivery" className={`${delivery !== Methods.SELF && 'opacity-55'} cursor-pointer transition-all pl-2`}>
-                 {Methods.SELF} <br /><span className="text-sm">(безкоштовно з додатковою знижкою 3% від суми замовлення )</span>
+                 {Methods.SELF} 
+                 {/* <span className="text-sm">(безкоштовно з додатковою знижкою 3% від суми замовлення )</span> */}
             </label>
           </div>}
           
+          {box && (
+            <>
+              <div className="flex items-start ">
+              <RadioGroupItem value={Methods.DEPARTMENT} id="pickup" className='relative top-1 w-auto' {...register("delivery")}/>
+              <label htmlFor="pickup" className={`${delivery !== Methods.DEPARTMENT && 'opacity-55'} cursor-pointer transition-all pl-2`}>
+                  {Methods.DEPARTMENT}
+                  
+                  {/* <span className="text-sm">(по тарифам Нової Пошти з додатковою знижкою 3% від суми замовлення  )</span> */}
+              </label>
+            </div>
 
-           <div className="flex items-start ">
-            <RadioGroupItem value={Methods.DEPARTMENT} id="pickup" className='relative top-1 w-auto' {...register("delivery")}/>
-            <label htmlFor="pickup" className={`${delivery !== Methods.DEPARTMENT && 'opacity-55'} cursor-pointer transition-all pl-2`}>
-                {Methods.DEPARTMENT}
-                <br /><span className="text-sm">(по тарифам Нової Пошти з додатковою знижкою 3% від суми замовлення  )</span>
-            </label>
-          </div>
-
-          <div className="flex items-start ">
-            <RadioGroupItem value={Methods.COURIER} id="courier" className='relative top-1 w-auto' {...register("delivery")}/>
-            <label htmlFor="courier" className={`${delivery !== Methods.COURIER && 'opacity-55 transition-all '} cursor-pointer pl-2`}>
-                {Methods.COURIER}
-                <br /><span className="text-sm">(по тарифам Нової Пошти )</span>
-            </label>
-          </div>
+            <div className="flex items-start ">
+              <RadioGroupItem value={Methods.COURIER} id="courier" className='relative top-1 w-auto' {...register("delivery")}/>
+              <label htmlFor="courier" className={`${delivery !== Methods.COURIER && 'opacity-55 transition-all '} cursor-pointer pl-2`}>
+                  {Methods.COURIER}
+                  <br /><span className="text-sm">(по тарифам Нової Пошти )</span>
+              </label>
+            </div>
+            </>
+          )}
+           
         </RadioGroup>
 
       </div>

@@ -27,7 +27,7 @@ import { FooterFormWidget } from "@/modules/footer-form"
 import { ReadMore } from "@/components/readMore"
 import { PickEffect } from "@/components/pickEffect"
 
-import np from "@/shared/assets/images/np_100.png"
+//import np from "@/shared/assets/images/np_100.png"
 import oplata from "@/shared/assets/images/credit_100.png"
 
 
@@ -58,11 +58,22 @@ export const ProductData:React.FC<IProductData> = ({className, product, variatio
 console.log(product);
        
       
-    const {addCartItem, typeFlat, setBox} = useCartStore()
+    const {addCartItem, typeFlat, setBox, setModalCart} = useCartStore()
   
     const addToCartHandler = () => {
         if(!typeFlat) {
-            setIsOpen(true)
+            //setIsOpen(true) // type areas open
+            addCartItem({
+                uid: new Date().getTime().toString(),
+                id: product.id,
+                name: product.acf.front_name + ' ' + product.acf.colors,
+                price: product.acf.price,
+                effect: product.acf.colors,
+                square: parseInt(square),
+                image: imgs[0].original,
+                type: "Universal"
+            })
+            setModalCart(true)
             return
         }
         addCartItem({
@@ -76,7 +87,7 @@ console.log(product);
             type: typeFlat
         })
         toast.success("Товар додано в корзину!", {icon: '✅', duration: 8000})
-      
+        setModalCart(true)
     }
 
     const  defineType = (val: string) => {
@@ -92,6 +103,7 @@ console.log(product);
         })
         toast.success("Товар додано в корзину!", {icon: '✅', duration: 8000})
         setIsOpen(false)
+        setModalCart(true)
     }
 
   
@@ -115,11 +127,12 @@ console.log(product);
     }
     getData()
    }, [product])
-  
+
+  console.log(product);
 
     return(
         <>
- 
+       
           <div className={cn('max-w-[1304px] w-full m-auto mt-[50px] pb-0 md:pb-[5px] px-3 md:px-0 flex ', className)}>
                 <Image src={mark} width={17} height={4} alt="quickdecor" />
                 <Link href="/catalog" className="text-[#ff0000] text-xs md:text-sm font-semibold leading-4 md:leading-5 mr-1 ml-1">Каталог</Link> 
@@ -155,9 +168,11 @@ console.log(product);
                 <div className="flex justify-between flex-col">
          
                     {product.acf.front_name !== "Коробка помічниця" &&
-                    <><SectionTitle title={product.acf.front_name} redText={'Ефект'} className="pb-0 mt-0 md:pb-1 pl-0"/>
-                    <div className="text-sm md:mb-8 capitalize md:pl-0 font-semibold md:hidden pl-0">Колір - {product.acf.colors}</div>
-                    </>  }
+                        <>
+                            <SectionTitle title={product.acf.title_for_site_page} redText={'Ефект'} className="pb-0 mt-0 md:pb-0 pl-0 md:text-[26px]"/>
+                            <div className="text-sm md:mb-8 capitalize md:pl-0 font-semibold md:hidden pl-0">Колір - {product.acf.colors}</div>
+                        </>  
+                    }
                     {product.acf.front_name === "Коробка помічниця" &&
                     <><SectionTitle title="Бокс взірців" className="pb-0 mt-0 md:pb-1 pl-0"/>
                     
@@ -202,25 +217,33 @@ console.log(product);
                     (<>
                         <div className="flex items-start md:items-start py-2 justify-center md:justify-between flex-c md:flex-row gap-4">
                             <div className="flex-col ">
-                            <p className="text-main text-[30px] relative whitespace-nowrap">{product.acf.price} <span className='relative text-[20px] top-0 -left-1'> грн/м2</span></p>
-                            <div className="flex gap-1 justify-between items-center">
-                                <Image src={np} width={25} height={25} alt="nova poshta" />
-                                <span className="flex-1 text-xs">Доставка по всій Україні</span>
-                            </div>
-                            <div className="flex gap-1 justify-between items-center">
-                                <Image src={oplata} width={25} height={25} alt="oplata chastynamy" />
-                                <span className="flex-1 text-xs">Оплата частинами від ПриватБанку на 3 платежі</span>
-                            </div>
-                            {product.acf.old_price && <p className="text-[#858585] text-xl line-through font-medium relative -top-2 ml-3">{product.acf.old_price} грн </p>}
-                            </div>
-                           
+                                <div className="font-bold mt-4">Вартість роботи з матеріалами</div>
+                                <div className="flex flex-wrap items-end  ">
+                                    <p className="text-main text-[30px] relative whitespace-nowrap"><span className="text-sm">від</span> {product.acf.price} <span className='relative text-[20px] top-0 -left-1'> грн/м2</span></p>
+                                    <div className="flex gap-1 justify-between items-center relative bottom-1 md:ml-3">
+                                        <Image src={oplata} width={25} height={25} alt="oplata chastynamy" />
+                                        <span className="flex-1 text-xs">Оплата частинами від ПриватБанку на 3 платежі</span>
+                                    </div>
+                                </div>
+                                
+                                {/* <div className="flex gap-1 justify-between items-center">
+                                    <Image src={np} width={25} height={25} alt="nova poshta" />
+                                    <span className="flex-1 text-xs">Доставка по всій Україні</span>
+                                </div> */}
+                                {/* <div className="flex gap-1 justify-between items-center">
+                                    <Image src={oplata} width={25} height={25} alt="oplata chastynamy" />
+                                    <span className="flex-1 text-xs">Оплата частинами від ПриватБанку на 3 платежі</span>
+                                </div> */}
+                                    {product.acf.old_price && <p className="text-[#858585] text-xl line-through font-medium relative -top-2 ml-3"><span className="text-sm">від</span> {product.acf.old_price} грн </p>}
+                                </div>
+{/*                            
                             <div>
                                 <p className="font-bold pb-3 pl-4 md:pl-6 leading-4">Головне ви нічим не ризикуєте</p>
                                 <SectionTitle  redText={'гроші заброньовані на 7 днів. '} className="pb-0 mt-0 md:pb-1 text-xs"/>
                                 <SectionTitle  redText={'без зміни ціни за м2'} className="pb-0 mt-0 md:pb-1 text-xs"/>
                                 <SectionTitle  redText={'без додаткових нарахувань'} className="pb-0 mt-0 md:pb-1 text-xs"/>
                                 <SectionTitle  redText={'з можливістю повернення 100% сумми'} className="pb-0 mt-0 md:pb-1 text-xs"/>
-                            </div>
+                            </div> */}
                         </div>
                             <div className="flex items-center md:items-end gap-6 flex-col md:flex-row">
                             <div className="relative w-full flex-wrap">
@@ -241,7 +264,7 @@ console.log(product);
                                     <button 
                                         className="w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
                                         onClick={addToCartHandler}
-                                        >Розрахувати вартість 
+                                        >Додати в кошик 
                                     </button>
                                 </div>
                                
@@ -253,10 +276,12 @@ console.log(product);
                 }
                 
             </div>
-      </div>
-      {product.acf.front_name === "Коробка помічниця" && <div className="h-16"></div> }
+        </div>
+        {product.acf.front_name === "Коробка помічниця" && <div className="h-16"></div> }
 
+        <PickEffect />
 
+      
 {product.acf.front_name !== "Коробка помічниця" &&
     (<>
         <h2 className="max-w-[1144px] w-full m-auto text-2xl md:text-4xl mt-10 font-medium pl-1 text-center">Наші рекомендаціі</h2>
@@ -319,7 +344,7 @@ console.log(product);
       </>)
 }
 
-      <PickEffect />
+      
       <ContactBaner />
       <FooterFormWidget />
 

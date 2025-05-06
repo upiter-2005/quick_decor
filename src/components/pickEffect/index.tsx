@@ -12,8 +12,9 @@ import { RedButton } from '@/shared/ui/redButton'
 
 interface IPickEffect {
   className?: string
+  showLink?: boolean
 }
-export const PickEffect:React.FC<IPickEffect> = ({className}) => {
+export const PickEffect:React.FC<IPickEffect> = ({className, showLink = true}) => {
   return (
     <>
   
@@ -42,7 +43,8 @@ export const PickEffect:React.FC<IPickEffect> = ({className}) => {
             <Image src={quick}  objectFit="cover"  alt="quickdecor"   />
             <p className='text-main mt-1 md:mt-4  md:text-2xl font-medium'>QUICK</p>
           </Link>
-          <div className='w-full text-center'><RedButton linkText='Перейти до ефектів' text='Перейти в каталог' href='/catalog' className='px-8 mt-8' /></div>
+          {showLink && (<div className='w-full text-center'><RedButton linkText='Залишити заявку' text='Перейти в каталог' href='#footerForm' className='px-8 mt-8' /></div>)}
+          
       </div>
     </>
   

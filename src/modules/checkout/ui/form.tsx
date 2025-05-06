@@ -18,6 +18,7 @@ import { KeyCrm } from "@/shared/types/keyCrm";
 import { LiqPay, OplataChastynamy } from "@/modules/liqpay";
 import { useRouter } from 'next/navigation'
 import { useUtmStore } from "@/store/utmStore";
+import { checkoutProductsGtag } from "@/shared/helpers/checkoutProductsGtag";
 
 interface IForm{
     className?: string
@@ -42,7 +43,7 @@ export const Form:React.FC<IForm> = ({className}) => {
           tel: '',
           email: '',
           payment: 'Картою на сайті',
-          delivery: 'До відділення Нової Пошти',
+          delivery: 'Самовивіз зі складу в м. Києві',
           priceDiscount: resultTotal,
           city: '',
           department: '',
@@ -57,7 +58,20 @@ export const Form:React.FC<IForm> = ({className}) => {
         startTransition( async () => {
           
           await checkoutAction(data)
-          if(data) { 
+          if(data) {
+            if(window.gtag !== undefined){
+              const products = checkoutProductsGtag(cartItems)
+              window.gtag('event', 'conversion', {'send_to': 'purchase',
+               'value': resultTotal,
+                 'items': products
+              });
+              // window.gtag('event', 'purchase', {
+              //   //'send_to': 'ads',
+              //   'value': resultTotal,
+              //   'items': products
+              // });
+            } 
+            
             if (box) crmProducts?.push({
               "sku": "box_1", 
               "quantity": 1, 

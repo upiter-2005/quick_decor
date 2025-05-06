@@ -15,9 +15,10 @@ interface ICartItemBox {
     className?: string
     item: ICartItem,
     active?: boolean
+    imageClass?: string
 }
 
-export const CartItem:React.FC<ICartItemBox> = ({className, item, active = true}) => {
+export const CartItem:React.FC<ICartItemBox> = ({className, item, active = true, imageClass}) => {
     const [square, setSquare] = useState(item.square);
     
     const {cartItems, removeItem, addSquare, minusSquare, setupSquare} = useCartStore()
@@ -32,16 +33,16 @@ export const CartItem:React.FC<ICartItemBox> = ({className, item, active = true}
     }
     return (
        <div className={cn('w-full flex md:justify-between items-center  pb-14 pt-4 rounded-2xl input-shadow border border-[#efefef] p-[10px] mb-6 gap-2 flex-wrap relative', className)}>
-            <div className="rounded-[8px] overflow-hidden w-[55px] h-[55px] md:w-[80px] md:h-[80px] relative">
+            <div className={cn("rounded-[8px] overflow-hidden w-[55px] h-[55px] md:w-[80px] md:h-[80px] relative", imageClass)}>
                 <Image src={item.image} fill objectFit="cover" alt="quickdecor" />
             </div>
             
             <div className=" max-w-[215px] w-full">
-                <div className="flex items-center text-[#1e1e1e] text-[18px] uppercase">
+                <div className="flex items-center text-[#1e1e1e] md:text-[18px] uppercase">
                     {item.name} 
                     {/* <Image src={badroom} width={20} height={20} alt="quickdecor" className="ml-2 mr-2" /><span className="text-main text-[10px] capitalize">Вітальня</span>  */}
                 </div>
-                <div className=" text-[#ff0000] text-sm">{item.type} </div>
+                <div className=" text-[#ff0000] text-sm  text-left">{item.type} </div>
             </div>
          
         
@@ -63,7 +64,7 @@ export const CartItem:React.FC<ICartItemBox> = ({className, item, active = true}
             </div>
             <button
                 onClick={()=>removeItem(item.id, item.price, item.square, item.uid)}
-            ><Image src={remove} width={25} height={25} alt="quickdecor" className="absolute right-3 top-5 md:relative md:top-0"  /></button>
+            ><Image src={remove} width={22} height={22} alt="quickdecor" className="absolute right-3 top-5 md:relative md:top-0"  /></button>
                
        </div>  
     )

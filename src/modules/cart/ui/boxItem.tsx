@@ -8,9 +8,10 @@ import Link from "next/link"
 
 interface ICartItemBox {
     className?: string
+    imageClass?: string
 }
 
-export const BoxItem:React.FC<ICartItemBox> = ({className}) => {
+export const BoxItem:React.FC<ICartItemBox> = ({className, imageClass}) => {
 
     const {cartItems, setBox} = useCartStore()
 
@@ -19,7 +20,7 @@ export const BoxItem:React.FC<ICartItemBox> = ({className}) => {
          <div className={cn('w-full flex md:justify-between items-center  pb-14 pt-4 rounded-2xl input-shadow border border-[#efefef] p-[10px] mb-6 gap-2 flex-wrap relative', className)}>
             
             <div className="flex items-center justify-center gap-4">
-               <div className="rounded-[8px] overflow-hidden w-[55px] h-[55px] md:w-[80px] md:h-[80px] relative">
+               <div className={cn("rounded-[8px] overflow-hidden w-[55px] h-[55px] md:w-[80px] md:h-[80px] relative", imageClass)}>
                    <Image src={"https://api.quickdecor.com.ua/wp-content/uploads/2024/12/4.jpg"} fill objectFit="cover" alt="quickdecor" />
                </div>
                

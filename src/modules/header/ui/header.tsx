@@ -10,6 +10,7 @@ import tel from "@/shared/assets/images/tel.svg"
 
 import { MobMenu } from "./mobMnu"
 import { HeaderCart } from "@/components/headerCart"
+import { SideCart } from "@/modules/sideCart"
 
 interface IHeaderProps {
     className?: string
@@ -33,7 +34,7 @@ export const Header:React.FC<IHeaderProps> = ({className}) => {
                 </div>
                 <MobMenu />
             </div>
-            
+            <SideCart />
         </header>
     )
        
