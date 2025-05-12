@@ -7,7 +7,7 @@ import { SectionTitle } from "@/shared/ui/sectionTitle"
 import Link from "next/link"
 import { IProduct } from "../types/types"
 import { useCartStore } from "@/store/cartStore"
-import { useEffect, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss"
 import mark from "@/shared/assets/images/mark.svg"
@@ -46,7 +46,7 @@ type Images = {
 }
 
 export const ProductData:React.FC<IProductData> = ({className, product, variations}) =>{
-        const [square, setSquare] = useState<string>('5');
+        const [square, setSquare] = useState<string>('');
         const [isOpen, setIsOpen] = useState<boolean>(false);
         const [imgs, setImgs] = useState<Images[]>([])
         const [isError, setIsError] = useState<boolean>(false);
@@ -106,7 +106,11 @@ console.log(product);
         setModalCart(true)
     }
 
-  
+
+  const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSquare(e.target.value);                                             
+    if(Number(e.target.value) < 15){setIsError(true)}else{setIsError(false)}
+  }
      
     useEffect(()=> {
             const imgObj: Images[]  = product.acf.gallery_images.map((obj: any)=>{
@@ -255,15 +259,16 @@ console.log(product);
                                     <input 
                                         type="number" 
                                         min={1}
-                                        placeholder="5m" 
+                                        placeholder="" 
                                         className="flex-1 text-[#9A9FA8] outline-none py-3 pl-2 border border-[#D9DADD] placeholder:text-[#9A9FA8] text-base rounded-xl w-[90px] md:w-auto" 
                                         value={square} 
-                                        onChange={(e)=>{setSquare(e.target.value); if(Number(e.target.value) < 5){setIsError(true)}else{setIsError(false)} }}
+                                        onChange={inputHandler}
                                     />
 
                                     <button 
-                                        className="w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70"
+                                        className={`w-[250px] rounded-[60px] text-white p-4 bg-[#ff0000] text-sm font-semibold hover:opacity-70 ${square === '' ? 'cursor-not-allowed' : ''}`}
                                         onClick={addToCartHandler}
+                                        disabled={square === '' ? true : false}
                                         >Додати в кошик 
                                     </button>
                                 </div>
